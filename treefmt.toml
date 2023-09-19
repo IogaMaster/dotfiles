@@ -1,0 +1,19 @@
+[formatter.nix]
+command = "alejandra"
+includes = ["*.nix"]
+
+[formatter.markdown]
+command = "mdformat"
+includes = [
+         "*.md",
+]
+
+[formatter.shell]
+command = "shfmt"
+options = [
+        "-s",
+        "-w",
+        "-i",
+        "2",
+]
+includes = ["*.sh"]
