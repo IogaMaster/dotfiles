@@ -1,5 +1,4 @@
-{ channels, ... }:
-final: prev: {
+{channels, ...}: final: prev: {
   obsidan = with prev;
     makeDesktopItem {
       name = "Obsidian";

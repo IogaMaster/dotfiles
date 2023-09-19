@@ -1,5 +1,9 @@
-{ config, pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
   system.boot.efi.enable = true;
@@ -11,8 +15,6 @@
 
   hardware.nvidia.enable = true;
   services.ssh.enable = true;
-
-
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";

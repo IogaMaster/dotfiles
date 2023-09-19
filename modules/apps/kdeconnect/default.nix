@@ -1,8 +1,15 @@
-{ options, config, pkgs, lib, inputs, ... }:
-with lib;
-with lib.internal;
-let cfg = config.apps.kdeconnect; in
 {
+  options,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.apps.kdeconnect;
+in {
   options.apps.kdeconnect = with types; {
     enable = mkBoolOpt false "Enable or disable kdeconnect";
   };
@@ -11,4 +18,3 @@ let cfg = config.apps.kdeconnect; in
     programs.kdeconnect.enable = true;
   };
 }
-

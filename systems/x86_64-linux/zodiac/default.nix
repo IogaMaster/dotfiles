@@ -1,5 +1,9 @@
-{ config, pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
   system.boot.bios.enable = true;

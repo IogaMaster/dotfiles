@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.suites.desktop;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.suites.desktop;
+in {
   options.suites.desktop = with types; {
     enable = mkBoolOpt false "Enable the desktop suite";
   };

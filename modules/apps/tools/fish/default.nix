@@ -1,16 +1,20 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.apps.tools.fish;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.apps.tools.fish;
+in {
   options.apps.tools.fish = with types; {
     enable = mkBoolOpt false "Enable fish";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.fish pkgs.eza pkgs.bat pkgs.lazygit pkgs.git pkgs.nitch ];
+    environment.systemPackages = [pkgs.fish pkgs.eza pkgs.bat pkgs.lazygit pkgs.git pkgs.nitch];
 
     home.programs.fish = {
       enable = true;

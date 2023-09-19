@@ -3,8 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url =
-      "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     snowfall-lib = {
       url = "github:snowfallorg/lib/dev";
@@ -34,14 +33,12 @@
     };
   };
 
-
-  outputs = inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
-      };
-    in
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+    };
+  in
     lib.mkFlake {
       inherit inputs;
       package-namespace = "custom";

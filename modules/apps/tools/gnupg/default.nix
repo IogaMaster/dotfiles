@@ -1,16 +1,20 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.apps.tools.gnupg;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.apps.tools.gnupg;
+in {
   options.apps.tools.gnupg = with types; {
     enable = mkBoolOpt false "Enable gnupg";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.pinentry pkgs.pinentry-curses ];
+    environment.systemPackages = [pkgs.pinentry pkgs.pinentry-curses];
 
     services.pcscd.enable = true;
     programs.gnupg.agent = {

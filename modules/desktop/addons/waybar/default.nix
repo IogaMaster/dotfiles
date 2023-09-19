@@ -1,8 +1,15 @@
-{ options, config, pkgs, lib, inputs, ... }:
-with lib;
-with lib.internal;
-let cfg = config.desktop.addons.waybar; in
 {
+  options,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.desktop.addons.waybar;
+in {
   options.desktop.addons.waybar = with types; {
     enable = mkBoolOpt false "Enable or disable waybar";
   };

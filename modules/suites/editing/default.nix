@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.suites.editing;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.suites.editing;
+in {
   options.suites.editing = with types; {
     enable = mkBoolOpt false "Enable the editing suite";
   };

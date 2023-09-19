@@ -1,4 +1,8 @@
-{ writeShellScriptBin, glib, ... }:
+{
+  writeShellScriptBin,
+  glib,
+  ...
+}:
 writeShellScriptBin "sys" ''
 
   cmd_rebuild() {
@@ -38,14 +42,14 @@ writeShellScriptBin "sys" ''
       $PROGRAM rebuild
           Rebuild the system. (You must be in the system flake directory!)
           Must be run as root.
-      $PROGRAM test 
+      $PROGRAM test
           Like rebuild but faster and not persistant.
       $PROGRAM update [input]
           Update all inputs or the input specified. (You must be in the system flake directory!)
           Must be run as root.
-      $PROGRAM deploy [hostname] 
+      $PROGRAM deploy [hostname]
           Deploy system configuration to hostname. (You must be in the system flake directory!)
-      $PROGRAM clean 
+      $PROGRAM clean
           Garbage collect and optimise the Nix Store.
       $PROGRAM help
           Show this text.

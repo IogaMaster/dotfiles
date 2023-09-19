@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.hardware.audio;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.hardware.audio;
+in {
   options.hardware.audio = with types; {
     enable = mkBoolOpt false "Enable pipewire";
   };

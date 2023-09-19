@@ -1,9 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-
-with lib;
-with lib.internal;
-let cfg = config.desktop.hyprland; in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.desktop.hyprland;
+in {
   options.desktop.hyprland = with types; {
     enable = mkBoolOpt false "Enable or disable the hyprland window manager.";
   };

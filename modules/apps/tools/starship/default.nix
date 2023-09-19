@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.apps.tools.starship;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.apps.tools.starship;
+in {
   options.apps.tools.starship = with types; {
     enable = mkBoolOpt false "Enable starship";
   };

@@ -1,8 +1,15 @@
-{ options, config, pkgs, lib, inputs, ... }:
-with lib;
-with lib.internal;
-let cfg = config.apps.st; in
 {
+  options,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.apps.st;
+in {
   options.apps.st = with types; {
     enable = mkBoolOpt false "Enable or disable the alacritty terminal.";
   };
@@ -10,7 +17,7 @@ let cfg = config.apps.st; in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       (st.overrideAttrs (oldAttrs: rec {
-        buildInputs = oldAttrs.buildInputs ++ [ harfbuzz ];
+        buildInputs = oldAttrs.buildInputs ++ [harfbuzz];
         patches = [
           (fetchpatch {
             url = "https://st.suckless.org/patches/ligatures/0.9/st-ligatures-20230105-0.9.diff";
@@ -36,4 +43,3 @@ let cfg = config.apps.st; in
     ];
   };
 }
-

@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.suites.common;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.suites.common;
+in {
   options.suites.common = with types; {
     enable = mkBoolOpt false "Enable the common suite";
   };
@@ -41,7 +45,7 @@ in
 
     programs.dconf.enable = true;
 
-    environment.systemPackages = [ pkgs.bluetuith pkgs.custom.sys pkgs.custom.deploy ];
+    environment.systemPackages = [pkgs.bluetuith pkgs.custom.sys pkgs.custom.deploy];
 
     system = {
       fonts.enable = true;

@@ -1,10 +1,14 @@
-{ options, config, pkgs, lib, ... }:
-
-with lib;
-with lib.internal;
-let cfg = config.system.boot.efi;
-in
 {
+  options,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.system.boot.efi;
+in {
   options.system.boot.efi = with types; {
     enable = mkBoolOpt false "Whether or not to enable efi booting.";
   };

@@ -1,10 +1,14 @@
-{ options, config, lib, pkgs, ... }:
-with lib;
-with lib.internal;
-let
-  cfg = config.suites.gaming;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.internal; let
+  cfg = config.suites.gaming;
+in {
   options.suites.gaming = with types; {
     enable = mkBoolOpt false "Enable the gaming suite";
   };
