@@ -1,0 +1,4 @@
+# define colors
+colors=("#89b4fa" "#89b4fa" "#89b4fa" "#89b4fa")
+dimmed=("#b4befe" "#b4befe" "#b4befe" "#b4befe")
+empty="#313244"

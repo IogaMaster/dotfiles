@@ -1,0 +1,39 @@
+(include "./widgets/workspaces.yuck")
+(include "./widgets/music.yuck")
+(include "./widgets/metrics.yuck")
+
+(defwidget bar []
+  (centerbox :orientation "h"
+    (box
+      :space-evenly false
+      :halign "start"
+    (workspaces))
+    (label :text "")
+    (metrics)))
+
+;; Windows
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0px"
+                               :width "100%"
+                               :height "4%"
+                               :anchor "top center")
+           :stacking "fg"
+           :windowtype "dock"
+           :wm-ignore false
+           :exclusive true
+(bar))
+(defwindow bar2
+           :monitor 1
+           :geometry (geometry :x "0%"
+                               :y "0px"
+                               :width "100%"
+                               :height "4%"
+                               :anchor "top center")
+           :stacking "fg"
+           :windowtype "dock"
+           :wm-ignore false
+           :exclusive true
+(bar))
+

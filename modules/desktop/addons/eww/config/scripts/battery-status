@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+set -eu
+
+if [ -f /sys/class/power_supply/BAT0/status]; then
+  cat /sys/class/power_supply/BAT0/status
+fi
+

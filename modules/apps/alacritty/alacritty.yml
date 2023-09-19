@@ -1,0 +1,12 @@
+import:
+  - ~/.config/theme/alacritty.yml
+
+window:
+  padding:
+    x: 5
+    y: 5
+
+font:
+  normal:
+    family: "JetBrains Mono Nerd Font"
+    size: 17.0

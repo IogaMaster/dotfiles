@@ -1,0 +1,91 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "height": 32,
+
+    "modules-left": [
+        "wlr/workspaces",
+    ],
+
+    "modules-center": [],
+
+    "modules-right": [
+        "custom/spotify",
+    	"tray",
+	    "network",
+	    "battery",
+	    "clock"
+    ],
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "wlr/workspaces": {
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+	    "1": "1",
+	    "2": "2",
+	    "3": "3",
+	    "4": "4",
+	    "5": "5",
+	    "6": "6",
+	    "7": "7",
+	    "8": "8",
+	    "9": "9",
+	    "10": "10"
+	    }
+    },
+
+    "tray": {
+        "icon-size": 12,
+        "tooltip": false,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+    },
+
+    "pulseaudio": {
+        "format": "  {volume}%",
+        "tooltip": false,
+        "format-muted": "  N/A",
+        "on-click": "pavucontrol &",
+        "scroll-step": 5
+    },
+
+    "network": {
+	"format-wifi": "  {essid} {signalStrength}%",
+	"format-ethernet": "󰈀",
+	"format-disconnected": "󰈂"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 15
+        },
+        "format": "󰁹 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%"
+    },
+
+    // Custom
+    "custom/spotify": {
+        "format": " ",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-down": "playerctl next",
+        "on-scroll-up": "playerctl previous",
+        "tooltip": false,
+    }
+}
