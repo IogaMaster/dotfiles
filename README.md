@@ -32,8 +32,7 @@
 <summary>🖼️ Gallery</summary>
   
 ![image](https://github.com/IogaMaster/dotfiles/assets/67164465/83bc1ff5-74d6-4043-8def-9f5e971a801f)
-
-
+![image](https://github.com/IogaMaster/dotfiles/assets/67164465/dac697f5-870f-42bd-9b5e-f35c019f96e1)
 
 </details>
 
