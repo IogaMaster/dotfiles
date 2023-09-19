@@ -20,7 +20,7 @@ in
     environment.shellAliases = { nvidia-settings = "nvidia-settings --config='$XDG_CONFIG_HOME'/nvidia/settings"; };
 
     # Hyprland settings
-    programs.hyprland.nvidiaPatches = true;
+    programs.hyprland.enableNvidiaPatches = true;
     environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
     environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
   };

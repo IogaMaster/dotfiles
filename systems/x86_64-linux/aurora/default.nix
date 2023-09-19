@@ -12,7 +12,10 @@
   hardware.nvidia.enable = true;
   services.ssh.enable = true;
 
+
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
+  boot.swraid.enable = false;
   # ======================== DO NOT CHANGE THIS ========================
 }
