@@ -34,7 +34,27 @@
 ![image](https://github.com/IogaMaster/dotfiles/assets/67164465/83bc1ff5-74d6-4043-8def-9f5e971a801f)
 
 
+
 </details>
+
+## My system management tool `sys`
+
+`sys` is a bash script I made that makes working with NixOS easier.
+
+Rebuild (in flake directory)
+```sh
+sudo sys rebuild # or `r` as a shorthand
+```
+
+Testing an ephemeral config:
+```sh
+sudo sys test # or `t` as a shorthand
+```
+
+Deploying to a server (in flake directory):
+```sh
+sudo sys deploy HOSTNAME # or `d` as a shorthand
+```
 
 ---
 
@@ -153,3 +173,16 @@ nixos-install
 I normally clone the dotfiles repo to ~/.dotfiles/
 
 </details>
+
+---
+
+A special thanks to:
+
+[hlissner](https://github.com/hlissner/dotfiles) for getting me into NixOS.
+
+[redyf](https://github.com/redyf/nixdots) for the bar and other minor hyprland config options.
+
+[Wil Taylor](https://www.youtube.com/playlist?list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-) for his youtube series on setting up NixOS with a flake.
+
+[Jake Hamilton](https://github.com/jakehamilton/config) for his NixOS config and [snowfall](https://github.com/snowfallorg/lib).
+
