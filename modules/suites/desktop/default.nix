@@ -15,7 +15,6 @@ in {
 
   config = mkIf cfg.enable {
     desktop.hyprland.enable = true;
-    apps.alacritty.enable = true;
     apps.brave.enable = true;
     apps.discord.enable = true;
 

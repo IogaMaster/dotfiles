@@ -14,7 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    apps.alacritty.enable = true;
 
     apps.neovim.enable = true;
     apps.tools.direnv.enable = true;
