@@ -383,11 +383,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1695168984,
-        "narHash": "sha256-ZEOpYAvAZWMVI6jkFbxJ3plk99YwaA0qG7EcZkD5cds=",
+        "lastModified": 1695231539,
+        "narHash": "sha256-nV4R/2KOW1oFYwkNxHXI8FDwnbxKkXpnHn2EpKBTcng=",
         "owner": "IogaMaster",
         "repo": "neovim",
-        "rev": "7f619fa3130690b0dec3634ccbc09631f952b9b1",
+        "rev": "e5b6f30867edd7576cc8506246596ca53836f947",
         "type": "github"
       },
       "original": {
