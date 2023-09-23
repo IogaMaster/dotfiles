@@ -16,7 +16,6 @@ in {
   config = mkIf cfg.enable {
     # Desktop additions
     desktop.addons = {
-      eww.enable = true;
       waybar.enable = true;
       swww.enable = true;
       wofi.enable = true;
