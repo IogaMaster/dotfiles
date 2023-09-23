@@ -156,7 +156,7 @@ Then copy the example config with the new hostname of your system.
 cp -r systems/x86_64-linux/example/ systems/x86_64-linux/hostname
 ```
 
-> [!WARNING]\
+> \[!WARNING\]\
 > Do not use my hardware configurations they won't work with your system!
 
 Generate your config and copy the hardware configuration.
@@ -174,7 +174,7 @@ nixos-install
 
 ### Post install.
 
-> [!WARNING]\
+> \[!WARNING\]\
 > The default password for the iogamaster user is `password` please change it.
 
 I normally clone the dotfiles repo to ~/.dotfiles/

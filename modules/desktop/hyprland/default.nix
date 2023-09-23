@@ -26,7 +26,6 @@ in {
 
     apps.foot.enable = true;
 
-
     programs.hyprland.enable = true;
     programs.hyprland.xwayland.enable = true;
 
