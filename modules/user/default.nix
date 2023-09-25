@@ -50,8 +50,6 @@ in {
       propagatedIcon
     ];
 
-    programs.fish.enable = true;
-
     home = {
       file = {
         "Documents/.keep".text = "";
@@ -73,8 +71,6 @@ in {
         inherit (cfg) name initialPassword;
         home = "/home/${cfg.name}";
         group = "users";
-
-        shell = pkgs.fish;
 
         extraGroups =
           ["wheel" "audio" "sound" "video" "networkmanager" "input" "tty" "docker"]

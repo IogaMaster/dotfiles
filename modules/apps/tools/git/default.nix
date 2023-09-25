@@ -23,6 +23,15 @@ in {
       commitizen
     ];
 
+    environment.shellAliases = {
+      # Git aliases
+      ga = "git add .";
+      gc = "git commit -m ";
+      gp = "git push -u origin";
+
+      g = "lazygit";
+    };
+
     home.configFile."git/config".source = ./config;
     home.configFile."lazygit/config.yml".source = ./lazygitConfig.yml;
   };
