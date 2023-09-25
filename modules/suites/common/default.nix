@@ -38,9 +38,6 @@ in {
     apps.tools.git.enable = true;
     apps.tools.nix-ld.enable = true;
 
-    apps.tools.fish.enable = true;
-    apps.tools.starship.enable = true;
-
     services.ssh.enable = true;
 
     programs.dconf.enable = true;

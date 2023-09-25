@@ -17,6 +17,9 @@ in {
     home.programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
+      enableNushellIntegration = true;
     };
+
+    environment.variables.DIRENV_LOG_FORMAT = ""; # Blank so direnv will shut up
   };
 }
