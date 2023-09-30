@@ -25,8 +25,11 @@ in {
   in
     mkIf cfg.enable {
       environment.systemPackages = [
-        (pkgs.webcord.override {
-          flags = ["--add-css-theme=${theme}"];
+        # (pkgs.webcord.override {
+        #   flags = ["--add-css-theme=${theme}"];
+        # })
+        (pkgs.discord.override {
+            withOpenASAR = true;
         })
       ];
     };
