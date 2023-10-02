@@ -1,0 +1,17 @@
+diff --git a/llm/llama.cpp/patches/0001-copy-cuda-runtime-libraries.patch b/llm/llama.cpp/patches/0001-copy-cuda-runtime-libraries.patch
+index 1fd0797..96595ba 100644
+--- a/llm/llama.cpp/patches/0001-copy-cuda-runtime-libraries.patch
++++ b/llm/llama.cpp/patches/0001-copy-cuda-runtime-libraries.patch
+@@ -15,9 +15,9 @@ index 824d9f2..dd24137 100644
+              set(LLAMA_EXTRA_LIBS ${LLAMA_EXTRA_LIBS} CUDA::cudart CUDA::cublas CUDA::cublasLt)
+          endif()
+  
+-+        configure_file(${CUDAToolkit_LIBRARY_DIR}/libcudart.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcudart.so.${CUDAToolkit_VERSION_MAJOR}.0 COPYONLY)
+-+        configure_file(${CUDAToolkit_LIBRARY_DIR}/libcublas.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcublas.so.${CUDAToolkit_VERSION_MAJOR} COPYONLY)
+-+        configure_file(${CUDAToolkit_LIBRARY_DIR}/libcublasLt.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcublasLt.so.${CUDAToolkit_VERSION_MAJOR} COPYONLY)
+++        configure_file(/nix/store/g921h51w23s9vi573qrxzzwwf1srax8h-cudatoolkit-12.2.0-lib/lib/libcudart.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcudart.so.${CUDAToolkit_VERSION_MAJOR}.0 COPYONLY)
+++        configure_file(/nix/store/s5zsq62j7sdwasv2dmfl84qgdgr8fgy7-cudatoolkit-12.2.0/lib/libcublas.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcublas.so.${CUDAToolkit_VERSION_MAJOR} COPYONLY)
+++        configure_file(/nix/store/s5zsq62j7sdwasv2dmfl84qgdgr8fgy7-cudatoolkit-12.2.0/lib/libcublasLt.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libcublasLt.so.${CUDAToolkit_VERSION_MAJOR} COPYONLY)
+ +
+      if (NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+          # 52 == lowest CUDA 12 standard

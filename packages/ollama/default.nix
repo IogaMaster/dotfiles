@@ -21,7 +21,11 @@ buildGoModule rec {
     fetchSubmodules = true;
   };
 
-  patches = [./no-submodule-update.patch];
+  # DO NOT USE THIS PACKAGE, it is HIGHLY EPHEMERAL!!!
+  patches = [
+    ./no-submodule-update.patch
+    ./cuda-path.patch
+  ];
 
   buildInputs =
     [
@@ -36,7 +40,8 @@ buildGoModule rec {
   nativeBuildInputs = [cmake git];
 
   preBuild = ''
-    CUDA_VERSION=$(${cudaPackages_12_2.cuda_nvcc}/bin/nvcc --version | ${gnused}/bin/sed -n 's/^.*release \([0-9]\+\)\.\([0-9]\+\).*$/\1/p') go generate ./...
+    CUDA_VERSION=$(${cudaPackages_12_2.cuda_nvcc}/bin/nvcc --version | ${gnused}/bin/sed -n 's/^.*release \([0-9]\+\)\.\([0-9]\+\).*$/\1/p') \
+    go generate ./...
   '';
 
   vendorHash = "sha256-fhlRMFVCqhkBfscmIhnMHOZPiUAg/FABI5Ab90dVxg4=";
