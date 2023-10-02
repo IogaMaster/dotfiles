@@ -16,6 +16,10 @@
   hardware.nvidia.enable = true;
   services.ssh.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    custom.ollama
+  ];
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   boot.swraid.enable = false;
