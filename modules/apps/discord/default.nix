@@ -29,7 +29,7 @@ in {
         #   flags = ["--add-css-theme=${theme}"];
         # })
         (pkgs.discord.override {
-            withOpenASAR = true;
+          withOpenASAR = true;
         })
       ];
     };
