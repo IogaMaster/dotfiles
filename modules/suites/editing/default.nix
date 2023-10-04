@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       obs-studio
       audacity
-      kdenlive
+      openshot-qt
       mediainfo
       vhs
     ];
