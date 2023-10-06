@@ -50,6 +50,8 @@ in {
       propagatedIcon
     ];
 
+    environment.sessionVariables.FLAKE = "/home/iogamaster/.dotfiles";
+
     home = {
       file = {
         "Documents/.keep".text = "";

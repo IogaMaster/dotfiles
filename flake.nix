@@ -27,6 +27,11 @@
 
     webcord.url = "github:fufexan/webcord-flake";
 
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot
+    };
+
     neovim = {
       url = github:IogaMaster/neovim;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +60,7 @@
         nix-ld.nixosModules.nix-ld
         arion.nixosModules.arion
         disko.nixosModules.disko
+        nh.nixosModules.default
       ];
     };
 }

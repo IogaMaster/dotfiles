@@ -22,6 +22,12 @@ in {
       nix-prefetch-git
     ];
 
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+    };
+
     nix = let
       users = ["root" config.user.name];
     in {
