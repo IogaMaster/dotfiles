@@ -69,7 +69,10 @@ in {
       extraConfig = ''
         $env.config = {
         	show_banner: false,
+        }
 
+        def , [...packages] {
+            nix shell ($packages | each {|s| $"nixpkgs#($s)"})
         }
       '';
     };
