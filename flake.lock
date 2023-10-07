@@ -401,11 +401,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1696654024,
-        "narHash": "sha256-mGzvzTo1NsbjQuXOXLTsICqEAKySkRqC35CEM+5Z4r0=",
+        "lastModified": 1696704498,
+        "narHash": "sha256-Hh8VxZiqfRKB1BjSL65XHsAXOYcSR0bP8nXvqZUB7+o=",
         "owner": "IogaMaster",
         "repo": "neovim",
-        "rev": "1f338861bbb5fd74bc098f14d2aeb5a74f34c011",
+        "rev": "cbf528633c749547a02891dad04925ec6bdeda0a",
         "type": "github"
       },
       "original": {
