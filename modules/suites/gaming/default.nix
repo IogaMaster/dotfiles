@@ -29,6 +29,8 @@ in {
       pkgs.mangohud
 
       pkgs.gamescope
+
+      pkgs.custom.relive
     ];
   };
 }
