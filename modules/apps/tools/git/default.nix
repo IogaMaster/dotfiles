@@ -19,6 +19,8 @@ in {
       git
       git-remote-gcrypt
 
+      gh # GitHub cli
+
       lazygit
       commitizen
     ];
