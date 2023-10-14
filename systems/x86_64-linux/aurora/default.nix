@@ -18,6 +18,7 @@
 
   environment.systemPackages = with pkgs; [
     custom.ollama
+    custom.blockbench
   ];
 
   # ======================== DO NOT CHANGE THIS ========================
