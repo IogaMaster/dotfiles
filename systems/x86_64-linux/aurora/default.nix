@@ -19,6 +19,7 @@
   environment.systemPackages = with pkgs; [
     custom.ollama
     custom.blockbench
+    custom.boscaceoil
   ];
 
   # ======================== DO NOT CHANGE THIS ========================
