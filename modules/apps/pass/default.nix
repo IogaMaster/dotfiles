@@ -15,9 +15,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      (pass.withExtensions (exts: [exts.pass-otp]))
-    ];
-    environment.variables.PASSWORD_STORE_DIR = "$XDG_DATA_HOME/pass";
+    home.programs.password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+    };
+    # environment.systemPackages = with pkgs; [
+    #   (pass.withExtensions (exts: [exts.pass-otp]))
+    # ];
+    # environment.variables.PASSWORD_STORE_DIR = "$XDG_DATA_HOME/pass";
   };
 }
