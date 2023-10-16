@@ -10,7 +10,6 @@
 
   suites.desktop.enable = true;
   suites.development.enable = true;
-  suites.gaming.enable = true;
   suites.editing.enable = true;
 
   # ======================== DO NOT CHANGE THIS ========================
