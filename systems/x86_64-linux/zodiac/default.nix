@@ -7,6 +7,7 @@
 
   # Enable Bootloader
   system.boot.bios.enable = true;
+  system.battery.enable = true;
 
   suites.desktop.enable = true;
   suites.development.enable = true;
