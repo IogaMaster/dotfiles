@@ -95,7 +95,7 @@ This is pretty much copy and paste.
 
 ```sh
 # Become root
-sudo -i
+sudo su
 
 # Assuming /dev/sda is the device you are installing to.
 parted /dev/sda -- mklabel gpt
