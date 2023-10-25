@@ -18,9 +18,9 @@ in {
     environment.systemPackages = [
       pkgs.swww
       (pkgs.writeShellScriptBin "wallpaper" ''
-        /usr/bin/env ls ~/.config/theme/wallpapers/ | sort -R | tail -1 |while read file; do
-            swww img ~/.config/theme/wallpapers/$file --transition-fps 255 --transition-type wipe
-            echo "~/.config/theme/wallpapers/$file"
+        /usr/bin/env ls ~/.config/wallpapers/ | sort -R | tail -1 |while read file; do
+            swww img ~/.config/wallpapers/$file --transition-fps 255 --transition-type wipe
+            echo "~/.config/wallpapers/$file"
         done
       '')
     ];
