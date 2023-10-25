@@ -12,6 +12,7 @@ with lib.internal; let
 in {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
+    prism.homeModules.prism
   ];
 
   options.home = with types; {

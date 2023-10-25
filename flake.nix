@@ -27,6 +27,8 @@
 
     webcord.url = "github:fufexan/webcord-flake";
 
+    prism.url = "github:IogaMaster/prism";
+
     nh = {
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot

@@ -18,6 +18,12 @@ in {
       recursive = true;
     };
 
+    prism = {
+      enable = true;
+      wallpapers = ./themes/catppuccin-mocha/wallpapers;
+      colorscheme = "catppuccin-mocha";
+    };
+
     environment.variables = {
       GTK_THEME = "Catppuccin-Mocha-Compact-Blue-dark";
     };
