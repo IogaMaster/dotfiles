@@ -9,8 +9,7 @@
       url = "github:snowfallorg/lib/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators.url =
-      github:nix-community/nixos-generators;
+    nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko";
@@ -25,17 +24,12 @@
     arion.url = "github:hercules-ci/arion";
     arion.inputs.nixpkgs.follows = "nixpkgs";
 
-    webcord.url = "github:fufexan/webcord-flake";
-
+    # Theming and colors related
+    nix-colors.url = "github:misterio77/nix-colors";
     prism.url = "github:IogaMaster/prism";
 
-    nh = {
-      url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot
-    };
-
     neovim = {
-      url = github:IogaMaster/neovim;
+      url = "github:IogaMaster/neovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -54,7 +48,6 @@
       channels-config.allowUnfree = true;
 
       overlays = with inputs; [
-        webcord.overlays.default
         neovim.overlays.x86_64-linux.neovim
       ];
 
@@ -62,7 +55,6 @@
         nix-ld.nixosModules.nix-ld
         arion.nixosModules.arion
         disko.nixosModules.disko
-        nh.nixosModules.default
       ];
     };
 }

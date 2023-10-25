@@ -10,18 +10,16 @@ with lib;
 with lib.internal; let
   cfg = config.desktop;
 in {
-  options.desktop = with types; {};
+  options.desktop = with types; {
+    colorscheme = mkOpt string "catppuccin-mocha" "Theme to use for the desktop";
+    wallpaperColorscheme = mkOpt string "catppuccin-mocha" "Theme to use for the wallpapers";
+  };
 
   config = {
-    home.configFile."theme/" = {
-      source = ./themes/catppuccin-mocha;
-      recursive = true;
-    };
-
     prism = {
       enable = true;
-      wallpapers = ./themes/catppuccin-mocha/wallpapers;
-      colorscheme = "catppuccin-mocha";
+      wallpapers = ./wallpapers;
+      colorscheme = cfg.colorscheme;
     };
 
     environment.variables = {
