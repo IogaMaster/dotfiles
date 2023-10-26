@@ -50,8 +50,8 @@ in {
     home.configFile."hypr/colors.conf" = {
       text = ''
         general {
-          col.active_border = #${colors.base0C} #${colors.base0D} 270deg
-          col.inactive_border = #${colors.base00}
+          col.active_border = 0xff${colors.base0C} 0xff${colors.base0D} 270deg
+          col.inactive_border = 0xff${colors.base00}
         }
       '';
     };
