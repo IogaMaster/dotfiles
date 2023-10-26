@@ -22,9 +22,6 @@
     custom.boscaceoil
   ];
 
-  desktop.colorscheme = "dracula";
-  desktop.wallpaperColorscheme = "dracula";
-
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   boot.swraid.enable = false;
