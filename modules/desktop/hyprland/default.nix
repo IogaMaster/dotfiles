@@ -23,6 +23,7 @@ in {
       wofi.enable = true;
       mako.enable = true;
       gtklock.enable = true;
+      wlogout.enable = true;
     };
 
     apps.foot.enable = true;
