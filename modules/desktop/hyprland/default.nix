@@ -30,6 +30,8 @@ in {
     programs.hyprland.enable = true;
     programs.hyprland.xwayland.enable = true;
 
+    environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
+
     environment.systemPackages = with pkgs; [
       grim
       slurp
