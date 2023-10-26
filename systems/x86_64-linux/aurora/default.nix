@@ -22,6 +22,9 @@
     custom.boscaceoil
   ];
 
+  desktop.colorscheme = "nord";
+  desktop.wallpaperColorscheme = "nord";
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   boot.swraid.enable = false;
