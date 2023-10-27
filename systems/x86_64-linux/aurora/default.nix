@@ -17,7 +17,6 @@
   services.ssh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    custom.ollama
     custom.blockbench
     custom.boscaceoil
   ];

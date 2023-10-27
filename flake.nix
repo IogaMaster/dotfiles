@@ -6,7 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     snowfall-lib = {
-      url = "github:snowfallorg/lib/dev";
+      url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators.url = "github:nix-community/nixos-generators";
@@ -38,13 +38,21 @@
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
+
+      snowfall = {
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
+        };
+
+        namespace = "custom";
+      };
     };
   in
     lib.mkFlake {
       inherit inputs;
-      package-namespace = "custom";
-
       src = ./.;
+
       channels-config.allowUnfree = true;
 
       overlays = with inputs; [
@@ -53,7 +61,6 @@
 
       systems.modules = with inputs; [
         nix-ld.nixosModules.nix-ld
-        arion.nixosModules.arion
         disko.nixosModules.disko
       ];
     };
