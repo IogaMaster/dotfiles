@@ -22,7 +22,6 @@
   ];
 
   desktop.colorscheme = "nord";
-  desktop.wallpaperColorscheme = "nord";
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";

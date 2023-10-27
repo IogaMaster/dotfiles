@@ -12,14 +12,13 @@ with lib.custom; let
 in {
   options.desktop = with types; {
     colorscheme = mkOpt string "catppuccin-mocha" "Theme to use for the desktop";
-    wallpaperColorscheme = mkOpt string "catppuccin-mocha" "Theme to use for the wallpapers";
   };
 
   config = {
     prism = {
       enable = true;
       wallpapers = ./wallpapers;
-      colorscheme = cfg.colorscheme;
+      colorscheme = inputs.nix-colors.colorschemes.${cfg.colorscheme};
     };
 
     environment.variables = {
