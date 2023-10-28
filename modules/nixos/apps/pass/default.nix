@@ -15,13 +15,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.programs.password-store = {
-      enable = true;
-      package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
-    };
-    # environment.systemPackages = with pkgs; [
-    #   (pass.withExtensions (exts: [exts.pass-otp]))
-    # ];
-    # environment.variables.PASSWORD_STORE_DIR = "$XDG_DATA_HOME/pass";
+    apps.tools.gnupg.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      (writeShellScriptBin "pass" ''
+        GNUPGHOME="$XDG_DATA_HOME/gnupg" PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass" ${pkgs.pass.withExtensions (exts: [exts.pass-otp])}/bin/pass $@
+      '')
+    ];
   };
 }
