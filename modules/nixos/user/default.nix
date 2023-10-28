@@ -64,6 +64,7 @@ in {
           cfg.icon.fileName or (builtins.baseNameOf cfg.icon)
         }".source =
           cfg.icon;
+        "Pictures/profile_old.png".source = ./profile_old.png;
       };
     };
 
