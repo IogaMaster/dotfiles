@@ -2,4 +2,4 @@
 
 rm -rf $XDG_RUNTIME_DIR/swww.socket
 
-swww init & waybar & mako & sleep 1 && wallpaper
+swww init & waybar & mako & xwaylandvideobridge
