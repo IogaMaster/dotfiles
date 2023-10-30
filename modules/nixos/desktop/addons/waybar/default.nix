@@ -72,7 +72,7 @@ in {
 
         window * {
           background-color: transparent;
-          border-radius: 17px;
+          border-radius: 0px;
         }
 
         #workspaces button label {

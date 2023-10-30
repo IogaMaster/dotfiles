@@ -14,7 +14,6 @@
     "modules-center": [],
 
     "modules-right": [
-        "custom/spotify",
     	"tray",
 	    "network",
 	    "battery",
@@ -77,15 +76,5 @@
         "format": "󰁹 {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-plugged": "󰂄 {capacity}%"
-    },
-
-    // Custom
-    "custom/spotify": {
-        "format": " ",
-        "return-type": "json",
-        "on-click": "playerctl play-pause",
-        "on-scroll-down": "playerctl next",
-        "on-scroll-up": "playerctl previous",
-        "tooltip": false,
     }
 }
