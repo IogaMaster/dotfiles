@@ -21,7 +21,7 @@
     custom.boscaceoil
   ];
 
-  desktop.colorscheme = "nord";
+  desktop.colorscheme = "everforest";
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";

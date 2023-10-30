@@ -53,7 +53,12 @@
       inherit inputs;
       src = ./.;
 
-      channels-config.allowUnfree = true;
+      channels-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+          "electron-24.8.6"
+        ];
+      };
 
       overlays = with inputs; [
         neovim.overlays.x86_64-linux.neovim
