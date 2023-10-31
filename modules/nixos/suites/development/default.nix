@@ -23,7 +23,13 @@ in {
       licensor
 
       # Nix Utils
+      nix-index
       nix-init
+      nix-melt
+      nix-update
+      nixpkgs-fmt
+      nixpkgs-hammering
+      nixpkgs-review
       nurl
     ];
   };
