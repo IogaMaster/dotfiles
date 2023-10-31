@@ -21,6 +21,10 @@ in {
 
     environment.systemPackages = with pkgs; [
       licensor
+
+      # Nix Utils
+      nix-init
+      nurl
     ];
   };
 }
