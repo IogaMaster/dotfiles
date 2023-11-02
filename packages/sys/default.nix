@@ -1,6 +1,5 @@
 {
   writeShellScriptBin,
-  glib,
   ...
 }:
 writeShellScriptBin "sys" ''

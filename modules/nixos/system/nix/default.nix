@@ -25,7 +25,7 @@ in {
     nix = let
       users = ["root" config.user.name];
     in {
-      package = cfg.package;
+      inherit (cfg) package;
 
       settings =
         {

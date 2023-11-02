@@ -1,8 +1,5 @@
 {
-  lib,
-  inputs,
   pkgs,
-  stdenv,
   ...
 }:
 pkgs.mkShell {

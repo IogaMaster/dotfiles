@@ -9,7 +9,7 @@
 with lib;
 with lib.custom; let
   cfg = config.desktop.addons.wlogout;
-  colors = inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}.colors;
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
 in {
   options.desktop.addons.wlogout = with types; {
     enable = mkBoolOpt false "Enable or disable wlogout.";

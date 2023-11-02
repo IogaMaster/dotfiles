@@ -1,15 +1,12 @@
 {
   options,
   config,
-  pkgs,
   lib,
   inputs,
   ...
 }:
 with lib;
-with lib.custom; let
-  cfg = config.home;
-in {
+with lib.custom; {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
     nix-colors.homeManagerModules.default

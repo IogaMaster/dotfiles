@@ -23,7 +23,7 @@ with lib.custom; let
   };
   propagatedIcon =
     pkgs.runCommandNoCC "propagated-icon"
-    {passthru = {fileName = cfg.icon.fileName;};}
+    {passthru = {inherit (cfg.icon) fileName;};}
     ''
       local target="$out/share/icons/user/${cfg.name}"
       mkdir -p "$target"

@@ -9,7 +9,7 @@
 with lib;
 with lib.custom; let
   cfg = config.desktop.hyprland;
-  colors = inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}.colors;
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
 in {
   options.desktop.hyprland = with types; {
     enable = mkBoolOpt false "Enable or disable the hyprland window manager.";
@@ -48,15 +48,17 @@ in {
     ];
 
     # Hyprland configuration files
-    home.configFile."hypr/launch".source = ./launch;
-    home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
-    home.configFile."hypr/colors.conf" = {
-      text = ''
-        general {
-          col.active_border = 0xff${colors.base0C} 0xff${colors.base0D} 270deg
-          col.inactive_border = 0xff${colors.base00}
-        }
-      '';
+    home.configFile = {
+      "hypr/launch".source = ./launch;
+      "hypr/hyprland.conf".source = ./hyprland.conf;
+      "hypr/colors.conf" = {
+        text = ''
+          general {
+            col.active_border = 0xff${colors.base0C} 0xff${colors.base0D} 270deg
+            col.inactive_border = 0xff${colors.base00}
+          }
+        '';
+      };
     };
   };
 }
