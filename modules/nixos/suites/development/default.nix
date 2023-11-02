@@ -19,6 +19,11 @@ in {
 
     apps.misc.enable = true;
 
+    home.configFile."nix-init/config.toml".text = ''
+      maintainers = ["iogamaster"]
+      commit = true
+    '';
+
     environment.systemPackages = with pkgs; [
       licensor
 
