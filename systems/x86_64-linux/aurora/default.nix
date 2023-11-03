@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
@@ -20,7 +17,7 @@
     custom.boscaceoil
   ];
 
-  desktop.colorscheme = "everforest";
+  desktop.colorscheme = "catppuccin-mocha";
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
