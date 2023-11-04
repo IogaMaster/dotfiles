@@ -17,6 +17,8 @@
     custom.boscaceoil
   ];
 
+  virtualisation.kvm.enable = true;
+
   desktop.colorscheme = "catppuccin-mocha";
 
   # ======================== DO NOT CHANGE THIS ========================
