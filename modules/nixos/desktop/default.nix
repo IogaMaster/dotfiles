@@ -11,7 +11,7 @@ with lib.custom; let
   cfg = config.desktop;
 in {
   options.desktop = with types; {
-    colorscheme = mkOpt string "catppuccin-mocha" "Theme to use for the desktop";
+    colorscheme = mkOpt str "catppuccin-mocha" "Theme to use for the desktop";
   };
 
   config = {
