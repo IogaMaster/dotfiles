@@ -19,7 +19,7 @@
 
   virtualisation.kvm.enable = true;
 
-  desktop.colorscheme = "catppuccin-mocha";
+  desktop.colorscheme = "everforest";
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";

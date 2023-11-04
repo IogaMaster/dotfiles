@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     treefmt

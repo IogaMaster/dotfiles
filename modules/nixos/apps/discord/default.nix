@@ -14,11 +14,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-      environment.systemPackages = [
-        (pkgs.discord.override {
-          withOpenASAR = true;
-        })
-        pkgs.xwaylandvideobridge
-      ];
-    };
+    environment.systemPackages = [
+      (pkgs.discord.override {
+        withOpenASAR = true;
+      })
+      pkgs.xwaylandvideobridge
+    ];
+  };
 }
