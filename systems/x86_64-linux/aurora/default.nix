@@ -15,6 +15,7 @@
   environment.systemPackages = with pkgs; [
     custom.blockbench
     custom.boscaceoil
+    custom.mcman
   ];
 
   virtualisation.kvm.enable = true;
