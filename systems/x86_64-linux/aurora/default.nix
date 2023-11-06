@@ -20,8 +20,6 @@
 
   virtualisation.kvm.enable = true;
 
-  desktop.colorscheme = "everforest";
-
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   boot.swraid.enable = false;
