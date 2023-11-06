@@ -11,6 +11,10 @@
 
   suites.server.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    custom.mcman
+  ];
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   # ======================== DO NOT CHANGE THIS ========================
