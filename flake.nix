@@ -67,10 +67,10 @@
         neovim.overlays.x86_64-linux.neovim
       ];
 
-      systems.modules = with inputs; [
+      systems.modules.nixos = with inputs; [
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
-        sops-nix.nixosModules.sops
+        arion.nixosModules.arion
       ];
     };
 }
