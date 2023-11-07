@@ -18,5 +18,9 @@ in {
       settings.PermitRootLogin = lib.mkForce "no";
       ports = [22];
     };
+
+    home.file.".ssh/config".text = ''
+      identityfile ~/.ssh/key
+    '';
   };
 }
