@@ -5,7 +5,7 @@
   ...
 }:
 with lib;
-with lib.internal; let
+with lib.custom; let
   cfg = config.services.arion.jellyfin;
 in {
   options.services.arion.jellyfin = with types; {

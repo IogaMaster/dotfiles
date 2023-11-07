@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.internal; let
+with lib.custom; let
   cfg = config.services.arion.filebrowser;
 in {
   options.services.arion.filebrowser = with types; {

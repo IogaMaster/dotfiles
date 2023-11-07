@@ -6,7 +6,7 @@
   ...
 }:
 with lib;
-with lib.internal; let
+with lib.custom; let
   cfg = config.services.arion.terraria.vanilla;
 in {
   options.services.arion.terraria.vanilla = with types; {
