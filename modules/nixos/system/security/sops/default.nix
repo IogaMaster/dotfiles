@@ -28,6 +28,6 @@ in {
     ];
 
     # List of defined secrets
-    sops.secrets."ngrok/terraria/authtoken" = {};
+    sops.secrets."ngrok/terraria" = {};
   };
 }
