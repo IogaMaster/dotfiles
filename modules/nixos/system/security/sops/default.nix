@@ -21,7 +21,9 @@ in {
     sops.age.keyFile = "/home/${config.user.name}/.config/sops/age/keys.txt";
 
     environment.systemPackages = with pkgs; [
-      sops
+      (writeShellScriptBin "sops" ''
+        EDITOR=${config.environment.variables.EDITOR} ${pkgs.sops}/bin/sops $@
+      '')
       age
     ];
 
