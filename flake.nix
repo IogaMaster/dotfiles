@@ -24,6 +24,9 @@
     arion.url = "github:hercules-ci/arion";
     arion.inputs.nixpkgs.follows = "nixpkgs";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Theming and colors related
     nix-colors.url = "github:IogaMaster/nix-colors";
     prism.url = "github:IogaMaster/prism";
@@ -67,6 +70,7 @@
       systems.modules = with inputs; [
         nix-ld.nixosModules.nix-ld
         disko.nixosModules.disko
+        sops-nix.nixosModules.sops
       ];
     };
 }

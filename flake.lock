@@ -389,6 +389,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1699110214,
+        "narHash": "sha256-L2TU4RgtiqF69W8Gacg2jEkEYJrW+Kp0Mp4plwQh5b8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "78f3a4ae19f0e99d5323dd2e3853916b8ee4afee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1697723726,
@@ -437,7 +453,8 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
         "prism": "prism",
-        "snowfall-lib": "snowfall-lib_2"
+        "snowfall-lib": "snowfall-lib_2",
+        "sops-nix": "sops-nix"
       }
     },
     "snowfall-lib": {
@@ -482,6 +499,27 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "lib",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1699311858,
+        "narHash": "sha256-W/sQrghPAn5J9d+9kMnHqi4NPVWVpy0V/qzQeZfS/dM=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "664187539871f63857bda2d498f452792457b998",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },
