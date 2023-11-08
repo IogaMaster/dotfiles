@@ -17,15 +17,6 @@ writeShellScriptBin "sys" ''
       nix flake update
   }
 
-  cmd_deploy() {
-      for system in "$@"
-      do
-          echo " "
-          echo "🚀 Deploying system configuration to $system"
-          deploy $system
-      done
-  }
-
   cmd_clean() {
       echo "🗑️ Cleaning and optimizing the Nix store."
       nix store optimise --verbose &&
@@ -43,8 +34,6 @@ writeShellScriptBin "sys" ''
       $PROGRAM update [input]
           Update all inputs or the input specified. (You must be in the system flake directory!)
           Must be run as root.
-      $PROGRAM deploy [hostname]
-          Deploy system configuration to hostname. (You must be in the system flake directory!)
       $PROGRAM clean
           Garbage collect and optimise the Nix Store.
       $PROGRAM help
@@ -67,7 +56,6 @@ writeShellScriptBin "sys" ''
       rebuild|r) shift;       cmd_rebuild ;;
       test|t) shift;          cmd_test ;;
       update|u) shift;        cmd_update ;;
-      deploy|d) shift;        cmd_deploy "$@" ;;
       clean|c) shift;         cmd_clean ;;
       help|--help) shift;     cmd_usage "$@" ;;
       *)              echo "Unknown command: $@" ;;

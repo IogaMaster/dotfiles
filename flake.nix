@@ -27,6 +27,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+
     # Theming and colors related
     nix-colors.url = "github:IogaMaster/nix-colors";
     prism.url = "github:IogaMaster/prism";
@@ -72,5 +75,13 @@
         disko.nixosModules.disko
         arion.nixosModules.arion
       ];
+
+      deploy = lib.mkDeploy {inherit (inputs) self;};
+
+      checks =
+        builtins.mapAttrs
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
     };
 }
