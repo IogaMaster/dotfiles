@@ -1,4 +1,4 @@
-<h1 align="center"> ❄️ dotfiles ❄️</h1>
+<h1 align="center"> <img src="./.github/assets/flake.webp" width="250px"/></h1>
 <h2 align="center">My NixOS flake built with <a href="https://github.com/snowfallorg/lib">snowfall</a>.</h2>
 
 <h1 align="center">
