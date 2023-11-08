@@ -1,4 +1,4 @@
 {writeShellScriptBin, ...}:
 writeShellScriptBin "install" ''
-  nix run github:nix-community/nixos-anywhere -- --flake ${../../.}#$1 root@$2
+  nix run github:nix-community/nixos-anywhere -- --flake .#$1 root@$2
 ''
