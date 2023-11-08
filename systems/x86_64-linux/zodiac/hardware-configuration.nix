@@ -16,7 +16,7 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
+  fileSystems."/" = lib.mkForce {
     device = "/dev/disk/by-uuid/ca1cc669-5426-418f-94f9-7b4d84b7b9f6";
     fsType = "ext4";
   };
