@@ -1,5 +1,4 @@
 {
-  options,
   config,
   lib,
   inputs,
@@ -7,9 +6,7 @@
   ...
 }:
 with lib;
-with lib.custom; let
-  cfg = config.system.security.sops;
-in {
+with lib.custom; {
   imports = with inputs; [
     sops-nix.nixosModules.sops
   ];

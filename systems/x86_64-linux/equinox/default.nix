@@ -1,6 +1,5 @@
 # Server for builds and binary cache (on prem)
 {
-  config,
   pkgs,
   ...
 }: {

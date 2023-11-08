@@ -7,7 +7,7 @@
 with lib;
 with lib.custom; let
   cfg = config.virtualisation.kvm;
-  user = config.user;
+  inherit (config) user;
 in {
   options.virtualisation.kvm = with types; {
     enable = mkBoolOpt false "Whether or not to enable KVM virtualisation.";
