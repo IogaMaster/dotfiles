@@ -23,6 +23,7 @@ in {
     ];
 
     users.defaultUserShell = pkgs.${cfg.shell};
+    users.users.root.shell = pkgs.bashInteractive;
 
     home.programs.starship = {
       enable = true;
