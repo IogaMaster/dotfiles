@@ -58,8 +58,25 @@ sudo sys deploy HOSTNAME # or `d` as a shorthand
 
 ______________________________________________________________________
 
+## Installing
+
+The automated install is preferred for x86_64-linux systems.
+
+Clone the repo:
+```sh
+git clone https://github.com/IogaMaster/dotfiles.git
+cd dotfiles
+```
+
+Install:
+```sh
+nix run .#install -- <hostname> <ip-address>
+```
+
+Done!
+
 <details>
-<summary><b><font size="+3">Installing</font></b></summary>
+<summary><b><font size="+3">Manual Install</font></b></summary>
 
 ### Build install iso
 
