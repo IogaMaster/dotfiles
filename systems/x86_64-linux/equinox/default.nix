@@ -1,8 +1,5 @@
 # Server for builds and binary cache (on prem)
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
