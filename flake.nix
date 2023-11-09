@@ -77,6 +77,10 @@
         disko.nixosModules.disko
       ];
 
+      systems.hosts.equinox.modules = with inputs; [
+        (import ./disk-config.nix {inherit lib;})
+      ];
+
       deploy = lib.mkDeploy {inherit (inputs) self;};
 
       checks =
