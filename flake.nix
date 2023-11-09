@@ -75,7 +75,6 @@
         arion.nixosModules.arion
 
         disko.nixosModules.disko
-        (import ./disk-config.nix {inherit lib;})
       ];
 
       deploy = lib.mkDeploy {inherit (inputs) self;};
