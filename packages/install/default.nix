@@ -23,7 +23,9 @@ writeShellScriptBin "install" ''
 
   echo
   echo "✅ Installing..."
-  nix run github:nix-community/nixos-anywhere -- --flake .#$1 root@nixos
+  nix run github:nix-community/nixos-anywhere -- \
+    --build-on-remote \
+    --flake .#$1 root@nixos
 
   echo
   echo "✨ Done!!!"
