@@ -63,12 +63,14 @@ ______________________________________________________________________
 The automated install is preferred for x86_64-linux systems.
 
 Clone the repo:
+
 ```sh
 git clone https://github.com/IogaMaster/dotfiles.git
 cd dotfiles
 ```
 
 Install:
+
 ```sh
 nix run .#install -- <hostname> <ip-address>
 ```
