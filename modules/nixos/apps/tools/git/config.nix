@@ -14,4 +14,6 @@
   	smudge = git-lfs smudge -- %f
   [gpg]
       format = ssh
+  [commit]
+    gpgsign = true
 ''
