@@ -22,5 +22,6 @@ in {
       jack.enable = true;
       pulse.enable = true;
     };
+    programs.noisetorch.enable = true;
   };
 }
