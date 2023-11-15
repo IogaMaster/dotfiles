@@ -84,6 +84,10 @@
         (import ./disk-config.nix {inherit lib;})
       ];
 
+      systems.hosts.orion.modules = with inputs; [
+        (import ./disk-config.nix {inherit lib;})
+      ];
+
       deploy = lib.mkDeploy {inherit (inputs) self;};
 
       checks =
