@@ -12,6 +12,7 @@ with lib.custom; let
 in {
   options.desktop = with types; {
     colorscheme = mkOpt str "catppuccin-mocha" "Theme to use for the desktop";
+    autoLogin = mkBoolOpt false "Enable pipewire";
   };
 
   config = {
@@ -39,6 +40,11 @@ in {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
       };
+    };
+
+    services.xserver.displayManager.autoLogin = mkIf cfg.autoLogin {
+      enable = true;
+      user = config.user.name;
     };
   };
 }
