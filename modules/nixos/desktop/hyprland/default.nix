@@ -45,6 +45,8 @@ in {
       (writeShellScriptBin "screenshot-edit" ''
         wl-paste | swappy -f -
       '')
+
+      pulseaudio
     ];
 
     # Hyprland configuration files
