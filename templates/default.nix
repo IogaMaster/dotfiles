@@ -15,8 +15,4 @@ _: {
     description = "System template";
     path = ./system;
   };
-  home = {
-    description = "Home template";
-    path = ./home;
-  };
 }
