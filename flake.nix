@@ -34,7 +34,6 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -81,11 +80,11 @@
       ];
 
       systems.hosts.equinox.modules = with inputs; [
-        (import ./disk-config.nix {inherit lib;})
+        (import ./disks/default.nix {inherit lib;})
       ];
 
       systems.hosts.orion.modules = with inputs; [
-        (import ./disk-config.nix {inherit lib;})
+        (import ./disks/default.nix {inherit lib;})
       ];
 
       deploy = lib.mkDeploy {inherit (inputs) self;};
