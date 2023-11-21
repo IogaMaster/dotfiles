@@ -15,6 +15,8 @@
     bottles
   ];
 
+  apps.brave.enable = true;
+
   desktop.autoLogin = true;
 
   # ======================== DO NOT CHANGE THIS ========================
