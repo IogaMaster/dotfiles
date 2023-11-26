@@ -34,5 +34,14 @@ in {
         gamescope -H 1080 -b -f -e --adaptive-sync --rt -r 60 --expose-wayland -- steam -gamepadui -steamdeck -steamos -fulldesktopres -tenfoot
       '')
     ];
+
+    services.xserver.windowManager.session = [
+      {
+        name = "Console";
+        start = ''
+          steamos
+        '';
+      }
+    ];
   };
 }
