@@ -13,7 +13,6 @@
   services.ssh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    custom.blockbench
     custom.boscaceoil
     custom.mcman
   ];
