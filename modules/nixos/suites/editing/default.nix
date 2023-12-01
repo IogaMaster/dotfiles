@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       obs-studio
       audacity
-      openshot-qt
+      inkscape
       mediainfo
       vhs
     ];
