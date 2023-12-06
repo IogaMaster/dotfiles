@@ -15,7 +15,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -57,7 +56,7 @@
       };
     };
   in
-    lib.mkFlake {
+    (lib.mkFlake {
       inherit inputs;
       src = ./.;
 
@@ -96,5 +95,10 @@
         inputs.deploy-rs.lib;
 
       templates = import ./templates {};
+    })
+    // {
+      hydraJobs = {
+        packages = {inherit (inputs.self.packages) "x86_64-linux";};
+      };
     };
 }

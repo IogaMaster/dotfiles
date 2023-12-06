@@ -12,6 +12,7 @@ in {
   options.system.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.nixUnstable "Which nix package to use.";
+    extraUsers = mkOpt (listOf str) [] "Extra users to trust";
   };
 
   config = mkIf cfg.enable {
@@ -35,7 +36,7 @@ in {
           log-lines = 50;
           sandbox = "relaxed";
           auto-optimise-store = true;
-          trusted-users = users;
+          trusted-users = users ++ cfg.extraUsers;
           allowed-users = users;
         }
         // (lib.optionalAttrs config.apps.tools.direnv.enable {
