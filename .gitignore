@@ -1,4 +1,4 @@
 .direnv/
 
 *.qcow2
-result
+result*
