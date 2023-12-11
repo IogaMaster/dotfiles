@@ -11,10 +11,6 @@
 
   services.ssh.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    bottles
-  ];
-
   apps.brave.enable = true;
 
   desktop.autoLogin = true;
