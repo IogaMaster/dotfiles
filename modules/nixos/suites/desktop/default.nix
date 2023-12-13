@@ -21,8 +21,6 @@ in {
     apps.tools.gnupg.enable = true;
     apps.pass.enable = true;
 
-    apps.kdeconnect.enable = true;
-
     suites.common.enable = true;
 
     services.flatpak.enable = true;
