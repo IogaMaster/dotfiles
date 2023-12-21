@@ -31,7 +31,7 @@ in {
       })
 
       (pkgs.writeShellScriptBin "steamos" ''
-        gamescope -H 1080 -b -f -e --adaptive-sync -r 60 --expose-wayland -- steam -gamepadui -steamdeck -steamos -fulldesktopres -tenfoot
+        gamescope -F nis -h 720 -H 1080 -b -f -e --adaptive-sync -r 60 --expose-wayland -- steam -gamepadui -steamdeck -steamos -fulldesktopres -tenfoot
       '')
     ];
 
