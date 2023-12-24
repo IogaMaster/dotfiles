@@ -16,7 +16,6 @@ in {
     services.xserver.videoDrivers = ["nvidia"];
     hardware.nvidia.modesetting.enable = true;
 
-    # TODO: production -> stable | when https://github.com/NixOS/nixpkgs/pull/268499 is merged
     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 
     environment.variables = {
