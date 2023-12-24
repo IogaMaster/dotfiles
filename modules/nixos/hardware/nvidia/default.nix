@@ -24,7 +24,6 @@ in {
     environment.shellAliases = {nvidia-settings = "nvidia-settings --config='$XDG_CONFIG_HOME'/nvidia/settings";};
 
     # Hyprland settings
-    programs.hyprland.enableNvidiaPatches = true;
     environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issue on wlr nvidia.
   };
 }
