@@ -1,5 +1,5 @@
 # Newer thinkpad
-{ ...}: {
+{...}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
