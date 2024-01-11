@@ -36,6 +36,8 @@ in {
       pkgs.gamescope
 
       pkgs.custom.relive
+
+      pkgs.r2modman
     ];
   };
 }
