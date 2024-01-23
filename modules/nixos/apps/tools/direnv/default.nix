@@ -20,5 +20,9 @@ in {
     };
 
     environment.sessionVariables.DIRENV_LOG_FORMAT = ""; # Blank so direnv will shut up
+
+    home.persist.directories = [
+      ".local/share/direnv"
+    ];
   };
 }

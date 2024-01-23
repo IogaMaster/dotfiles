@@ -15,8 +15,11 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    impermanence.url = "github:nix-community/impermanence";
 
     # Home
     neovim = {
@@ -76,10 +79,27 @@
         arion.nixosModules.arion
 
         disko.nixosModules.disko
+
+        impermanence.nixosModules.impermanence
+        {
+          # Required for impermanence
+          fileSystems."/persist".neededForBoot = true;
+        }
       ];
 
       systems.hosts.equinox.modules = with inputs; [
-        (import ./disks/default.nix {inherit lib;})
+        (import ./disks/default.nix {
+          inherit lib;
+          device = "/dev/sda";
+        })
+      ];
+
+      systems.hosts.zodiac.modules = with inputs; [
+        # impermanence.nixosModules.impermanence
+        (import ./disks/default.nix {
+          inherit lib;
+          device = "/dev/sda";
+        })
       ];
 
       systems.hosts.orion.modules = with inputs; [

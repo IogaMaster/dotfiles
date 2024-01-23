@@ -18,5 +18,10 @@ in {
       enable = true;
       package = pkgs.librewolf;
     };
+
+    home.persist.directories = [
+      ".mozilla"
+      ".cache/mozilla"
+    ];
   };
 }

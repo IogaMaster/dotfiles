@@ -15,5 +15,9 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.brave];
+
+    home.persist.directories = [
+      ".local/share/BraveSoftware"
+    ];
   };
 }

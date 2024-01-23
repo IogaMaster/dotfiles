@@ -16,7 +16,6 @@ in {
   config = mkIf cfg.enable {
     boot.loader.grub = {
       enable = true;
-      device = "/dev/sda";
     };
   };
 }

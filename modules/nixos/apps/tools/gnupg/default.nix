@@ -28,5 +28,10 @@ in {
     environment.variables = {
       GNUPGHOME = "$XDG_DATA_HOME/gnupg";
     };
+
+    home.persist.directories = [
+      ".local/share/gnupg"
+      ".pki"
+    ];
   };
 }

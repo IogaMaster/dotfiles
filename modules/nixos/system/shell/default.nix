@@ -42,6 +42,10 @@ in {
       enableNushellIntegration = true;
     };
 
+    home.persist.directories = [
+      ".local/share/zoxide"
+    ];
+
     # Actual Shell Configurations
     home.programs.fish = mkIf (cfg.shell == "fish") {
       enable = true;
@@ -73,7 +77,7 @@ in {
         }
 
         def , [...packages] {
-            nix shell ($packages | each {|s| $"nixpkgs#($s)"})
+            nix shell ...($packages | each {|s| $"nixpkgs#($s)"})
         }
       '';
     };

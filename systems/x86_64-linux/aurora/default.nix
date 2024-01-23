@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
@@ -16,23 +20,26 @@
     custom.mcman
   ];
 
-  virtualisation.kvm.enable = true;
+  # virtualisation.kvm.enable = true;
 
-  services.hydra = {
-    enable = true;
-    hydraURL = "http://localhost:3000";
-    notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
-    useSubstitutes = true;
+  # services.hydra = {
+  #   enable = true;
+  #   hydraURL = "http://localhost:3000";
+  #   notificationSender = "hydra@localhost";
+  #   buildMachinesFiles = [];
+  #   useSubstitutes = true;
+  #
+  #   logo = ../../../.github/assets/flake.webp;
+  # };
+  #
+  # system.nix.extraUsers = [
+  #   "hydra"
+  #   "hydra-evaluator"
+  #   "hydra-queue-runner"
+  # ];
 
-    logo = ../../../.github/assets/flake.webp;
-  };
-
-  system.nix.extraUsers = [
-    "hydra"
-    "hydra-evaluator"
-    "hydra-queue-runner"
-  ];
+  # Required for impermanence
+  fileSystems."/persist".device = "none";
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";

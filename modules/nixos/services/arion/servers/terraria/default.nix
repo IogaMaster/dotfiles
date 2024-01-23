@@ -39,5 +39,9 @@ in {
         command = ["tcp" "terraria:7777"];
       };
     };
+
+    home.persist.directories = [
+      ".local/share/terraria"
+    ];
   };
 }

@@ -28,5 +28,9 @@ in {
         ];
       };
     };
+
+    home.persist.directories = [
+      ".local/share/jellyfin"
+    ];
   };
 }

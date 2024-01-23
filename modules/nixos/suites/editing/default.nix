@@ -27,5 +27,9 @@ in {
     boot.kernelModules = [
       "v4l2loopback"
     ];
+
+    home.persist.directories = [
+      ".config/obs-studio"
+    ];
   };
 }

@@ -20,5 +20,9 @@ in {
       })
       pkgs.xwaylandvideobridge
     ];
+
+    home.persist.directories = [
+      ".config/discord"
+    ];
   };
 }

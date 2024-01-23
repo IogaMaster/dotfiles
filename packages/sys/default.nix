@@ -36,7 +36,7 @@ in
             Rebuild the system. (You must be in the system flake directory!)
             Must be run as root.
         $PROGRAM test
-            Like rebuild but faster and not persistant.
+            Like rebuild but faster and not persistent.
         $PROGRAM update [input]
             Update all inputs or the input specified. (You must be in the system flake directory!)
             Must be run as root.

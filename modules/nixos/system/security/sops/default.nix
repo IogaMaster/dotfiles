@@ -17,6 +17,10 @@ with lib.custom; {
 
     sops.age.keyFile = "/home/${config.user.name}/.config/sops/age/keys.txt";
 
+    home.persist.directories = [
+      ".config/sops"
+    ];
+
     environment.systemPackages = with pkgs; [
       (writeShellScriptBin "sops" ''
         EDITOR=${config.environment.variables.EDITOR} ${pkgs.sops}/bin/sops $@

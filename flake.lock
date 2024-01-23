@@ -324,6 +324,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1703656108,
+        "narHash": "sha256-hCSUqdFJKHHbER8Cenf5JRzjMlBjIdwdftGQsO0xoJs=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "033643a45a4a920660ef91caa391fbffb14da466",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "neovim": {
       "inputs": {
         "nixpkgs": [
@@ -529,6 +544,7 @@
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "home-manager": "home-manager",
+        "impermanence": "impermanence",
         "neovim": "neovim",
         "nix-colors": "nix-colors",
         "nix-darwin": "nix-darwin",

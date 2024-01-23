@@ -12,7 +12,6 @@
   ];
 
   services.arion.filebrowser.enable = true;
-  services.arion.bento.enable = true;
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";

@@ -25,5 +25,9 @@ in {
       pkgs.sumneko-lua-language-server
       pkgs.ripgrep
     ];
+
+    home.persist.directories = [
+      ".local/share/nvim"
+    ];
   };
 }

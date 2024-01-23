@@ -21,5 +21,9 @@ in {
         GNUPGHOME="$XDG_DATA_HOME/gnupg" PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass" ${pkgs.pass.withExtensions (exts: [exts.pass-otp])}/bin/pass $@
       '')
     ];
+
+    home.persist.directories = [
+      ".local/share/pass"
+    ];
   };
 }

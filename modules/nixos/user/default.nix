@@ -66,6 +66,14 @@ in {
           cfg.icon;
         "Pictures/profile_old.png".source = ./profile_old.png;
       };
+
+      persist.directories = [
+        "Documents"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "dev"
+      ];
     };
 
     users.users.${cfg.name} =

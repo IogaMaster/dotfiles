@@ -43,5 +43,10 @@ in {
         '';
       }
     ];
+
+    home.persist.directories = [
+      ".local/share/Steam"
+      ".steam"
+    ];
   };
 }

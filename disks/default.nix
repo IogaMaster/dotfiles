@@ -1,8 +1,11 @@
-# Example to create a bios compatible gpt partition
-{lib, ...}: {
+{
+  lib,
+  device ? throw "Set this to your disk device, e.g. /dev/sda",
+  ...
+}: {
   disko.devices = {
-    disk.disk1 = {
-      device = lib.mkDefault "/dev/sda";
+    disk.main = {
+      inherit device;
       type = "disk";
       content = {
         type = "gpt";
@@ -37,15 +40,29 @@
       pool = {
         type = "lvm_vg";
         lvs = {
+          # The main root partition
           root = {
             size = "100%FREE";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              type = "btrfs";
+              extraArgs = ["-f"];
+
+              subvolumes = {
+                "/root" = {
+                  mountpoint = "/";
+                };
+
+                "/persist" = {
+                  mountOptions = ["subvol=persist" "noatime"];
+                  mountpoint = "/persist";
+                };
+
+                # NixOS only needs /nix and /boot to run
+                "/nix" = {
+                  mountOptions = ["subvol=nix" "noatime"];
+                  mountpoint = "/nix";
+                };
+              };
             };
           };
         };

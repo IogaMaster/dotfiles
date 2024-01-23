@@ -39,5 +39,10 @@ in {
 
       pkgs.r2modman
     ];
+
+    home.persist.directories = [
+      ".config/r2modman"
+      ".config/r2modmanPlus-local"
+    ];
   };
 }

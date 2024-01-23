@@ -30,6 +30,10 @@ in {
       displayManager.gdm.enable = true;
     };
 
+    environment.persist.directories = [
+      "/etc/gdm"
+    ];
+
     environment.systemPackages = with pkgs; [
       cinnamon.nemo
       xclip

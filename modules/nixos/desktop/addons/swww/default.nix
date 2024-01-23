@@ -23,5 +23,9 @@ in {
         done
       '')
     ];
+
+    home.persist.directories = [
+      ".cache/swww"
+    ];
   };
 }

@@ -35,5 +35,7 @@ in {
 
     home.configFile."git/config".text = import ./config.nix {sshKeyPath = "/home/${config.user.name}/.ssh/key.pub";};
     home.configFile."lazygit/config.yml".source = ./lazygitConfig.yml;
+
+    home.persist.directories = [".config/gh"];
   };
 }

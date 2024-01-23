@@ -30,5 +30,14 @@ in {
     home.file.".ssh/config".text = ''
       identityfile ~/.ssh/key
     '';
+
+    home.persist.directories = [
+      ".ssh"
+    ];
+
+    environment.persist.directories = [
+      "/etc/ssh"
+      "/root/ssh"
+    ];
   };
 }
