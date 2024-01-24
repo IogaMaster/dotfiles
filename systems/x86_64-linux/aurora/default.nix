@@ -38,9 +38,6 @@
   #   "hydra-queue-runner"
   # ];
 
-  # Required for impermanence
-  fileSystems."/persist".device = "none";
-
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";
   # ======================== DO NOT CHANGE THIS ========================

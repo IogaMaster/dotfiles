@@ -16,6 +16,8 @@ in {
     services.openssh = {
       enable = true;
       ports = [22];
+
+      passwordAuthentication = false;
     };
 
     users.users = {
@@ -36,8 +38,11 @@ in {
     ];
 
     environment.persist.directories = [
-      "/etc/ssh"
       "/root/ssh"
+    ];
+
+    environment.persist.files = [
+      "/etc/machine-id"
     ];
   };
 }
