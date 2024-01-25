@@ -45,7 +45,7 @@ in {
       umount /btrfs_tmp
     '');
 
-    environment.persistence."/persist" = mkAliasDefinitions options.environment.persist;
+    environment.persistence."/persist" = mkIf cfg.enable (mkAliasDefinitions options.environment.persist);
 
     home.persist.directories = [
       ".dotfiles"
