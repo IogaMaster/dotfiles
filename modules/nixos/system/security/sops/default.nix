@@ -29,6 +29,7 @@ with lib.custom; {
     ];
 
     # List of defined secrets
+    sops.secrets."system/password" = {neededForUsers = true;};
     sops.secrets."ngrok/terraria" = {};
   };
 }

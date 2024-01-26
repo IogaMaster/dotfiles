@@ -79,14 +79,20 @@ in {
     users.users.${cfg.name} =
       {
         isNormalUser = true;
-        inherit (cfg) name initialPassword;
+        inherit (cfg) name;
         home = "/home/${cfg.name}";
         group = "users";
+
+        hashedPasswordFile = lib.mkForce config.sops.secrets."system/password".path;
 
         extraGroups =
           ["wheel" "audio" "sound" "video" "networkmanager" "input" "tty" "docker"]
           ++ cfg.extraGroups;
       }
       // cfg.extraOptions;
+
+    users.users.root.hashedPasswordFile = lib.mkForce config.sops.secrets."system/password".path;
+
+    users.mutableUsers = false;
   };
 }
