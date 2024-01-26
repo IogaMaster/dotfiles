@@ -21,7 +21,7 @@ in {
     virtualisation.arion.backend = "docker";
     virtualisation.docker.enable = true;
 
-    home.persist.directories = [
+    environment.persist.directories = [
       "/var/lib/docker"
     ];
   };
