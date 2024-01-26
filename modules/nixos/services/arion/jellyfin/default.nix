@@ -16,12 +16,12 @@ in {
     virtualisation.arion.enable = true;
     virtualisation.arion.projects.jellyfin.settings = {
       project.name = "jellyfin";
-      services.jellyfin = {
-        service.image = "jellyfin/jellyfin";
-        service.ports = [
+      services.jellyfin.service = {
+        image = "jellyfin/jellyfin";
+        ports = [
           "8096:8096"
         ];
-        service.volumes = [
+        volumes = [
           "/home/${config.user.name}/.local/share/jellyfin/config:/config"
           "/home/${config.user.name}/.local/share/jellyfin/cache:/cache"
           "/home/${config.user.name}/.local/share/jellyfin/media:/media"
@@ -30,7 +30,8 @@ in {
     };
 
     home.persist.directories = [
-      ".local/share/jellyfin"
+      ".local/share/jellyfin/config"
+      ".local/share/jellyfin/cache"
     ];
   };
 }
