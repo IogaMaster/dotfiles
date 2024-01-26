@@ -20,8 +20,8 @@ in {
     };
 
     home.persist.directories = [
-      ".mozilla"
-      ".cache/mozilla"
+      ".librewolf"
+      ".cache/librewolf"
     ];
   };
 }
