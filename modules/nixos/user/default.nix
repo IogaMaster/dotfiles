@@ -73,6 +73,8 @@ in {
         "Music"
         "Pictures"
         "dev"
+
+        ".dotfiles"
       ];
     };
 

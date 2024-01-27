@@ -46,9 +46,5 @@ in {
     '');
 
     environment.persistence."/persist" = mkIf cfg.enable (mkAliasDefinitions options.environment.persist);
-
-    home.persist.directories = [
-      ".dotfiles"
-    ];
   };
 }
