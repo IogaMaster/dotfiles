@@ -14,7 +14,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.pinentry pkgs.pinentry-curses];
+    environment.systemPackages = [
+      pkgs.pinentry
+      pkgs.pinentry-curses
+
+      (pkgs.writeShellScriptBin "gpg" ''
+        GNUPGHOME=${config.environment.variables.GNUPGHOME} ${pkgs.gnupg}/bin/gpg $@
+      '')
+    ];
 
     services.pcscd.enable = true;
     programs.gnupg.agent = {
