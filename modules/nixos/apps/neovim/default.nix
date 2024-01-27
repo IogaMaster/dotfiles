@@ -28,6 +28,7 @@ in {
 
     home.persist.directories = [
       ".local/share/nvim"
+      ".vim"
     ];
   };
 }
