@@ -69,7 +69,6 @@ in {
 
       persist.directories = [
         "Documents"
-        "Downloads"
         "Music"
         "Pictures"
         "dev"
