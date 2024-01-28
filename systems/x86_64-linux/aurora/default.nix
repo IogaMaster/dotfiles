@@ -16,11 +16,8 @@
   hardware.nvidia.enable = true;
   services.ssh.enable = true;
   environment.systemPackages = with pkgs; [
-    custom.boscaceoil
     custom.mcman
   ];
-
-  # virtualisation.kvm.enable = true;
 
   # services.hydra = {
   #   enable = true;
