@@ -8,6 +8,7 @@
 }:
 with lib;
 with lib.custom; let
+  inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
   cfg = config.desktop;
 in {
   options.desktop = with types; {
@@ -29,12 +30,8 @@ in {
     home.extraOptions.gtk = {
       enable = true;
       theme = {
-        name = "Catppuccin-Mocha-Compact-Blue-dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "compact";
-          variant = "mocha";
-        };
+        name = inputs.nix-colors.colorschemes.${cfg.colorscheme}.slug;
+        package = gtkThemeFromScheme {scheme = inputs.nix-colors.colorschemes.${cfg.colorscheme};};
       };
       iconTheme = {
         name = "Papirus-Dark";
