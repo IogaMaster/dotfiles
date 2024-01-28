@@ -112,6 +112,17 @@
         }
       ];
 
+      systems.hosts.aurora.modules = with inputs; [
+        (import ./disks/default.nix {
+          inherit lib;
+          device = "/dev/nvme0n1";
+        })
+        {
+          # Required for impermanence
+          fileSystems."/persist".neededForBoot = true;
+        }
+      ];
+
       systems.hosts.orion.modules = with inputs; [
         (import ./disks/default.nix {inherit lib;})
       ];
