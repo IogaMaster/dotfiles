@@ -29,6 +29,9 @@ in {
     home.persist.directories = [
       ".local/share/nvim"
       ".vim"
+      ".wakatime"
     ];
+
+    home.persist.files = [".wakatime.cfg" ".wakatime.bdb"];
   };
 }
