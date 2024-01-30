@@ -43,6 +43,7 @@ in {
     home.persist.directories = [
       ".config/r2modman"
       ".config/r2modmanPlus-local"
+      ".local/share/lutris"
     ];
   };
 }
