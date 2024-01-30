@@ -22,6 +22,7 @@ in {
     home.persist.directories = [
       ".local/share/lutris"
       ".cache/lutris"
+      "Games"
     ];
 
     # Appimages for certain games
