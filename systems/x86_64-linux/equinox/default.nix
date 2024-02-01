@@ -12,6 +12,7 @@
   ];
 
   services.arion.filebrowser.enable = true;
+  services.arion.terraria.vanilla.enable = true;
 
   impermanence.enable = true;
 

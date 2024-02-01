@@ -87,6 +87,10 @@
         disko.nixosModules.disko
 
         impermanence.nixosModules.impermanence
+        {
+          # Required for impermanence
+          fileSystems."/persist".neededForBoot = true;
+        }
       ];
 
       systems.hosts.equinox.modules = with inputs; [
@@ -94,10 +98,6 @@
           inherit lib;
           device = "/dev/sda";
         })
-        {
-          # Required for impermanence
-          fileSystems."/persist".neededForBoot = true;
-        }
       ];
 
       systems.hosts.zodiac.modules = with inputs; [
@@ -106,10 +106,6 @@
           inherit lib;
           device = "/dev/sda";
         })
-        {
-          # Required for impermanence
-          fileSystems."/persist".neededForBoot = true;
-        }
       ];
 
       systems.hosts.aurora.modules = with inputs; [

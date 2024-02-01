@@ -19,14 +19,14 @@ in {
       services.terraria.service = {
         image = "ryshe/terraria:latest";
         environment = {
-          WORLD_FILENAME = "world.wld";
+          # WORLD_FILENAME = "world.wld";
           CONFIGPATH = "config.json";
         };
         ports = [
           "7777:7777"
         ];
         volumes = [
-          "/home/${config.user.name}/.local/share/terraria/vanilla/worlds/:/root/.local/share/Terraria/Worlds"
+          "/home/${config.user.name}/.local/share/terraria/vanilla/worlds:/root/.local/share/Terraria/Worlds"
         ];
         # For the first run you will need to generate a new world with a size where: 1 = Small, 2=Medium, 3=Large
         command = [
@@ -35,13 +35,13 @@ in {
       };
       services.ngrok.service = {
         image = "ngrok/ngrok";
-        environment.env_file = config.sops.secrets."ngrok/terraria".path;
+        env_file = ["${config.sops.secrets."ngrok/terraria".path}"];
         command = ["tcp" "terraria:7777"];
       };
     };
 
     home.persist.directories = [
-      ".local/share/terraria"
+      ".local/share/terraria/vanilla/worlds"
     ];
   };
 }
