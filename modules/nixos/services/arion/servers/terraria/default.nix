@@ -19,7 +19,7 @@ in {
       services.terraria.service = {
         image = "ryshe/terraria:latest";
         environment = {
-          # WORLD_FILENAME = "world.wld";
+          WORLD_FILENAME = "world.wld";
           CONFIGPATH = "config.json";
         };
         ports = [
@@ -30,7 +30,8 @@ in {
         ];
         # For the first run you will need to generate a new world with a size where: 1 = Small, 2=Medium, 3=Large
         command = [
-          "-autocreate 2"
+          "-autocreate"
+          "2"
         ];
       };
       services.ngrok.service = {
