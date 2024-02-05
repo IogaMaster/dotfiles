@@ -32,6 +32,9 @@ in {
       Policy = {
         AutoEnable = true;
       };
+      inputs = {
+        UserSpaceHID = true;
+      };
     };
 
     apps.pass.enable = true;
