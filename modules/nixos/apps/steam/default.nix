@@ -47,6 +47,8 @@ in {
     home.persist.directories = [
       ".local/share/Steam"
       ".steam"
+
+      ".local/share/Terraria"
     ];
   };
 }
