@@ -36,7 +36,7 @@
   # ];
 
   impermanence.enable = true;
-
+  virtualisation.arion.enable = true;
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";
   # ======================== DO NOT CHANGE THIS ========================
