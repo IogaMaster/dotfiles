@@ -541,11 +541,11 @@
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
-        "lastModified": 1698955440,
-        "narHash": "sha256-dg3tAJGLPq0iZUvhtVQyvCyPZRyOYfDyKSNkYboY05g=",
+        "lastModified": 1707333695,
+        "narHash": "sha256-raK6jM0lG60ql3p5t4tA0quR/sD9GHgDZCYOE6K0LSM=",
         "owner": "IogaMaster",
         "repo": "prism",
-        "rev": "8869710a1e5f1f7f198f321bfc5e84158175beb4",
+        "rev": "d19c62461cc5af75d3f97adeb32877f5b7507926",
         "type": "github"
       },
       "original": {
