@@ -2,6 +2,7 @@
   options,
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -23,5 +24,9 @@ in {
       pulse.enable = true;
     };
     programs.noisetorch.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      pavucontrol
+    ];
   };
 }
