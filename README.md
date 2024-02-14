@@ -211,3 +211,5 @@ A special thanks to:
 [Wil Taylor](https://www.youtube.com/playlist?list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-) for his youtube series on setting up NixOS with a flake.
 
 [Jake Hamilton](https://github.com/jakehamilton/config) for his NixOS config and [snowfall](https://github.com/snowfallorg/lib).
+
+[Tech Support on Hold](https://github.com/TechsupportOnHold/Batterylife/blob/main/laptop.nix) for the battery module
