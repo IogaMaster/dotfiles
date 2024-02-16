@@ -39,6 +39,7 @@ in {
     home.persist.directories = [
       ".config/gh"
       ".config/lazygit"
+      ".config/systemd" # For git maintainance
     ];
   };
 }
