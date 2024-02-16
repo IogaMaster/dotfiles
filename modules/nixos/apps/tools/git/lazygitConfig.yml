@@ -8,3 +8,10 @@ customCommands:
     context: "files"
     loadingText: "opening commitizen commit tool"
     subprocess: true
+  - key: 'D'
+    command: >-
+      git push {{ .SelectedLocalBranch.UpstreamRemote }} --delete {{ .SelectedLocalBranch.UpstreamBranch }} &&
+      git branch -D {{ .SelectedLocalBranch.Name }}
+    description: "delete local AND remote branch"
+    context: 'localBranches'
+    stream: true
