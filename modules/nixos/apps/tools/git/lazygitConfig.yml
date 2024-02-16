@@ -15,3 +15,9 @@ customCommands:
     description: "delete local AND remote branch"
     context: 'localBranches'
     stream: true
+  - key: 'T'
+    command: >-
+      for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do     git branch --track "${branch##*/}" "$branch"; done
+    description: "add ALL remote branches to the list"
+    context: 'localBranches'
+    stream: true
