@@ -38,12 +38,15 @@ in {
       pkgs.custom.relive
 
       pkgs.r2modman
+
+      pkgs.bottles
     ];
 
     home.persist.directories = [
       ".config/r2modman"
       ".config/r2modmanPlus-local"
       ".local/share/lutris"
+      ".local/share/bottles"
     ];
   };
 }
