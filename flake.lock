@@ -534,6 +534,21 @@
         "type": "github"
       }
     },
+    "persist-retro": {
+      "locked": {
+        "lastModified": 1709483711,
+        "narHash": "sha256-LaxXwwk9LcckLIjU1kEZo+cJh1TiV13n3dVJK5YX9W8=",
+        "owner": "Geometer1729",
+        "repo": "persist-retro",
+        "rev": "eb1daf4ef8c874c773c4b97fa7531dd1c8053326",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Geometer1729",
+        "repo": "persist-retro",
+        "type": "github"
+      }
+    },
     "prism": {
       "inputs": {
         "home-manager": "home-manager_2",
@@ -568,6 +583,7 @@
         "nix-ld": "nix-ld",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
+        "persist-retro": "persist-retro",
         "prism": "prism",
         "snowfall-lib": "snowfall-lib_2",
         "sops-nix": "sops-nix"

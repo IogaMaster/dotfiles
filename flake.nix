@@ -26,6 +26,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     impermanence.url = "github:nix-community/impermanence";
+    persist-retro.url = "github:Geometer1729/persist-retro";
 
     # Home
     neovim = {
@@ -87,6 +88,7 @@
         disko.nixosModules.disko
 
         impermanence.nixosModules.impermanence
+        persist-retro.nixosModules.persist-retro
         {
           # Required for impermanence
           fileSystems."/persist".neededForBoot = true;
