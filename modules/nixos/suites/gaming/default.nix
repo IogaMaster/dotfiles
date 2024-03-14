@@ -47,6 +47,7 @@ in {
       ".config/r2modmanPlus-local"
       ".local/share/lutris"
       ".local/share/bottles"
+      ".local/share/PrismLauncher"
     ];
   };
 }
