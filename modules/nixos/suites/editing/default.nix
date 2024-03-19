@@ -17,6 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       obs-studio
       audacity
+      chromium
       inkscape
       mediainfo
       vhs
