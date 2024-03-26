@@ -29,6 +29,7 @@ in {
     environment.systemPackages = [
       pkgs.prismlauncher
       pkgs.lutris
+      pkgs.heroic
 
       pkgs.gamemode
       pkgs.mangohud
@@ -48,6 +49,7 @@ in {
       ".local/share/lutris"
       ".local/share/bottles"
       ".local/share/PrismLauncher"
+      "Games"
     ];
   };
 }
