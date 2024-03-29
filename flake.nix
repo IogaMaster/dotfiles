@@ -49,6 +49,11 @@
     # Misc
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+
+    dzgui-nix = {
+      url = "github:lelgenio/dzgui-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -86,7 +91,7 @@
         arion.nixosModules.arion
 
         disko.nixosModules.disko
-
+        dzgui-nix.nixosModules.default
         impermanence.nixosModules.impermanence
         persist-retro.nixosModules.persist-retro
         {

@@ -26,6 +26,8 @@ in {
       ];
     };
 
+    programs.dzgui.enable = true;
+
     environment.systemPackages = [
       pkgs.prismlauncher
       pkgs.lutris
@@ -46,9 +48,11 @@ in {
     home.persist.directories = [
       ".config/r2modman"
       ".config/r2modmanPlus-local"
+      ".config/dztui"
       ".local/share/lutris"
       ".local/share/bottles"
       ".local/share/PrismLauncher"
+      ".local/share/dzgui"
       "Games"
     ];
   };

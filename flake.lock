@@ -81,6 +81,43 @@
         "type": "github"
       }
     },
+    "dzgui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702780245,
+        "narHash": "sha256-cdW5LN2Q7eYW8xIqKPQfeYPd7e6VdJGaoA9NMHesCrE=",
+        "owner": "aclist",
+        "repo": "dztui",
+        "rev": "28323f3edb8fa747dc559d1939ccdd7729e4e3a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aclist",
+        "repo": "dztui",
+        "type": "github"
+      }
+    },
+    "dzgui-nix": {
+      "inputs": {
+        "dzgui": "dzgui",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1702850463,
+        "narHash": "sha256-qR/c/GjsLUzrCyHN/Q9nnClduf6OqTg26S1AFYKPzxA=",
+        "owner": "lelgenio",
+        "repo": "dzgui-nix",
+        "rev": "2ed6515b27d8186b9fedfe1dcaf861f07e796a0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lelgenio",
+        "repo": "dzgui-nix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -574,6 +611,7 @@
         "arion": "arion",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
+        "dzgui-nix": "dzgui-nix",
         "flake-compat": "flake-compat_2",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
