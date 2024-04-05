@@ -45,6 +45,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    nix-topology.url = "github:oddlama/nix-topology";
 
     # Misc
     nix-ld.url = "github:Mic92/nix-ld";
@@ -84,6 +85,7 @@
 
       overlays = with inputs; [
         neovim.overlays.x86_64-linux.neovim
+        nix-topology.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [
@@ -92,6 +94,7 @@
 
         disko.nixosModules.disko
         dzgui-nix.nixosModules.default
+        nix-topology.nixosModules.default
         impermanence.nixosModules.impermanence
         persist-retro.nixosModules.persist-retro
         {
@@ -139,6 +142,17 @@
         inputs.deploy-rs.lib;
 
       templates = import ./templates {};
+
+      topology = with inputs; let
+        host = self.nixosConfigurations.${builtins.head (builtins.attrNames self.nixosConfigurations)};
+      in
+        import nix-topology {
+          inherit (host) pkgs; # Only this package set must include nix-topology.overlays.default
+          modules = [
+            ./topology
+            {inherit (self) nixosConfigurations;}
+          ];
+        };
     })
     # Outputs not managed by snowfall.
     // {

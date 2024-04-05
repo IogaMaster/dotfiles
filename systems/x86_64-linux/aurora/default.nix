@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
@@ -36,6 +33,9 @@
 
   impermanence.enable = true;
   virtualisation.arion.enable = true;
+
+  topology.self.interfaces.eth0.network = "home";
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";
   # ======================== DO NOT CHANGE THIS ========================
