@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
@@ -34,7 +38,14 @@
   impermanence.enable = true;
   virtualisation.arion.enable = true;
 
-  topology.self.interfaces.eth0.network = "home";
+  topology.self = {
+    hardware.info = "ThinkStation, 32GB RAM";
+  };
+
+  networking.interfaces.enp0s31f6 = {
+    name = "enp0s31f6";
+    useDHCP = lib.mkDefault true;
+  };
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";

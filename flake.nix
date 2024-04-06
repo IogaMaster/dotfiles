@@ -45,7 +45,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    nix-topology.url = "github:oddlama/nix-topology";
+    nix-topology.url = "github:IogaMaster/nix-topology";
 
     # Misc
     nix-ld.url = "github:Mic92/nix-ld";
@@ -149,7 +149,9 @@
         import nix-topology {
           inherit (host) pkgs; # Only this package set must include nix-topology.overlays.default
           modules = [
-            ./topology
+            (import ./topology {
+              inherit (host) config;
+            })
             {inherit (self) nixosConfigurations;}
           ];
         };

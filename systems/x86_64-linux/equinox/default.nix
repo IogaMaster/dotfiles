@@ -1,5 +1,9 @@
 # Server for builds and binary cache (on prem)
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [./hardware-configuration.nix];
 
   # Enable Bootloader
@@ -15,6 +19,15 @@
   services.arion.terraria.vanilla.enable = true;
 
   impermanence.enable = true;
+
+  topology.self = {
+    hardware.info = "ThinkCentre, 16GB RAM";
+  };
+
+  networking.interfaces.eno1 = {
+    name = "eno1";
+    useDHCP = lib.mkDefault true;
+  };
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
