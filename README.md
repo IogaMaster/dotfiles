@@ -34,6 +34,15 @@
 
 </details>
 
+<details>
+<summary>🕸️ Topology Diagram</summary>
+
+Can take a few minutes to update.
+
+![image](https://raw.githubusercontent.com/IogaMaster/dotfiles-topology/main/topology.svg)
+
+</details>
+
 ## My system management tool `sys`
 
 `sys` is a bash script I made that makes working with NixOS easier.
@@ -48,12 +57,6 @@ Testing an ephemeral config:
 
 ```sh
 sudo sys test # or `t` as a shorthand
-```
-
-Deploying to a server (in flake directory):
-
-```sh
-sudo sys deploy HOSTNAME # or `d` as a shorthand
 ```
 
 ______________________________________________________________________
