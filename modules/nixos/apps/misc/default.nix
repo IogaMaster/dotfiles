@@ -35,5 +35,9 @@ in {
 
       kjv
     ];
+
+    home.persist.directories = [
+      ".config/obsidian"
+    ];
   };
 }
