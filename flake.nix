@@ -55,6 +55,8 @@
       url = "github:lelgenio/dzgui-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flux.url = "github:IogaMaster/flux";
   };
 
   outputs = inputs: let
@@ -86,6 +88,7 @@
       overlays = with inputs; [
         neovim.overlays.x86_64-linux.neovim
         nix-topology.overlays.default
+        flux.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [
@@ -101,6 +104,8 @@
           # Required for impermanence
           fileSystems."/persist".neededForBoot = true;
         }
+
+        flux.nixosModules.flux
       ];
 
       systems.hosts.equinox.modules = with inputs; [
