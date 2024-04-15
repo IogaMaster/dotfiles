@@ -594,15 +594,15 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1712363772,
-        "narHash": "sha256-T5IGYbzfowlWv2VSLSZB0btutGHgeTuNan7wYHuPNOM=",
-        "owner": "IogaMaster",
+        "lastModified": 1713178164,
+        "narHash": "sha256-jqRnS+G1Ha7X9/DBzbxjCJE5ikJXo3xmr0fO8pYjhSI=",
+        "owner": "oddlama",
         "repo": "nix-topology",
-        "rev": "1c5aa18d2efbf444d2de741b70760bccad49ae21",
+        "rev": "4f9a4a367e5da7d04fa56422c0741e7d2985d676",
         "type": "github"
       },
       "original": {
-        "owner": "IogaMaster",
+        "owner": "oddlama",
         "repo": "nix-topology",
         "type": "github"
       }

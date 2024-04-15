@@ -45,7 +45,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    nix-topology.url = "github:IogaMaster/nix-topology";
+    nix-topology.url = "github:oddlama/nix-topology";
 
     # Misc
     nix-ld.url = "github:Mic92/nix-ld";
