@@ -43,6 +43,11 @@
       reverse_proxy :8012
       tls internal
     '';
+
+    "hydra.home.lan".extraConfig = ''
+      reverse_proxy :3000
+      tls internal
+    '';
   };
 
   services.vaultwarden = {
@@ -55,6 +60,22 @@
       domain = "https://vaultwarden.home.lan";
     };
   };
+
+  services.hydra = {
+    enable = true;
+    hydraURL = "https://hydra.home.lan";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [];
+    useSubstitutes = true;
+
+    logo = ../../../.github/assets/flake.webp;
+  };
+
+  system.nix.extraUsers = [
+    "hydra"
+    "hydra-evaluator"
+    "hydra-queue-runner"
+  ];
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
