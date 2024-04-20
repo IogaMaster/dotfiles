@@ -9,7 +9,7 @@
     ;
 in {
   networks.home = {
-    name = "Home Network";
+    name = "Ground Zero";
     cidrv4 = "192.168.25.1/24";
   };
 
