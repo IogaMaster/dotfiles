@@ -18,6 +18,10 @@ in {
     (mkIf cfg.enable {
       services.caddy.enable = true;
 
+      services.caddy.virtualHosts."*.home.lan".extraConfig = ''
+        tls internal
+      '';
+
       networking.firewall.allowedTCPPorts = [53];
       networking.firewall.allowedUDPPorts = [53];
 

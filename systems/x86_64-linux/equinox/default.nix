@@ -36,17 +36,14 @@
   services.caddy.virtualHosts = {
     "jellyfin.home.lan".extraConfig = ''
       reverse_proxy http://192.168.25.106:8096
-      tls internal
     '';
 
     "vaultwarden.home.lan".extraConfig = ''
       reverse_proxy :8012
-      tls internal
     '';
 
     "hydra.home.lan".extraConfig = ''
       reverse_proxy :3000
-      tls internal
     '';
   };
 
