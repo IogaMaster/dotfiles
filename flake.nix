@@ -92,19 +92,12 @@
       ];
 
       systems.modules.nixos = with inputs; [
-        nix-ld.nixosModules.nix-ld
-        arion.nixosModules.arion
-
-        disko.nixosModules.disko
-        dzgui-nix.nixosModules.default
         nix-topology.nixosModules.default
-        impermanence.nixosModules.impermanence
-        persist-retro.nixosModules.persist-retro
+        disko.nixosModules.disko
         {
           # Required for impermanence
           fileSystems."/persist".neededForBoot = true;
         }
-
         flux.nixosModules.flux
       ];
 

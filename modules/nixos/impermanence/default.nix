@@ -2,12 +2,17 @@
   options,
   config,
   lib,
+  inputs,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.impermanence;
 in {
+  imports = with inputs; [
+    impermanence.nixosModules.impermanence
+    persist-retro.nixosModules.persist-retro
+  ];
   options.impermanence = with types; {
     enable = mkBoolOpt false "Enable impermanence";
     removeTmpFilesOlderThan = mkOpt int 14 "Number of days to keep old btrfs_tmp files";

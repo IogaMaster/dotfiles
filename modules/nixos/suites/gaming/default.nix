@@ -3,12 +3,16 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.suites.gaming;
 in {
+  imports = with inputs; [
+    dzgui-nix.nixosModules.default
+  ];
   options.suites.gaming = with types; {
     enable = mkBoolOpt false "Enable the gaming suite";
   };
