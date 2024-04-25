@@ -3,7 +3,12 @@
   inputs,
   ...
 }:
-with lib; rec {
+with lib; let
+  generateMacAddress = s: let
+    hash = builtins.hashString "sha256" s;
+    c = off: builtins.substring off 2 hash;
+  in "${builtins.substring 0 1 hash}2:${c 2}:${c 4}:${c 6}:${c 8}:${c 10}";
+in rec {
   mkSystem = name: description: options:
     {
       topology.self = {
@@ -35,6 +40,14 @@ with lib; rec {
               tag = "ro-store";
               source = "/nix/store";
               mountPoint = "/nix/.ro-store";
+            }
+          ];
+
+          interfaces = [
+            {
+              type = "tap";
+              id = builtins.substring 0 15 "vm-${name}";
+              mac = generateMacAddress "vm-${name}";
             }
           ];
         };
