@@ -37,6 +37,10 @@ in {
       };
     };
 
+    environment.persist.directories = [
+      "/etc/bluetooth"
+    ];
+
     apps.pass.enable = true;
     apps.tools.git.enable = true;
     apps.tools.nix-ld.enable = true;

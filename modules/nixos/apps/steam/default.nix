@@ -20,7 +20,15 @@ in {
 
     environment.systemPackages = [
       pkgs.steam
+      pkgs.mangohud
+      pkgs.protonup
     ];
+
+    environment.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${config.user.name}/.steam/root/compatibilitytools.d";
+    };
+
+    programs.gamemode.enable = true;
 
     home.persist.directories = [
       ".local/share/Steam"
