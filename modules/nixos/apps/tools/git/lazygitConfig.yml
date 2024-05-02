@@ -1,6 +1,9 @@
 gui:
   nerdFontsVersion: "3"
 
+git:
+  overrideGpg: true
+
 customCommands:
   - key: "C"
     command: "git cz c"
