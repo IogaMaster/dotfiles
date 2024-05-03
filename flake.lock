@@ -393,11 +393,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1712897877,
-        "narHash": "sha256-N5cJOmmKac8go7PTxMBcZ9EfgeqbaC77R4It7LUkVqg=",
+        "lastModified": 1714755907,
+        "narHash": "sha256-IhZVtSrkZqVzqh+HfH5rgJRCcxwuCIaNg3OIVtKPF9I=",
         "owner": "IogaMaster",
         "repo": "flux",
-        "rev": "9de898c3c2450dac61328ffc26f526e23df740a4",
+        "rev": "25c33118fcdeec31ffa5352d96413f49d5ec35ed",
         "type": "github"
       },
       "original": {
@@ -634,11 +634,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1714212743,
-        "narHash": "sha256-+GmuCvecraSTWylPCVSZYwAiz4lKDEpn1TIZlKz7gSw=",
+        "lastModified": 1714686485,
+        "narHash": "sha256-JUIGvx9sHjGqpGAFhY9jpOPzxLh8M7B8p/7ClmE/L24=",
         "owner": "oddlama",
         "repo": "nix-topology",
-        "rev": "ac69cc735c58e0028f8ef6a4b5c14efd57f5381b",
+        "rev": "79f82222e38c010dfa9367705d2b0142b9ceb635",
         "type": "github"
       },
       "original": {
