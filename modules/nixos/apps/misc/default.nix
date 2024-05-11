@@ -32,6 +32,8 @@ in {
       wl-clipboard
 
       obsidian
+      pandoc
+      bookworm
 
       kjv
     ];
