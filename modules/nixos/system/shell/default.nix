@@ -65,7 +65,7 @@ in {
         zoxide init fish | source
 
         function , --description 'add software to shell session'
-              nix shell nixpkgs#$argv[1..-1]
+              NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_ALLOW_BROKEN=1 nix shell nixpkgs#$argv[1..-1] --impure
         end
       '';
     };
@@ -81,7 +81,7 @@ in {
         }
 
         def , [...packages] {
-            nix shell ...($packages | each {|s| $"nixpkgs#($s)"})
+            NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_ALLOW_BROKEN=1 nix shell ...($packages | each {|s| $"nixpkgs#($s)"}) --impure
         }
       '';
     };
