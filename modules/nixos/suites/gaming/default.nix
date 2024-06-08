@@ -54,6 +54,7 @@ in {
       ".config/r2modmanPlus-local"
       ".config/dztui"
       ".local/share/lutris"
+      ".local/share/aspyr-media"
       ".local/share/bottles"
       ".local/share/PrismLauncher"
       ".local/share/dzgui"
