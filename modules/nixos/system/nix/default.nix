@@ -11,7 +11,7 @@ with lib.custom; let
 in {
   options.system.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    package = mkOpt package pkgs.nixUnstable "Which nix package to use.";
+    package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
     extraUsers = mkOpt (listOf str) [] "Extra users to trust";
   };
 
