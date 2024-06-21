@@ -15,13 +15,12 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      (pkgs.discord.override {
-        withOpenASAR = true;
-      })
+      pkgs.vesktop
       pkgs.xwaylandvideobridge
     ];
 
     home.persist.directories = [
+      ".config/vesktop"
       ".config/discord"
     ];
   };
