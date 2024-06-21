@@ -37,11 +37,12 @@ in {
     environment.systemPackages = with pkgs; [
       grim
       slurp
+      wayfreeze
       swappy
       imagemagick
 
       (writeShellScriptBin "screenshot" ''
-        grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy
+        wayfreeze & PID=$!; sleep .1; grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy; kill $PID
       '')
       (writeShellScriptBin "screenshot-edit" ''
         wl-paste | swappy -f -
