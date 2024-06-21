@@ -38,16 +38,10 @@
     prism.url = "github:IogaMaster/prism";
 
     # Deployments
-    arion.url = "github:hercules-ci/arion";
-    arion.inputs.nixpkgs.follows = "nixpkgs";
-
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
     nix-topology.url = "github:oddlama/nix-topology";
-    microvm.url = "github:astro/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
+
 
     # Misc
     nix-ld.url = "github:Mic92/nix-ld";
@@ -58,24 +52,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flux.url = "github:IogaMaster/flux";
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "dotfiles";
+          };
+
+          namespace = "custom";
         };
-
-        namespace = "custom";
       };
-    };
-  in
+    in
     (lib.mkFlake {
       inherit inputs;
       src = ./.;
@@ -87,79 +81,35 @@
         ];
       };
 
-      overlays = with inputs; [
-        neovim.overlays.x86_64-linux.neovim
-        nix-topology.overlays.default
-        flux.overlays.default
-      ];
+  #    overlays = with inputs; [
+   #     neovim.overlays.x86_64-linux.neovim
+#
+ #       flux.overlays.default
+  #    ];
 
       systems.modules.nixos = with inputs; [
-        nix-topology.nixosModules.default
+        
         disko.nixosModules.disko
         {
           # Required for impermanence
           fileSystems."/persist".neededForBoot = true;
         }
-        flux.nixosModules.flux
+      
       ];
-
-      systems.hosts.equinox.modules = with inputs; [
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/sda";
-        })
-      ];
-
-      systems.hosts.zodiac.modules = with inputs; [
-        # impermanence.nixosModules.impermanence
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/sda";
-        })
-      ];
-
-      systems.hosts.aurora.modules = with inputs; [
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/nvme0n1";
-        })
-        {
-          # Required for impermanence
-          fileSystems."/persist".neededForBoot = true;
-        }
-      ];
-
-      systems.hosts.orion.modules = with inputs; [
-        (import ./disks/default.nix {inherit lib;})
-      ];
-
-      deploy = lib.mkDeploy {inherit (inputs) self;};
 
       checks =
         builtins.mapAttrs
-        (_system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+          (_system: deploy-lib:
+            deploy-lib.deployChecks inputs.self.deploy)
+          inputs.deploy-rs.lib;
 
-      templates = import ./templates {};
-
-      topology = with inputs; let
-        host = self.nixosConfigurations.${builtins.head (builtins.attrNames self.nixosConfigurations)};
-      in
-        import nix-topology {
-          inherit (host) pkgs; # Only this package set must include nix-topology.overlays.default
-          modules = [
-            (import ./topology {
-              inherit (host) config;
-            })
-            {inherit (self) nixosConfigurations;}
-          ];
-        };
+      templates = import ./templates { };
+      
     })
     # Outputs not managed by snowfall.
     // {
       hydraJobs = {
-        packages = {inherit (inputs.self.packages) "x86_64-linux";};
+        packages = { inherit (inputs.self.packages) "x86_64-linux"; };
       };
     };
 }
