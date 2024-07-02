@@ -36,6 +36,7 @@ in {
       pkgs.prismlauncher
       pkgs.lutris
       pkgs.heroic
+      pkgs.custom.olympus
 
       pkgs.gamemode
       pkgs.mangohud
@@ -53,6 +54,7 @@ in {
       ".config/r2modman"
       ".config/r2modmanPlus-local"
       ".config/dztui"
+      ".config/Olympus"
       ".local/share/lutris"
       ".local/share/aspyr-media"
       ".local/share/bottles"
