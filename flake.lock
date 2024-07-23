@@ -103,35 +103,18 @@
         "type": "github"
       }
     },
-    "dzgui": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702780245,
-        "narHash": "sha256-cdW5LN2Q7eYW8xIqKPQfeYPd7e6VdJGaoA9NMHesCrE=",
-        "owner": "aclist",
-        "repo": "dztui",
-        "rev": "28323f3edb8fa747dc559d1939ccdd7729e4e3a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aclist",
-        "repo": "dztui",
-        "type": "github"
-      }
-    },
     "dzgui-nix": {
       "inputs": {
-        "dzgui": "dzgui",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1702850463,
-        "narHash": "sha256-qR/c/GjsLUzrCyHN/Q9nnClduf6OqTg26S1AFYKPzxA=",
+        "lastModified": 1720203493,
+        "narHash": "sha256-0DxMoLiBrHXWGljhT8cf8u3dy0D+C6gWR8PEOJ93IQ0=",
         "owner": "lelgenio",
         "repo": "dzgui-nix",
-        "rev": "2ed6515b27d8186b9fedfe1dcaf861f07e796a0d",
+        "rev": "eca167dfeb156f1d03eb44f63f92ece0b29872ef",
         "type": "github"
       },
       "original": {
@@ -765,11 +748,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1718160348,
-        "narHash": "sha256-9YrUjdztqi4Gz8n3mBuqvCkMo4ojrA6nASwyIKWMpus=",
+        "lastModified": 1720957393,
+        "narHash": "sha256-oedh2RwpjEa+TNxhg5Je9Ch6d3W1NKi7DbRO1ziHemA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "57d6973abba7ea108bac64ae7629e7431e0199b6",
+        "rev": "693bc46d169f5af9c992095736e82c3488bf7dbb",
         "type": "github"
       },
       "original": {
