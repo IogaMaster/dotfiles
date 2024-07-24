@@ -1,9 +1,11 @@
 {
   writeShellScriptBin,
   nix-output-monitor,
+  pkgs,
   ...
 }: let
   nom = "${nix-output-monitor}/bin/nom";
+  flake-edit = "${pkgs.custom.flake-edit}/bin/flake-edit";
 in
   writeShellScriptBin "sys" ''
 
@@ -21,6 +23,10 @@ in
     cmd_update() {
         echo "🔒Updating flake.lock"
         nix flake update
+    }
+
+    cmd_flake() {
+      ${flake-edit} --diff $@
     }
 
     cmd_clean() {
@@ -62,6 +68,7 @@ in
         rebuild|r) shift;       cmd_rebuild ;;
         test|t) shift;          cmd_test ;;
         update|u) shift;        cmd_update ;;
+        flake|f) shift;         cmd_flake;;
         clean|c) shift;         cmd_clean ;;
         help|--help) shift;     cmd_usage "$@" ;;
         *)              echo "Unknown command: $@" ;;
