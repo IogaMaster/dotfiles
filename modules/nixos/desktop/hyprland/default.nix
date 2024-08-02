@@ -40,8 +40,13 @@ in {
       wayfreeze
       swappy
       imagemagick
+      killall
 
       (writeShellScriptBin "screenshot" ''
+        killall wayfreeze
+        killall grim
+        killall slurp
+        sleep .1
         wayfreeze & PID=$!; sleep .1; grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy; kill $PID
       '')
       (writeShellScriptBin "screenshot-edit" ''
