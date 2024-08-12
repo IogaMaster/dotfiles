@@ -30,6 +30,7 @@ in {
       ".local/share/nvim"
       ".vim"
       ".wakatime"
+      ".nvim"
     ];
 
     home.persist.files = [".wakatime.cfg" ".wakatime.bdb"];

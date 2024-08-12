@@ -88,7 +88,7 @@
       };
 
       overlays = with inputs; [
-        neovim.overlays.x86_64-linux.neovim
+        neovim.overlays.default
         nix-topology.overlays.default
         flux.overlays.default
       ];
