@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     system.nix.enable = true;
-    system.security.doas.enable = true;
+    system.security.sudo.enable = true;
 
     hardware.audio.enable = true;
     hardware.networking.enable = true;
