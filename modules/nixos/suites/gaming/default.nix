@@ -50,9 +50,14 @@ in {
       pkgs.bottles
     ];
 
+    services.flatpak.packages = [
+      "at.vintagestory.VintageStory"
+    ];
+
     home.persist.directories = [
       ".config/r2modman"
       ".config/r2modmanPlus-local"
+      ".var/app/at.vintagestory.VintageStory/"
       ".config/dztui"
       ".config/Olympus"
       ".local/share/lutris"
@@ -61,6 +66,10 @@ in {
       ".local/share/PrismLauncher"
       ".local/share/dzgui"
       "Games"
+    ];
+
+    environment.persist.directories = [
+      "/var/lib/flatpak"
     ];
   };
 }
