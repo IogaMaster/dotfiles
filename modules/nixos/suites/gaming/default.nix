@@ -46,12 +46,11 @@ in {
       pkgs.custom.relive
 
       pkgs.r2modman
-
-      pkgs.bottles
     ];
 
     services.flatpak.packages = [
       "at.vintagestory.VintageStory"
+      "com.usebottles.bottles"
     ];
 
     home.persist.directories = [
@@ -65,6 +64,7 @@ in {
       ".local/share/bottles"
       ".local/share/PrismLauncher"
       ".local/share/dzgui"
+      ".factorio"
       "Games"
     ];
 
