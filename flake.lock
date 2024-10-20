@@ -377,11 +377,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1714755907,
-        "narHash": "sha256-IhZVtSrkZqVzqh+HfH5rgJRCcxwuCIaNg3OIVtKPF9I=",
+        "lastModified": 1729388191,
+        "narHash": "sha256-Ga5JJPgwfpqMFvk8g4un7ySwfTefGCsbUrCDsSnQyiU=",
         "owner": "IogaMaster",
         "repo": "flux",
-        "rev": "25c33118fcdeec31ffa5352d96413f49d5ec35ed",
+        "rev": "400896b5c977e0569ea0f8bacb9b42509e0bbd00",
         "type": "github"
       },
       "original": {

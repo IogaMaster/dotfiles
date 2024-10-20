@@ -68,6 +68,20 @@
     logo = ../../../.github/assets/flake.webp;
   };
 
+  flux = {
+    enable = true;
+    servers = {
+      myserver = {
+        package = pkgs.mkMinecraftServer {
+          name = "myminecraftserver";
+          src = ./myserver; # Path to a mcman config
+          hash = "sha256-II7c2IvTSw9OQJ9LX/kRkNcSgkiMU7VXe5flWvRwZHI=";
+        };
+        proxy.enable = true;
+      };
+    };
+  };
+
   system.nix.extraUsers = [
     "hydra"
     "hydra-evaluator"

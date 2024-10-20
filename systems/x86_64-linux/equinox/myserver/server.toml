@@ -1,0 +1,38 @@
+name = "myserver"
+mc_version = "1.21.1"
+
+[jar]
+type = "fabric"
+loader = "latest"
+installer = "latest"
+
+[variables]
+PORT = "25565"
+
+[launcher]
+eula_args = true
+nogui = true
+preset_flags = "aikars"
+
+[[mods]]
+type = "modrinth"
+id = "geyser"
+version = "LrOHtTFt"
+
+[[mods]]
+type = "modrinth"
+id = "floodgate"
+version = "wPa1pHZJ"
+
+[[mods]]
+type = "modrinth"
+id = "hurricane"
+version = "wpMhhaSi"
+
+[[mods]]
+type = "modrinth"
+id = "fabric-api"
+version = "iFnYBUfS"
+
+[options]
+upload_to_mclogs = false
