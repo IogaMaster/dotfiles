@@ -35,6 +35,7 @@ in {
       ".steam"
 
       ".local/share/Terraria"
+      ".config/aseprite"
     ];
   };
 }
