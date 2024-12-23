@@ -20,6 +20,8 @@ in
   config = mkIf cfg.enable {
     apps.steam.enable = true;
 
+    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
     hardware.opengl = {
       enable = true;
       driSupport32Bit = true;
