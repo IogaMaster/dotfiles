@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "a2sSrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679346231,
+        "narHash": "sha256-cbXqDeVfAJyk5PeZWBSmi6G4ynYC3L34LFofKPdlwGo=",
+        "owner": "yepoleb",
+        "repo": "python-a2s",
+        "rev": "c7590ffa9a6d0c6912e17ceeab15b832a1090640",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yepoleb",
+        "repo": "python-a2s",
+        "rev": "c7590ffa9a6d0c6912e17ceeab15b832a1090640",
+        "type": "github"
+      }
+    },
     "arion": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -36,6 +53,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-schemes",
+        "type": "github"
+      }
+    },
+    "dayzquerySrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730587383,
+        "narHash": "sha256-oKzruS+5f3goXmqS4Oy7XIKcv8GZ1SavmHI1+XC9rVA=",
+        "owner": "yepoleb",
+        "repo": "dayzquery",
+        "rev": "3088bbfb147b77bc7b6a9425581b439889ff3f7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yepoleb",
+        "repo": "dayzquery",
         "type": "github"
       }
     },
@@ -103,24 +136,60 @@
         "type": "github"
       }
     },
-    "dzgui-nix": {
+    "dzgui": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "a2sSrc": "a2sSrc",
+        "dayzquerySrc": "dayzquerySrc",
+        "dzguiSrc": "dzguiSrc",
+        "dzguiSrc-testing": "dzguiSrc-testing",
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1720203493,
-        "narHash": "sha256-0DxMoLiBrHXWGljhT8cf8u3dy0D+C6gWR8PEOJ93IQ0=",
-        "owner": "lelgenio",
-        "repo": "dzgui-nix",
-        "rev": "eca167dfeb156f1d03eb44f63f92ece0b29872ef",
+        "lastModified": 1734319232,
+        "narHash": "sha256-T/2h3S2wI7TqKhel/Qibd1Hckv8NlKoONaVSbC9C6+s=",
+        "owner": "jiriks74",
+        "repo": "dzgui.flake",
+        "rev": "4b12e703c5384d7480eef499aeaa58c863c9f4f3",
         "type": "github"
       },
       "original": {
-        "owner": "lelgenio",
-        "repo": "dzgui-nix",
+        "owner": "jiriks74",
+        "repo": "dzgui.flake",
         "type": "github"
+      }
+    },
+    "dzguiSrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734054601,
+        "narHash": "sha256-eUOQ56AIGaZ1DNUPJkQQu48ZkK3bxeR0ghwHzWcCqHE=",
+        "ref": "dzgui",
+        "rev": "c11511abffce734691ee2d6981ede966838afb4d",
+        "revCount": 1025,
+        "type": "git",
+        "url": "https://codeberg.org/aclist/dztui"
+      },
+      "original": {
+        "ref": "dzgui",
+        "type": "git",
+        "url": "https://codeberg.org/aclist/dztui"
+      }
+    },
+    "dzguiSrc-testing": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734053420,
+        "narHash": "sha256-BtqEMZF4IRnLptlaspYcxYySWaFchZW3MsoE27swrOA=",
+        "ref": "testing",
+        "rev": "822db9edfec17815a67dbfa0fd90c5964c82d225",
+        "revCount": 1053,
+        "type": "git",
+        "url": "https://codeberg.org/aclist/dztui"
+      },
+      "original": {
+        "ref": "testing",
+        "type": "git",
+        "url": "https://codeberg.org/aclist/dztui"
       }
     },
     "flake-compat": {
@@ -374,7 +443,7 @@
     },
     "flux": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1729388191,
@@ -628,7 +697,7 @@
       "inputs": {
         "devshell": "devshell",
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
@@ -683,11 +752,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1712608508,
-        "narHash": "sha256-vMZ5603yU0wxgyQeHJryOI+O61yrX2AHwY6LOFyV1gM=",
+        "lastModified": 1734119587,
+        "narHash": "sha256-AKU6qqskl0yf2+JdRdD0cfxX4b9x3KKV5RqA6wijmPM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4cba8b53da471aea2ab2b0c1f30a81e7c451f4b6",
+        "rev": "3566ab7246670a43abd2ffa913cc62dad9cdf7d5",
         "type": "github"
       },
       "original": {
@@ -746,6 +815,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1712608508,
+        "narHash": "sha256-vMZ5603yU0wxgyQeHJryOI+O61yrX2AHwY6LOFyV1gM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4cba8b53da471aea2ab2b0c1f30a81e7c451f4b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1711703276,
         "narHash": "sha256-iMUFArF0WCatKK6RzfUJknjem0H9m4KgorO/p3Dopkk=",
         "owner": "NixOS",
@@ -760,7 +845,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1725634671,
         "narHash": "sha256-v3rIhsJBOMLR8e/RNWxr828tB+WywYIoajrZKFM+0Gg=",
@@ -776,7 +861,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1697723726,
         "narHash": "sha256-SaTWPkI8a5xSHX/rrKzUe+/uVNy6zCGMXgoeMb7T9rg=",
@@ -838,7 +923,7 @@
     "prism": {
       "inputs": {
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
@@ -860,7 +945,7 @@
         "arion": "arion",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
-        "dzgui-nix": "dzgui-nix",
+        "dzgui": "dzgui",
         "flake-compat": "flake-compat_2",
         "flux": "flux",
         "home-manager": "home-manager",
@@ -873,7 +958,7 @@
         "nix-ld": "nix-ld",
         "nix-topology": "nix-topology",
         "nixos-generators": "nixos-generators",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "persist-retro": "persist-retro",
         "prism": "prism",
         "snowfall-lib": "snowfall-lib_2",

@@ -10,9 +10,7 @@ with lib;
 with lib.custom; let
   cfg = config.suites.gaming;
 in {
-  imports = with inputs; [
-    dzgui-nix.nixosModules.default
-  ];
+  imports = with inputs; [];
   options.suites.gaming = with types; {
     enable = mkBoolOpt false "Enable the gaming suite";
   };
@@ -29,8 +27,6 @@ in {
         vaapiIntel
       ];
     };
-
-    programs.dzgui.enable = true;
 
     environment.systemPackages = [
       pkgs.prismlauncher

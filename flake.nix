@@ -54,10 +54,7 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    dzgui-nix = {
-      url = "github:lelgenio/dzgui-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dzgui.url = "github:jiriks74/dzgui.flake";
 
     flux.url = "github:IogaMaster/flux";
   };

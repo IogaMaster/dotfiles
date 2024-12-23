@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [./hardware-configuration.nix];
@@ -17,6 +18,8 @@
   services.ssh.enable = true;
   environment.systemPackages = with pkgs; [
     custom.mcman
+
+    inputs.dzgui.packages.x86_64-linux.dzgui
   ];
 
   # services.hydra = {
