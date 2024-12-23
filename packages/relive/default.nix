@@ -28,9 +28,7 @@ stdenv.mkDerivation {
     xorg.libXext
   ];
 
-  patches = [
-    ./speedrun.patch
-  ];
+  patches = [ ./speedrun.patch ];
 
   configurePhase = ''
     mkdir build && cd build

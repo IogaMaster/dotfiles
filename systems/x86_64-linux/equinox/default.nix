@@ -1,10 +1,7 @@
 # Server for builds and binary cache (on prem)
+{ lib, pkgs, ... }:
 {
-  lib,
-  pkgs,
-  ...
-}: {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
 
   topology.self = {
     name = "🍃 Equinox";
@@ -62,7 +59,7 @@
     enable = true;
     hydraURL = "https://hydra.home.lan";
     notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
+    buildMachinesFiles = [ ];
     useSubstitutes = true;
 
     logo = ../../../.github/assets/flake.webp;

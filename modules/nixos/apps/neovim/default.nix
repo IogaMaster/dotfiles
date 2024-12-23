@@ -7,10 +7,14 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.neovim;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.apps.neovim = with types; {
     enable = mkBoolOpt false "Enable or disable neovim";
   };
@@ -56,6 +60,9 @@ in {
       }
     '';
 
-    home.persist.files = [".wakatime.cfg" ".wakatime.bdb"];
+    home.persist.files = [
+      ".wakatime.cfg"
+      ".wakatime.bdb"
+    ];
   };
 }

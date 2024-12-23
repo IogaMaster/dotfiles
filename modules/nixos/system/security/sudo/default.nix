@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.system.security.sudo;
-in {
+in
+{
   options.system.security.sudo = {
     enable = mkBoolOpt false "";
   };

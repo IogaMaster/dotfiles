@@ -7,18 +7,20 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.addons.wofi;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.desktop.addons.wofi = with types; {
     enable = mkBoolOpt false "Enable or disable the wofi run launcher.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      wofi
-    ];
+    environment.systemPackages = with pkgs; [ wofi ];
 
     home.configFile."wofi/config".source = ./config;
     home.configFile."wofi/style.css".text = ''

@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.suites.editing;
-in {
+in
+{
   options.suites.editing = with types; {
     enable = mkBoolOpt false "Enable the editing suite";
   };
@@ -32,17 +34,13 @@ in {
     ];
 
     # OBS
-    boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-    boot.kernelModules = [
-      "v4l2loopback"
-    ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     security.polkit.enable = true;
 
-    home.persist.directories = [
-      ".config/obs-studio"
-    ];
+    home.persist.directories = [ ".config/obs-studio" ];
   };
 }

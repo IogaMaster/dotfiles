@@ -7,18 +7,20 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.addons.wlogout;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.desktop.addons.wlogout = with types; {
     enable = mkBoolOpt false "Enable or disable wlogout.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      wlogout
-    ];
+    environment.systemPackages = with pkgs; [ wlogout ];
 
     home.configFile."wlogout/style.css".text = ''
        * {

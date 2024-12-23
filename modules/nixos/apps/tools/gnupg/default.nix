@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.tools.gnupg;
-in {
+in
+{
   options.apps.tools.gnupg = with types; {
     enable = mkBoolOpt false "Enable gnupg";
   };

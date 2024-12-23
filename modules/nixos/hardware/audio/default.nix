@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.hardware.audio;
-in {
+in
+{
   options.hardware.audio = with types; {
     enable = mkBoolOpt false "Enable pipewire";
   };
@@ -25,8 +27,6 @@ in {
     };
     programs.noisetorch.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      pavucontrol
-    ];
+    environment.systemPackages = with pkgs; [ pavucontrol ];
   };
 }

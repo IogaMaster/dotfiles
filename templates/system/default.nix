@@ -1,5 +1,6 @@
-{...}: {
-  imports = [./hardware-configuration.nix];
+{ ... }:
+{
+  imports = [ ./hardware-configuration.nix ];
 
   # Enable Bootloader (EFI or BIOS)
   #system.boot.efi.enable = true;

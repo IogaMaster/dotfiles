@@ -6,11 +6,16 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.system.shell;
-in {
+in
+{
   options.system.shell = with types; {
-    shell = mkOpt (enum ["nushell" "fish"]) "nushell" "What shell to use";
+    shell = mkOpt (enum [
+      "nushell"
+      "fish"
+    ]) "nushell" "What shell to use";
   };
 
   config = {
@@ -73,7 +78,9 @@ in {
     # Enable all if nushell
     home.programs.nushell = mkIf (cfg.shell == "nushell") {
       enable = true;
-      shellAliases = config.environment.shellAliases // {ls = "ls";};
+      shellAliases = config.environment.shellAliases // {
+        ls = "ls";
+      };
       envFile.text = "";
       extraConfig = ''
         $env.config = {

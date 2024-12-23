@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.steam;
-in {
+in
+{
   options.apps.steam = with types; {
     enable = mkBoolOpt false "Enable or disable steam";
   };

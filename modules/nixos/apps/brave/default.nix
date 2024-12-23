@@ -6,18 +6,18 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.brave;
-in {
+in
+{
   options.apps.brave = with types; {
     enable = mkBoolOpt false "Enable or disable brave browser";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.brave];
+    environment.systemPackages = [ pkgs.brave ];
 
-    home.persist.directories = [
-      ".local/share/BraveSoftware"
-    ];
+    home.persist.directories = [ ".local/share/BraveSoftware" ];
   };
 }

@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.tools.git;
-in {
+in
+{
   options.apps.tools.git = with types; {
     enable = mkBoolOpt false "Enable or disable git";
   };
@@ -33,7 +35,9 @@ in {
       g = "lazygit";
     };
 
-    home.configFile."git/config".text = import ./config.nix {sshKeyPath = "/home/${config.user.name}/.ssh/key.pub";};
+    home.configFile."git/config".text = import ./config.nix {
+      sshKeyPath = "/home/${config.user.name}/.ssh/key.pub";
+    };
     home.configFile."lazygit/config.yml".source = ./lazygitConfig.yml;
 
     home.persist.directories = [

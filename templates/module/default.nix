@@ -5,14 +5,14 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.module;
-in {
+in
+{
   options.module = with types; {
     enable = mkBoolOpt false "Enable module";
   };
 
-  config =
-    mkIf cfg.enable {
-    };
+  config = mkIf cfg.enable { };
 }

@@ -1,7 +1,9 @@
-{lib, ...}:
-with lib; rec {
-  mkOpt = type: default: description:
-    mkOption {inherit type default description;};
+{ lib, ... }:
+with lib;
+rec {
+  mkOpt =
+    type: default: description:
+    mkOption { inherit type default description; };
 
   mkOpt' = type: default: mkOpt type default null;
 

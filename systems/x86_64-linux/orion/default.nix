@@ -1,6 +1,7 @@
 # Newer thinkpad
-{...}: {
-  imports = [./hardware-configuration.nix];
+{ ... }:
+{
+  imports = [ ./hardware-configuration.nix ];
 
   # Enable Bootloader
   system.boot.efi.enable = true;

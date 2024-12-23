@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.ssh;
-in {
+in
+{
   options.services.ssh = with types; {
     enable = mkBoolOpt false "Enable ssh";
   };
@@ -15,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
-      ports = [22];
+      ports = [ 22 ];
 
       passwordAuthentication = false;
     };
@@ -33,13 +35,9 @@ in {
       identityfile ~/.ssh/key
     '';
 
-    home.persist.directories = [
-      ".ssh"
-    ];
+    home.persist.directories = [ ".ssh" ];
 
-    environment.persist.directories = [
-      "/root/ssh"
-    ];
+    environment.persist.directories = [ "/root/ssh" ];
 
     environment.persist.files = [
       "/etc/machine-id"

@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.discord;
-in {
+in
+{
   options.apps.discord = with types; {
     enable = mkBoolOpt false "Enable discord";
   };

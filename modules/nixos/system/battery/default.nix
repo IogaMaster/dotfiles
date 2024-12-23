@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.system.battery;
-in {
+in
+{
   options.system.battery = with types; {
     enable = mkBoolOpt false "Whether or not to enable battery optimizations and utils.";
   };

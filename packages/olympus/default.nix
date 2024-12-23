@@ -35,12 +35,14 @@ let
   # NOTE: on installation olympus uses MiniInstallerLinux which is dynamically linked, this makes it run fine
   fhs-env = buildFHSEnv {
     name = "olympus-fhs";
-    targetPkgs = pkgs: (with pkgs; [
-      icu
-      stdenv.cc.cc
-      libgcc.lib
-      openssl
-    ]);
+    targetPkgs =
+      pkgs:
+      (with pkgs; [
+        icu
+        stdenv.cc.cc
+        libgcc.lib
+        openssl
+      ]);
     runScript = "bash";
   };
 
@@ -51,7 +53,7 @@ let
       url = "http://lua.sqlite.org/index.cgi/zip/lsqlite3_v096.zip";
       hash = "sha256-Mq409A3X9/OS7IPI/KlULR6ZihqnYKk/mS/W/2yrGBg=";
     };
-    buildInputs = [sqlite.dev];
+    buildInputs = [ sqlite.dev ];
   };
 
   dotnet-out = "sharp/bin/Release/net452";
@@ -59,77 +61,77 @@ let
   phome = "$out/lib/${pname}";
   nfd = lua51Packages.nfd;
 in
-  buildDotnetModule rec {
-    inherit pname;
+buildDotnetModule rec {
+  inherit pname;
 
-    # FIXME: I made up this version number.
-    version = "24.04.23.02";
+  # FIXME: I made up this version number.
+  version = "24.04.23.02";
 
-    src = fetchFromGitHub {
-      owner = "EverestAPI";
-      repo = "Olympus";
-      rev = "6b4ceee45b51b913cf1d50bfb3ae645b21bba4f1";
-      fetchSubmodules = true; # Required. See upstream's README.
-      hash = "sha256-FtvTELf8EZCkoAmMbgwxftxXOzdXy0P69RRMyPlRXUA=";
-    };
+  src = fetchFromGitHub {
+    owner = "EverestAPI";
+    repo = "Olympus";
+    rev = "6b4ceee45b51b913cf1d50bfb3ae645b21bba4f1";
+    fetchSubmodules = true; # Required. See upstream's README.
+    hash = "sha256-FtvTELf8EZCkoAmMbgwxftxXOzdXy0P69RRMyPlRXUA=";
+  };
 
-    executables = [];
+  executables = [ ];
 
-    nativeBuildInputs = [
-      msbuild
-      libarchive # To create the .love file (zip format)
-    ];
+  nativeBuildInputs = [
+    msbuild
+    libarchive # To create the .love file (zip format)
+  ];
 
-    buildInputs = [
-      love
-      mono4
-      nfd
-      lua-subprocess
-      lsqlite3
-    ];
+  buildInputs = [
+    love
+    mono4
+    nfd
+    lua-subprocess
+    lsqlite3
+  ];
 
-    runtimeInputs = [
-      xdg-utils
-    ];
+  runtimeInputs = [ xdg-utils ];
 
-    nugetDeps = ./deps.nix;
+  nugetDeps = ./deps.nix;
 
-    projectFile = "sharp/Olympus.Sharp.sln";
+  projectFile = "sharp/Olympus.Sharp.sln";
 
-    postConfigure = ''
-      echo '${version}-nixos' > src/version.txt
-    '';
+  postConfigure = ''
+    echo '${version}-nixos' > src/version.txt
+  '';
 
-    # Copied from `olympus` in AUR.
-    buildPhase = ''
-      runHook preBuild
-      FrameworkPathOverride=${mono4.out}/lib/mono/4.5 msbuild ${projectFile} /p:Configuration=Release
-      runHook postBuild
-    '';
+  # Copied from `olympus` in AUR.
+  buildPhase = ''
+    runHook preBuild
+    FrameworkPathOverride=${mono4.out}/lib/mono/4.5 msbuild ${projectFile} /p:Configuration=Release
+    runHook postBuild
+  '';
 
-    # Hack Olympus.Sharp.bin.{x86,x86_64} to use system mono.
-    # This was proposed by @0x0ade on discord.gg/celeste:
-    # https://discord.com/channels/403698615446536203/514006912115802113/827507533962149900
-    postBuild = ''
-      makeWrapper ${mono4.out}/bin/mono ${dotnet-out}/Olympus.Sharp.bin.x86 \
-        --add-flags ${phome}/sharp/Olympus.Sharp.exe
-      cp ${dotnet-out}/Olympus.Sharp.bin.x86 ${dotnet-out}/Olympus.Sharp.bin.x86_64
-    '';
+  # Hack Olympus.Sharp.bin.{x86,x86_64} to use system mono.
+  # This was proposed by @0x0ade on discord.gg/celeste:
+  # https://discord.com/channels/403698615446536203/514006912115802113/827507533962149900
+  postBuild = ''
+    makeWrapper ${mono4.out}/bin/mono ${dotnet-out}/Olympus.Sharp.bin.x86 \
+      --add-flags ${phome}/sharp/Olympus.Sharp.exe
+    cp ${dotnet-out}/Olympus.Sharp.bin.x86 ${dotnet-out}/Olympus.Sharp.bin.x86_64
+  '';
 
-    # The script find-love is hacked to use love from nixpkgs.
-    # It is used to launch Loenn from Olympus.
-    installPhase = let
+  # The script find-love is hacked to use love from nixpkgs.
+  # It is used to launch Loenn from Olympus.
+  installPhase =
+    let
       subprocess-cpath = "${lua-subprocess.out}/lib/lua/5.1/?.so";
       nfd-cpath = "${nfd.out}/lib/lua/5.1/?.so";
       lsqlite3-cpath = "${lsqlite3.out}/lib/lua/5.1/?.so";
-    in ''
+    in
+    ''
       runHook preInstall
       mkdir -p $out/bin
       makeWrapper ${love.out}/bin/love ${phome}/find-love \
         --add-flags "--fused"
       makeWrapper ${phome}/find-love $out/bin/olympus \
         --prefix LUA_CPATH : "${nfd-cpath};${subprocess-cpath};${lsqlite3-cpath}" \
-        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [curl]} \
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ curl ]} \
         --add-flags "${phome}/olympus.love"
       mkdir -p ${phome}
       bsdtar --format zip --strip-components 1 -cf ${phome}/olympus.love src
@@ -137,21 +139,24 @@ in
       runHook postInstall
     '';
 
-    # we need to force olympus to use the fhs-env
-    postInstall = ''
-      sed -i 's|^exec|& ${fhs-env}/bin/olympus-fhs|' $out/bin/olympus
-      install -Dm644 lib-linux/olympus.desktop $out/share/applications/olympus.desktop
-      install -Dm644 src/data/icon.png $out/share/icons/hicolor/128x128/apps/olympus.png
-      install -Dm644 LICENSE $out/share/licenses/${pname}/LICENSE
-    '';
+  # we need to force olympus to use the fhs-env
+  postInstall = ''
+    sed -i 's|^exec|& ${fhs-env}/bin/olympus-fhs|' $out/bin/olympus
+    install -Dm644 lib-linux/olympus.desktop $out/share/applications/olympus.desktop
+    install -Dm644 src/data/icon.png $out/share/icons/hicolor/128x128/apps/olympus.png
+    install -Dm644 LICENSE $out/share/licenses/${pname}/LICENSE
+  '';
 
-    meta = with lib; {
-      description = "Cross-platform GUI Everest installer and Celeste mod manager";
-      homepage = "https://github.com/EverestAPI/Olympus";
-      changelog = "https://github.com/EverestAPI/Olympus/blob/main/changelog.txt";
-      license = licenses.mit;
-      maintainers = with maintainers; [ulysseszhan petingoso];
-      mainProgram = "olympus";
-      platforms = platforms.unix;
-    };
-  }
+  meta = with lib; {
+    description = "Cross-platform GUI Everest installer and Celeste mod manager";
+    homepage = "https://github.com/EverestAPI/Olympus";
+    changelog = "https://github.com/EverestAPI/Olympus/blob/main/changelog.txt";
+    license = licenses.mit;
+    maintainers = with maintainers; [
+      ulysseszhan
+      petingoso
+    ];
+    mainProgram = "olympus";
+    platforms = platforms.unix;
+  };
+}

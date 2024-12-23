@@ -1,4 +1,5 @@
-{sshKeyPath}: ''
+{ sshKeyPath }:
+''
   [user]
   	name = IogaMaster
   	email = iogamastercode@gmail.com

@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.addons.swww;
-in {
+in
+{
   options.desktop.addons.swww = with types; {
     enable = mkBoolOpt false "Enable or disable SWWW";
   };
@@ -24,8 +26,6 @@ in {
       '')
     ];
 
-    home.persist.directories = [
-      ".cache/swww"
-    ];
+    home.persist.directories = [ ".cache/swww" ];
   };
 }

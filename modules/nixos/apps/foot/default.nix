@@ -7,16 +7,20 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.foot;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.apps.foot = with types; {
     enable = mkBoolOpt false "Enable or disable the foot terminal.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.foot];
+    environment.systemPackages = [ pkgs.foot ];
 
     home.configFile."foot/foot.ini".text = ''
       font=JetBrains Mono Nerd Font:size=12

@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.internalDomain;
-in {
+in
+{
   options.services.internalDomain = with types; {
     enable = mkBoolOpt false "Enable dnsmasq, a custom internalDomain server";
     domain = mkOpt str "home.lan" "Internal Domain to use, defaults to home.lan";
@@ -22,15 +24,15 @@ in {
         tls internal
       '';
 
-      networking.firewall.allowedTCPPorts = [53];
-      networking.firewall.allowedUDPPorts = [53];
+      networking.firewall.allowedTCPPorts = [ 53 ];
+      networking.firewall.allowedUDPPorts = [ 53 ];
 
       services.dnsmasq = {
         enable = true;
         resolveLocalQueries = true;
         alwaysKeepRunning = true;
         settings = {
-          server = ["9.9.9.9"];
+          server = [ "9.9.9.9" ];
           inherit (cfg) domain;
           local = "/${cfg.domain}/";
 
@@ -41,12 +43,9 @@ in {
           no-resolv = true;
           no-poll = true;
 
-          address = [
-            "/${cfg.domain}/${cfg.reverseProxyIp}"
-          ];
+          address = [ "/${cfg.domain}/${cfg.reverseProxyIp}" ];
         };
       };
     })
-    // {
-    };
+    // { };
 }

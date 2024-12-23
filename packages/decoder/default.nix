@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     description = "Decode Factorio's binary `blueprint-storage.dat` file into JSON for backup, downgrading or further manipulation";
     homepage = "https://github.com/asheiduk/factorio-blueprint-decoder";
     license = lib.licenses.unfree; # FIXME: nix-init did not find a license
-    maintainers = with lib.maintainers; [iogamaster];
+    maintainers = with lib.maintainers; [ iogamaster ];
     mainProgram = "decoder";
     platforms = lib.platforms.all;
   };

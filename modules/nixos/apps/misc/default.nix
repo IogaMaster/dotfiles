@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.misc;
-in {
+in
+{
   options.apps.misc = with types; {
     enable = mkBoolOpt false "Enable or disable misc apps";
   };
@@ -38,8 +40,6 @@ in {
       kjv
     ];
 
-    home.persist.directories = [
-      ".config/obsidian"
-    ];
+    home.persist.directories = [ ".config/obsidian" ];
   };
 }

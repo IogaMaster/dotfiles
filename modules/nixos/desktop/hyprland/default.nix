@@ -7,10 +7,14 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.hyprland;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.desktop.hyprland = with types; {
     enable = mkBoolOpt false "Enable or disable the hyprland window manager.";
   };

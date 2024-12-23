@@ -7,10 +7,12 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.suites.gaming;
-in {
-  imports = with inputs; [];
+in
+{
+  imports = with inputs; [ ];
   options.suites.gaming = with types; {
     enable = mkBoolOpt false "Enable the gaming suite";
   };
@@ -32,7 +34,7 @@ in {
       pkgs.prismlauncher
       pkgs.lutris
       pkgs.heroic
-      pkgs.custom.olympus
+      # pkgs.custom.olympus # TODO: broken build for some reason
 
       pkgs.gamemode
       pkgs.mangohud
@@ -64,8 +66,6 @@ in {
       "Games"
     ];
 
-    environment.persist.directories = [
-      "/var/lib/flatpak"
-    ];
+    environment.persist.directories = [ "/var/lib/flatpak" ];
   };
 }

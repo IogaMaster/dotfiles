@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.system.boot.bios;
-in {
+in
+{
   options.system.boot.bios = with types; {
     enable = mkBoolOpt false "Whether or not to enable bios booting.";
     device = mkOpt str "/dev/sda" "Disk that grub will be installed to.";

@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.arion.filebrowser;
-in {
+in
+{
   options.services.arion.filebrowser = with types; {
     enable = mkBoolOpt false "Enable the filebrowser docker service";
   };
@@ -18,12 +20,8 @@ in {
       project.name = "filebrowser";
       services.filebrowser.service = {
         image = "filebrowser/filebrowser";
-        ports = [
-          "8080:80"
-        ];
-        volumes = [
-          "/home/${config.user.name}:/srv"
-        ];
+        ports = [ "8080:80" ];
+        volumes = [ "/home/${config.user.name}:/srv" ];
       };
     };
   };

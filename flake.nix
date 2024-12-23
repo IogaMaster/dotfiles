@@ -59,21 +59,23 @@
     flux.url = "github:IogaMaster/flux";
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs =
+    inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "dotfiles";
+          };
+
+          namespace = "custom";
         };
-
-        namespace = "custom";
       };
-    };
-  in
+    in
     (lib.mkFlake {
       inherit inputs;
       src = ./.;
@@ -129,36 +131,38 @@
       ];
 
       systems.hosts.orion.modules = with inputs; [
-        (import ./disks/default.nix {inherit lib;})
+        (import ./disks/default.nix { inherit lib; })
       ];
 
-      deploy = lib.mkDeploy {inherit (inputs) self;};
+      deploy = lib.mkDeploy { inherit (inputs) self; };
 
-      checks =
-        builtins.mapAttrs
-        (_system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+      checks = builtins.mapAttrs (
+        _system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy
+      ) inputs.deploy-rs.lib;
 
-      templates = import ./templates {};
+      templates = import ./templates { };
 
-      topology = with inputs; let
-        host = self.nixosConfigurations.${builtins.head (builtins.attrNames self.nixosConfigurations)};
-      in
+      topology =
+        with inputs;
+        let
+          host = self.nixosConfigurations.${builtins.head (builtins.attrNames self.nixosConfigurations)};
+        in
         import nix-topology {
           inherit (host) pkgs; # Only this package set must include nix-topology.overlays.default
           modules = [
             (import ./topology {
               inherit (host) config;
             })
-            {inherit (self) nixosConfigurations;}
+            { inherit (self) nixosConfigurations; }
           ];
         };
     })
     # Outputs not managed by snowfall.
     // {
       hydraJobs = {
-        packages = {inherit (inputs.self.packages) "x86_64-linux";};
+        packages = {
+          inherit (inputs.self.packages) "x86_64-linux";
+        };
       };
     };
 }

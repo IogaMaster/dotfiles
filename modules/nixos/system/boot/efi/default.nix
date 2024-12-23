@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.system.boot.efi;
-in {
+in
+{
   options.system.boot.efi = with types; {
     enable = mkBoolOpt false "Whether or not to enable efi booting.";
   };

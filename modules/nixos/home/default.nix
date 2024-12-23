@@ -6,7 +6,8 @@
   ...
 }:
 with lib;
-with lib.custom; {
+with lib.custom;
+{
   imports = with inputs; [
     home-manager.nixosModules.home-manager
     nix-colors.homeManagerModules.default
@@ -14,16 +15,14 @@ with lib.custom; {
   ];
 
   options.home = with types; {
-    file =
-      mkOpt attrs {}
-      "A set of files to be managed by home-manager's <option>home.file</option>.";
+    file = mkOpt attrs { } "A set of files to be managed by home-manager's <option>home.file</option>.";
     configFile =
-      mkOpt attrs {}
-      "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
-    programs = mkOpt attrs {} "Programs to be managed by home-manager.";
-    extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
+      mkOpt attrs { }
+        "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
+    programs = mkOpt attrs { } "Programs to be managed by home-manager.";
+    extraOptions = mkOpt attrs { } "Options to pass directly to home-manager.";
 
-    persist = mkOpt attrs {} "Files and directories to persist in the home";
+    persist = mkOpt attrs { } "Files and directories to persist in the home";
   };
 
   config = {
@@ -38,10 +37,10 @@ with lib.custom; {
     home-manager = {
       useUserPackages = true;
 
-      users.${config.user.name} =
-        mkAliasDefinitions options.home.extraOptions;
+      users.${config.user.name} = mkAliasDefinitions options.home.extraOptions;
     };
 
-    environment.persistence."/persist".users.${config.user.name} = mkIf options.impermanence.enable.value (mkAliasDefinitions options.home.persist);
+    environment.persistence."/persist".users.${config.user.name} =
+      mkIf options.impermanence.enable.value (mkAliasDefinitions options.home.persist);
   };
 }

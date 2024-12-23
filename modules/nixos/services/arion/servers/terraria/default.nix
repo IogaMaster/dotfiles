@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.arion.terraria.vanilla;
-in {
+in
+{
   options.services.arion.terraria.vanilla = with types; {
     enable = mkBoolOpt false "";
   };
@@ -22,9 +24,7 @@ in {
           WORLD_FILENAME = "world.wld";
           CONFIGPATH = "config.json";
         };
-        ports = [
-          "7777:7777"
-        ];
+        ports = [ "7777:7777" ];
         volumes = [
           "/home/${config.user.name}/.local/share/terraria/vanilla/worlds:/root/.local/share/Terraria/Worlds"
         ];
@@ -36,13 +36,14 @@ in {
       };
       services.ngrok.service = {
         image = "ngrok/ngrok";
-        env_file = ["${config.sops.secrets."ngrok/terraria".path}"];
-        command = ["tcp" "terraria:7777"];
+        env_file = [ "${config.sops.secrets."ngrok/terraria".path}" ];
+        command = [
+          "tcp"
+          "terraria:7777"
+        ];
       };
     };
 
-    home.persist.directories = [
-      ".local/share/terraria/vanilla/worlds"
-    ];
+    home.persist.directories = [ ".local/share/terraria/vanilla/worlds" ];
   };
 }

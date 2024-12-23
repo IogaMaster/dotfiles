@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.arion.jellyfin;
-in {
+in
+{
   options.services.arion.jellyfin = with types; {
     enable = mkBoolOpt false "Enable jellyfin";
   };
@@ -18,9 +20,7 @@ in {
       project.name = "jellyfin";
       services.jellyfin.service = {
         image = "jellyfin/jellyfin";
-        ports = [
-          "8096:8096"
-        ];
+        ports = [ "8096:8096" ];
         volumes = [
           "/home/${config.user.name}/.local/share/jellyfin/config:/config"
           "/home/${config.user.name}/.local/share/jellyfin/cache:/cache"

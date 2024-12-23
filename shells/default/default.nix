@@ -1,9 +1,9 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     treefmt
 
-    alejandra
+    nixfmt-rfc-style
     python310Packages.mdformat
     shfmt
   ];

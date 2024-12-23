@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.suites.common;
-in {
+in
+{
   options.suites.common = with types; {
     enable = mkBoolOpt false "Enable the common suite";
   };
@@ -37,9 +39,7 @@ in {
       };
     };
 
-    environment.persist.directories = [
-      "/etc/bluetooth"
-    ];
+    environment.persist.directories = [ "/etc/bluetooth" ];
 
     apps.pass.enable = true;
     apps.tools.git.enable = true;
@@ -49,7 +49,11 @@ in {
 
     programs.dconf.enable = true;
 
-    environment.systemPackages = [pkgs.bluetuith pkgs.custom.sys pkgs.deploy-rs];
+    environment.systemPackages = [
+      pkgs.bluetuith
+      pkgs.custom.sys
+      pkgs.deploy-rs
+    ];
 
     system = {
       fonts.enable = true;

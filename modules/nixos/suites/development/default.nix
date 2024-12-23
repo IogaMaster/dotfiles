@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.suites.development;
-in {
+in
+{
   options.suites.development = with types; {
     enable = mkBoolOpt false "Enable the development suite";
   };

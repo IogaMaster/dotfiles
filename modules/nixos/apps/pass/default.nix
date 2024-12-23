@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.apps.pass;
-in {
+in
+{
   options.apps.pass = with types; {
     enable = mkBoolOpt false "Enable or disable pass";
   };
@@ -18,16 +20,16 @@ in {
 
     environment.systemPackages = with pkgs; [
       (writeShellScriptBin "pass" ''
-        GNUPGHOME="$XDG_DATA_HOME/gnupg" PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass" ${pkgs.pass.withExtensions (exts: [
-          exts.pass-otp
-          exts.pass-update
-          exts.pass-audit
-        ])}/bin/pass $@
+        GNUPGHOME="$XDG_DATA_HOME/gnupg" PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass" ${
+          pkgs.pass.withExtensions (exts: [
+            exts.pass-otp
+            exts.pass-update
+            exts.pass-audit
+          ])
+        }/bin/pass $@
       '')
     ];
 
-    home.persist.directories = [
-      ".local/share/pass"
-    ];
+    home.persist.directories = [ ".local/share/pass" ];
   };
 }

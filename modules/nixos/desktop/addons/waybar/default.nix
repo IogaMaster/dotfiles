@@ -7,18 +7,20 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.addons.waybar;
-  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme}) colors;
-in {
+  inherit (inputs.nix-colors.colorschemes.${builtins.toString config.desktop.colorscheme})
+    colors
+    ;
+in
+{
   options.desktop.addons.waybar = with types; {
     enable = mkBoolOpt false "Enable or disable waybar";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.waybar
-    ];
+    environment.systemPackages = [ pkgs.waybar ];
 
     home.configFile."waybar/config.jsonc" = {
       source = ./config.jsonc;

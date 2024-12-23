@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.desktop.addons.eww;
-in {
+in
+{
   options.desktop.addons.eww = with types; {
     enable = mkBoolOpt false "Enable or disable EWW.";
     wayland = mkBoolOpt false "Enable wayland support";

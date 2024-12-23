@@ -6,10 +6,9 @@
   ...
 }:
 with lib;
-with lib.custom; {
-  imports = with inputs; [
-    sops-nix.nixosModules.sops
-  ];
+with lib.custom;
+{
+  imports = with inputs; [ sops-nix.nixosModules.sops ];
 
   config = {
     sops.defaultSopsFile = ../../../../../secrets/secrets.yaml;
@@ -17,9 +16,7 @@ with lib.custom; {
 
     sops.age.keyFile = "/home/${config.user.name}/.config/sops/age/keys.txt";
 
-    home.persist.directories = [
-      ".config/sops"
-    ];
+    home.persist.directories = [ ".config/sops" ];
 
     environment.systemPackages = with pkgs; [
       (writeShellScriptBin "sops" ''
@@ -29,7 +26,9 @@ with lib.custom; {
     ];
 
     # List of defined secrets
-    sops.secrets."system/password" = {neededForUsers = true;};
-    sops.secrets."ngrok/terraria" = {};
+    sops.secrets."system/password" = {
+      neededForUsers = true;
+    };
+    sops.secrets."ngrok/terraria" = { };
   };
 }

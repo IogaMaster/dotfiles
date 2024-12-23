@@ -28,9 +28,7 @@ rustPlatform.buildRustPackage rec {
     };
   };
 
-  nativeBuildInputs = [
-    pkg-config
-  ];
+  nativeBuildInputs = [ pkg-config ];
 
   buildInputs =
     [
@@ -51,7 +49,7 @@ rustPlatform.buildRustPackage rec {
     description = "Powerful Minecraft Server Manager CLI. Easily install jars (server, plugins & mods) and write config files. Docker and git support included";
     homepage = "https://github.com/ParadigmMC/mcman";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [iogamaster];
+    maintainers = with maintainers; [ iogamaster ];
     mainProgram = "mcman";
   };
 }

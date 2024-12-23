@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.services.arion.windows;
-in {
+in
+{
   options.services.arion.windows = with types; {
     enable = mkBoolOpt false "Enable the windows docker service";
   };
@@ -24,16 +26,12 @@ in {
           "3389:3389/tcp"
           "3389:3389/udp"
         ];
-        devices = [
-          "/dev/kvm"
-        ];
+        devices = [ "/dev/kvm" ];
         capabilities = {
           NET_ADMIN = true;
         };
         stop_grace_period = "2m";
-        volumes = [
-          "/home/${config.user.name}:/srv"
-        ];
+        volumes = [ "/home/${config.user.name}:/srv" ];
       };
     };
   };
