@@ -22,6 +22,8 @@ in
 
     boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+    powerManagement.cpuFreqGovernor = "performance";
+
     hardware.opengl = {
       enable = true;
       driSupport32Bit = true;
