@@ -23,21 +23,7 @@
     inputs.dzgui.packages.x86_64-linux.dzgui
   ];
 
-  # services.hydra = {
-  #   enable = true;
-  #   hydraURL = "http://localhost:3000";
-  #   notificationSender = "hydra@localhost";
-  #   buildMachinesFiles = [];
-  #   useSubstitutes = true;
-  #
-  #   logo = ../../../.github/assets/flake.webp;
-  # };
-  #
-  # system.nix.extraUsers = [
-  #   "hydra"
-  #   "hydra-evaluator"
-  #   "hydra-queue-runner"
-  # ];
+  desktop.colorscheme = "everforest";
 
   impermanence.enable = true;
   virtualisation.arion.enable = true;
