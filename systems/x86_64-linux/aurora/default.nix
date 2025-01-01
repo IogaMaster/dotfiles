@@ -23,8 +23,6 @@
     inputs.dzgui.packages.x86_64-linux.dzgui
   ];
 
-  desktop.colorscheme = "everforest";
-
   impermanence.enable = true;
   virtualisation.arion.enable = true;
 
