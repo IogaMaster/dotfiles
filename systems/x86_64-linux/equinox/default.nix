@@ -27,8 +27,6 @@ in
 
   networking.firewall.enable = false;
 
-  boot.initrd.systemd.suppressedUnits = [ "systemd-machine-id-commit.service" ];
-  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "22.11";
   # ======================== DO NOT CHANGE THIS ========================
