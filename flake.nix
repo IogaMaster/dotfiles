@@ -35,6 +35,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    yeetmouse = {
+      url = "github:AndyFilter/YeetMouse?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-colors.url = "github:IogaMaster/nix-colors";
     prism.url = "github:IogaMaster/prism";
 

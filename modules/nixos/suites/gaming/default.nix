@@ -12,7 +12,10 @@ let
   cfg = config.suites.gaming;
 in
 {
-  imports = with inputs; [ ];
+  imports = with inputs; [
+    yeetmouse.nixosModules.default
+  ];
+
   options.suites.gaming = with types; {
     enable = mkBoolOpt false "Enable the gaming suite";
   };
@@ -23,6 +26,23 @@ in
     boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     powerManagement.cpuFreqGovernor = "performance";
+
+    hardware.yeetmouse = {
+      enable = true;
+      parameters = {
+        Sensitivity = 0.56;
+        Acceleration = 2.63;
+        AccelerationMode = "jump";
+        Exponent = 1.0;
+        InputCap = 35.0;
+        Midpoint = 4.1;
+        Offset = -0.53;
+        PreScale = 0.17;
+        RotationAngle = 0.0;
+        ScrollsPerTick = 3;
+        UseSmoothing = false;
+      };
+    };
 
     hardware.opengl = {
       enable = true;

@@ -962,7 +962,8 @@
         "persist-retro": "persist-retro",
         "prism": "prism",
         "snowfall-lib": "snowfall-lib_2",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "yeetmouse": "yeetmouse"
       }
     },
     "snowfall-lib": {
@@ -1152,6 +1153,28 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yeetmouse": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1735567444,
+        "narHash": "sha256-h6w0VN+lu0p+lrjGfOsUrdPBQUCiMLi9iZQ4LdPUIBc=",
+        "owner": "AndyFilter",
+        "repo": "YeetMouse",
+        "rev": "16af25086cccd6892264763973c3e5d3e14a34e6",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "AndyFilter",
+        "repo": "YeetMouse",
         "type": "github"
       }
     }
