@@ -6,7 +6,7 @@
   ...
 }:
 let
-  hostJson = builtins.fromJSON (builtins.readFile ./host.terraform.json);
+  hostJson = builtins.fromJSON (builtins.readFile ./host.tf.json);
 in
 {
   imports = [

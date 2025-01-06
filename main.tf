@@ -1,5 +1,5 @@
 locals {
-  host_files = fileset(".", "systems/**/**/host.terraform.json")
+  host_files = fileset(".", "systems/**/**/host.tf.json")
   hosts = {
     for file in local.host_files :
     file => jsondecode(file(file))
@@ -13,5 +13,5 @@ module "deploy" {
   nixos_partitioner_attr     = ".#nixosConfigurations.${each.value.hostname}.config.system.build.diskoScript"
   target_host                = each.value.ipv4
   instance_id                = each.value.ipv4
-  nixos_generate_config_path = format("%s/hardware-config.nix", trimsuffix(each.key, "host.terraform.json")) # Get the current directory of the host
+  nixos_generate_config_path = format("%s/hardware-configuration.nix", trimsuffix(each.key, "host.tf.json")) # Get the current directory of the host
 }
