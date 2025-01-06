@@ -729,6 +729,21 @@
         "type": "github"
       }
     },
+    "nixos-facter-modules": {
+      "locked": {
+        "lastModified": 1734596637,
+        "narHash": "sha256-MRqwVAe3gsb88u4ME1UidmZFVCx+FEnoob0zkpO9DMY=",
+        "owner": "numtide",
+        "repo": "nixos-facter-modules",
+        "rev": "536472754982bf03079b4b4e0261838a760587c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nixos-facter-modules",
+        "type": "github"
+      }
+    },
     "nixos-generators": {
       "inputs": {
         "nixlib": "nixlib",
@@ -957,6 +972,7 @@
         "nix-flatpak": "nix-flatpak",
         "nix-ld": "nix-ld",
         "nix-topology": "nix-topology",
+        "nixos-facter-modules": "nixos-facter-modules",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_4",
         "persist-retro": "persist-retro",

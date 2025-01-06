@@ -1,13 +1,20 @@
 # Server for builds and binary cache (on prem)
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   hostJson = builtins.fromJSON (builtins.readFile ./host.terraform.json);
 in
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   topology.self = {
-    name = "🍃 Equinox";
+    name = "🍃 ${hostJson.hostname}";
     hardware.info = "ThinkCentre, 16GB RAM";
   };
 
@@ -19,11 +26,12 @@ in
   networking.interfaces.eno1 = {
     ipv4.addresses = [
       {
-        address = "192.168.25.145";
+        address = hostJson.ipv4;
         prefixLength = 24;
       }
     ];
   };
+  networking.defaultGateway = "192.168.25.1";
 
   networking.firewall.enable = false;
 

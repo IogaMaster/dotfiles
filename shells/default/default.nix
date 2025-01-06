@@ -6,6 +6,7 @@ pkgs.mkShell {
     nixfmt-rfc-style
     python310Packages.mdformat
     shfmt
+    nixd
 
     (terraform.withPlugins (
       p: with p; [
