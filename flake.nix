@@ -63,6 +63,8 @@
     dzgui.url = "github:jiriks74/dzgui.flake";
 
     flux.url = "github:IogaMaster/flux";
+
+    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
   };
 
   outputs =
@@ -99,10 +101,12 @@
         neovim.overlays.default
         nix-topology.overlays.default
         flux.overlays.default
+        proxmox-nixos.overlays.x86_64-linux
       ];
 
       systems.modules.nixos = with inputs; [
         nix-topology.nixosModules.default
+        proxmox-nixos.nixosModules.proxmox-ve
         disko.nixosModules.disko
         {
           # Required for impermanence

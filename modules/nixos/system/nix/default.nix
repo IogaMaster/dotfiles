@@ -45,6 +45,13 @@ in
             auto-optimise-store = true;
             trusted-users = users ++ cfg.extraUsers;
             allowed-users = users;
+            substituters = [
+              "https://cache.nixos.org/"
+              "https://cache.saumon.network/proxmox-nixos"
+            ];
+            trusted-public-keys = [
+              "proxmox-nixos:nveXDuVVhFDRFx8Dn19f1WDEaNRJjPrF2CPD2D+m1ys="
+            ];
           }
           // (lib.optionalAttrs config.apps.tools.direnv.enable {
             keep-outputs = true;
