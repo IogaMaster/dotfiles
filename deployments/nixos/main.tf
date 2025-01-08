@@ -1,5 +1,5 @@
 locals {
-  host_files = fileset(".", "systems/**/**/host.tf.json")
+  host_files = fileset(".", "../../systems/**/**/host.tf.json")
   hosts = {
     for file in local.host_files :
     file => jsondecode(file(file))
