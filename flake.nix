@@ -116,6 +116,13 @@
         nix-flatpak.nixosModules.nix-flatpak
       ];
 
+      systems.hosts.polaris.modules = with inputs; [
+        (import ./disks/default.nix {
+          inherit lib;
+          device = "/dev/sda";
+        })
+      ];
+
       systems.hosts.equinox.modules = with inputs; [
         (import ./disks/default.nix {
           inherit lib;
