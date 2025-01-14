@@ -43,6 +43,11 @@ Can take a few minutes to update.
 
 </details>
 
+> \[!WARNING\]
+> Currently doing a rework to move away from snowfall.
+> The snowfall based config will always be available on the [snowfall](https://github.com/IogaMaster/dotfiles/tree/snowfall) branch.
+> I like snowfall, be feel that the complexity is high. I want something lighter weight. Without going completely bare.
+
 ## My system management tool `sys`
 
 `sys` is a bash script I made that makes working with NixOS easier.
