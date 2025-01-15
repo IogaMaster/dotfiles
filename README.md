@@ -6,16 +6,16 @@
   <br>
   <br>
   <div>
-    <a href="https://github.com/Iogamaster/dotfiles/issues">
-        <img src="https://img.shields.io/github/issues/Iogamaster/dotfiles?color=fab387&labelColor=303446&style=for-the-badge">
+    <a href="https://github.com/Iogamaster/myconfig/issues">
+        <img src="https://img.shields.io/github/issues/Iogamaster/myconfig?color=fab387&labelColor=303446&style=for-the-badge">
     </a>
-    <a href="https://github.com/Iogamaster/dotfiles/stargazers">
-        <img src="https://img.shields.io/github/stars/Iogamaster/dotfiles?color=ca9ee6&labelColor=303446&style=for-the-badge">
+    <a href="https://github.com/Iogamaster/myconfig/stargazers">
+        <img src="https://img.shields.io/github/stars/Iogamaster/myconfig?color=ca9ee6&labelColor=303446&style=for-the-badge">
     </a>
-    <a href="https://github.com/Iogamaster/dotfiles">
-        <img src="https://img.shields.io/github/repo-size/Iogamaster/dotfiles?color=ea999c&labelColor=303446&style=for-the-badge">
+    <a href="https://github.com/Iogamaster/myconfig">
+        <img src="https://img.shields.io/github/repo-size/Iogamaster/myconfig?color=ea999c&labelColor=303446&style=for-the-badge">
     </a>
-    <a href="https://github.com/Iogamaster/dotfiles/blob/main/.github/LICENCE">
+    <a href="https://github.com/Iogamaster/myconfig/blob/main/.github/LICENCE">
         <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=ca9ee6&colorA=313244&colorB=cba6f7"/>
     </a>
     <br>
@@ -24,13 +24,13 @@
    </h1>
    <br>
 
-![image](https://github.com/IogaMaster/dotfiles/assets/67164465/1605c3d2-ca38-4942-a2f5-a1288c19d8e3)
+![image](https://github.com/IogaMaster/myconfig/assets/67164465/1605c3d2-ca38-4942-a2f5-a1288c19d8e3)
 
 <details>
 <summary>🖼️ Gallery</summary>
 
-![image](https://github.com/IogaMaster/dotfiles/assets/67164465/83bc1ff5-74d6-4043-8def-9f5e971a801f)
-![image](https://github.com/IogaMaster/dotfiles/assets/67164465/dac697f5-870f-42bd-9b5e-f35c019f96e1)
+![image](https://github.com/IogaMaster/myconfig/assets/67164465/83bc1ff5-74d6-4043-8def-9f5e971a801f)
+![image](https://github.com/IogaMaster/myconfig/assets/67164465/dac697f5-870f-42bd-9b5e-f35c019f96e1)
 
 </details>
 
@@ -39,13 +39,13 @@
 
 Can take a few minutes to update.
 
-![image](https://raw.githubusercontent.com/IogaMaster/dotfiles-topology/main/topology.svg)
+![image](https://raw.githubusercontent.com/IogaMaster/myconfig-topology/main/topology.svg)
 
 </details>
 
 > \[!WARNING\]
 > Currently doing a rework to move away from snowfall.
-> The snowfall based config will always be available on the [snowfall](https://github.com/IogaMaster/dotfiles/tree/snowfall) branch.
+> The snowfall based config will always be available on the [snowfall](https://github.com/IogaMaster/myconfig/tree/snowfall) branch.
 > I like snowfall, be feel that the complexity is high. I want something lighter weight. Without going completely bare.
 
 ## My system management tool `sys`
@@ -73,8 +73,8 @@ The automated install is preferred for x86_64-linux systems.
 Clone the repo:
 
 ```sh
-git clone https://github.com/IogaMaster/dotfiles.git
-cd dotfiles
+git clone https://github.com/IogaMaster/myconfig.git
+cd myconfig
 ```
 
 Install:
@@ -169,11 +169,11 @@ swapon /dev/sda2
 
 Now we need to add your system.
 
-First clone the dotfiles in `/mnt`
+First clone the myconfig in `/mnt`
 
 ```sh
-git clone git@github.com:IogaMaster/dotfiles /mnt/.dotfiles
-cd /mnt/.dotfiles/
+git clone git@github.com:IogaMaster/myconfig /mnt/.myconfig
+cd /mnt/.myconfig/
 ```
 
 Then copy the example config with the new hostname of your system.
@@ -190,7 +190,7 @@ Generate your config and copy the hardware configuration.
 
 ```sh
 nixos-generate-config --root /mnt
-cp /mnt/etc/nixos/hardware-configuration.nix /mnt/.dotfiles/systems/x86_64-linux/hostname/
+cp /mnt/etc/nixos/hardware-configuration.nix /mnt/.myconfig/systems/x86_64-linux/hostname/
 ```
 
 Then install.
@@ -204,7 +204,7 @@ nixos-install
 > \[!WARNING\]\
 > The default password for the iogamaster user is `password` please change it.
 
-I normally clone the dotfiles repo to ~/.dotfiles/
+I normally clone the myconfig repo to ~/.myconfig/
 
 </details>
 
@@ -212,7 +212,7 @@ ______________________________________________________________________
 
 A special thanks to:
 
-[hlissner](https://github.com/hlissner/dotfiles) for getting me into NixOS.
+[hlissner](https://github.com/hlissner/myconfig) for getting me into NixOS.
 
 [redyf](https://github.com/redyf/nixdots) for the bar and other minor hyprland config options.
 
