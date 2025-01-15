@@ -9,8 +9,8 @@
 delib.module {
   name = "wallpapers";
 
-  options.wallpapers = with delib; {
-
+  options.xdg = with delib; {
+    enable = boolOption host.isDesktop;
   };
 
   home.always.imports = [ inputs.prism.homeModules.prism ];

@@ -21,6 +21,14 @@ delib.module {
       hosts = hostsOption host;
     };
 
+  myconfig.always =
+    { myconfig, ... }:
+    {
+      args.shared = {
+        inherit (myconfig) host hosts;
+      };
+    };
+
   home.always =
     { myconfig, ... }:
     {

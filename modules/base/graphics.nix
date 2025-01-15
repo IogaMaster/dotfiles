@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   lib,
   ...
 }:
@@ -10,7 +9,7 @@ delib.module {
   # options = delib.singleEnableOption host.isDesktop;
 
   options.graphics = with delib; {
-    enable = host.isDesktop;
+    # enable = host.isDesktop;
     vendor = enumOption [
       "nvidia"
       "amd"
@@ -23,7 +22,6 @@ delib.module {
       enable = true;
       enable32Bit = true;
     };
-
   };
 
 }

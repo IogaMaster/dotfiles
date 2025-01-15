@@ -1,9 +1,16 @@
-{ delib, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.hyprland";
 
-  options = { myconfig, ... }@args: delib.singleEnableOption myconfig.host.isDesktop args;
+  options.programs.hyprland = with delib; {
+    enable = boolOption host.isDesktop;
+  };
 
-  # nixos.ifEnabled.programs.hyprland.enable = true;
+  nixos.ifEnabled.programs.hyprland.enable = true;
   home.ifEnabled.wayland.windowManager.hyprland.enable = true;
 }

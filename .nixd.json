@@ -1,11 +1,13 @@
 {
+    "nixpkgs": {
+        "expr": "import (builtins.getFlake \".\").inputs.nixpkgs { }   "
+    },
     "eval": {
         "target": {
             "args": [
                 "-f",
                 "default.nix"
             ],
-            "installable": "nixosConfigurations.aurora.config"
         },
         "depth": 10
     },
@@ -13,7 +15,6 @@
         "enable": true,
         "target": {
             "args": [],
-            "installable": ".#nixosConfigurations.aurora.options"
         }
     }
 }
