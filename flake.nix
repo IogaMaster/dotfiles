@@ -13,6 +13,12 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nypkgs = {
+      # For ylib in secrets
+      url = "github:yunfachi/nypkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     prism.url = "github:IogaMaster/prism";
 
     disko = {
@@ -33,7 +39,7 @@
     let
       mkConfigurations =
         isHomeManager:
-        denix.lib.configurations {
+        denix.lib.configurations rec {
           homeManagerNixpkgs = nixpkgs;
           homeManagerUser = "iogamaster"; # !!! REPLACEME
           inherit isHomeManager;
@@ -45,7 +51,7 @@
           ];
 
           specialArgs = {
-            inherit inputs;
+            inherit inputs isHomeManager homeManagerUser;
           };
         };
     in

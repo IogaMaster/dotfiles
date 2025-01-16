@@ -7,4 +7,10 @@ delib.module {
     userfullname = readOnly (strOption "IogaMaster");
     useremail = readOnly (strOption "iogamastercode@gmail.com");
   };
+
+  myconfig.always =
+    { cfg, ... }:
+    {
+      args.shared.constants = cfg;
+    };
 }
