@@ -28,6 +28,8 @@
 
     impermanence.url = "github:nix-community/impermanence";
     persist-retro.url = "github:Geometer1729/persist-retro";
+
+    nixos-boot.url = "github:Melkor333/nixos-boot";
   };
 
   outputs =

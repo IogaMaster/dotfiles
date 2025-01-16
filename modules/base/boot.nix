@@ -1,4 +1,9 @@
-{ delib, ... }:
+{
+  delib,
+  pkgs,
+  inputs,
+  ...
+}:
 delib.module {
   name = "boot";
 
@@ -10,22 +15,39 @@ delib.module {
     );
   };
 
+  nixos.always.imports = [ inputs.nixos-boot.nixosModules.default ];
+
   nixos.ifEnabled =
     { cfg, ... }:
     {
-      boot.loader = {
-        efi = {
-          canTouchEfiVariables = true;
-        };
 
-        grub = {
-          enable = true;
-          efiSupport = cfg.mode == "uefi";
-          devices = [ "nodev" ];
-          configurationLimit = 1;
-        };
+      boot = {
+        loader = {
+          efi = {
+            canTouchEfiVariables = true;
+          };
 
-        timeout = 0;
+          grub = {
+            enable = true;
+            efiSupport = cfg.mode == "uefi";
+            devices = [ "nodev" ];
+            configurationLimit = 1;
+          };
+
+          timeout = 0;
+        };
+        vesa = true;
+      };
+
+      nixos-boot = {
+        enable = true;
+        bgColor = {
+          # catppucin-mocha crust
+          red = 17;
+          green = 17;
+          blue = 27;
+        };
+        duration = 3.5;
       };
     };
 }

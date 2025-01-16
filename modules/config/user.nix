@@ -20,7 +20,8 @@ delib.module {
 
         users.${username} = {
           isNormalUser = true;
-          hashedPasswordFile = decryptSecretFile "user/hashedPassword";
+          initialPassword = "password";
+          # hashedPasswordFile = decryptSecretFile "user/hashedPassword";
           extraGroups = [ "wheel" ];
         };
       };
