@@ -30,6 +30,10 @@
     persist-retro.url = "github:Geometer1729/persist-retro";
 
     nixos-boot.url = "github:Melkor333/nixos-boot";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

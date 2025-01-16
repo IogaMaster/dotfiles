@@ -14,6 +14,14 @@ delib.module {
       rices = ricesOption rice;
     };
 
+  myconfig.always =
+    { myconfig, ... }:
+    {
+      args.shared = {
+        inherit (myconfig) rice rices;
+      };
+    };
+
   home.always =
     { myconfig, ... }:
     {

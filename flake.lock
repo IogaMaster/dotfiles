@@ -255,6 +255,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1736940259,
+        "narHash": "sha256-RXUB0zXXxAI7dK++fcSJW3oWdjFMKFqH+pssUESVgJ8=",
+        "ref": "refs/heads/master",
+        "rev": "d195ca76806bae53cf5ac6d5dda95b49f069373c",
+        "revCount": 462,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "denix": "denix",
@@ -265,7 +285,8 @@
         "nixpkgs": "nixpkgs",
         "nypkgs": "nypkgs",
         "persist-retro": "persist-retro",
-        "prism": "prism"
+        "prism": "prism",
+        "quickshell": "quickshell"
       }
     },
     "snowfall-lib": {
