@@ -640,11 +640,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723771148,
-        "narHash": "sha256-KWgxEd9TDrtCskhVSfr4CRnDwklEdksKrVLYgpShL0w=",
+        "lastModified": 1759806182,
+        "narHash": "sha256-9Yk5ic1EFs/Mv+xYtViT6+xpiayxdID5iavl1xedfL8=",
         "owner": "IogaMaster",
         "repo": "neovim",
-        "rev": "120088df80d40e3b4d66bb70227a53af30c99668",
+        "rev": "8807fa09882fc80a4d3c1c4ea6eac0df4abd8b69",
         "type": "github"
       },
       "original": {

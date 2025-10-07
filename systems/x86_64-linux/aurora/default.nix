@@ -23,6 +23,8 @@
     inputs.dzgui.packages.x86_64-linux.dzgui
   ];
 
+  services.openssh.passwordAuthentication = lib.mkForce true;
+
   impermanence.enable = true;
   virtualisation.arion.enable = true;
 
