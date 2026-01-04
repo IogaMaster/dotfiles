@@ -1,0 +1,62 @@
+name: Build Images
+on:
+  push:
+    branches: [ "main", "rewrite" ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.system }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            os: ubuntu-latest
+          # maybe in the future, but without kvm there is no reason to try
+          # - system: aarch64-linux 
+          #   os: ubuntu-24.04-arm
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Maximize Disk Space
+        uses: wimpysworld/nothing-but-nix@main
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@main
+
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build All Images
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          # We force KVM feature so Nix falls back to emulation on non-KVM CI
+          nix build .#images.${{ matrix.system }}.all --option system-features "nixos-test benchmark big-parallel kvm"
+          
+          mkdir -p versioned-dist/
+          cp -rL result/* versioned-dist/
+          mv versioned-dist/nixos.qcow2 versioned-dist/${{ github.ref_name }}-$SHORT_SHA-${{ matrix.system }}.qcow2
+
+          # Prepare artifacts for rolling release (latest-branch)
+          mkdir -p rolling-dist/images/${{ matrix.system }}
+          cp -rL result/* rolling-dist/images/${{ matrix.system }}/
+
+      - name: Create Versioned Release (Pinned)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}-${{ github.sha }}
+          name: "${{ github.ref_name }} @ ${{ github.sha }}"
+          files: versioned-dist/*
+          prerelease: true
+
+      - name: Update Rolling Release (Latest)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-${{ github.ref_name }}
+          name: "Latest ${{ github.ref_name }} Bootstrap"
+          files: rolling-dist/**
+          prerelease: true
