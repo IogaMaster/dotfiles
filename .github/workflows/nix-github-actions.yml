@@ -27,36 +27,43 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: 'rampage'
+          root-safe-haven: '10240'   # 2GB is plenty for the OS
+          mnt-safe-haven: '1024'    # 1GB is enough for small temp files
       - uses: DeterminateSystems/determinate-nix-action@main
-      
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build and Stage
         run: |
           nix build -L '.#${{ matrix.attr }}' \
             --option system-features "nixos-test benchmark big-parallel kvm" \
             --option auto-optimise-store true
 
-          mkdir -p staging
-          # Recursively find any build product and follow symlinks
+          sync
+
+          mkdir -p output
           find -L result -type f | while read -r file; do
             filename=$(basename "$file")
-            cp -L "$file" "staging/${{ github.ref_name }}-${{ matrix.system }}-$filename"
+            cp -L "$file" "output/${{ github.ref_name }}-${{ matrix.system }}-$filename"
           done
 
-          rm result
-          nix-store --gc
-
-      - name: Upload Temporary Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.system }}-${{ matrix.name }}
-          path: staging/
+          path: output/
+          follow-symbolic-links: true
           retention-days: 1
 
   release:
     needs: nix-build
+    if: ${{ always() && !cancelled() }} # Always run if an artifact can be used
     runs-on: ubuntu-latest
     permissions:
       contents: write
