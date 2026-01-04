@@ -1,7 +1,6 @@
 name: Nix Flake actions
 
 on:
-  pull_request:
   push:
     branches: [ "main", "rewrite" ]
 
@@ -48,7 +47,7 @@ jobs:
           sync
 
           mkdir -p output
-          find -L result -type f | while read -r file; do
+          find -L result -type f -not -path '*/nix-support/*' | while read -r file; do
             filename=$(basename "$file")
             cp -L "$file" "output/${{ github.ref_name }}-${{ matrix.system }}-$filename"
           done
@@ -77,9 +76,10 @@ jobs:
       - name: Global Rolling Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: latest-${{ github.ref_name }}
-          name: "Latest ${{ github.ref_name }} Bootstrap"
+          tag_name: ${{ github.ref_name }}-latest
+          name: "${{ github.ref_name }}-latest"
           files: all-images/*
+          target_commitish: ${{ github.sha }}
           overwrite: true
-          prerelease: true
+          prerelease: false
           make_latest: true
