@@ -21,7 +21,7 @@ jobs:
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
   nix-build:
-    name: ${{ matrix.name }}
+    name: ${{ matrix.name }}-${{ matrix.system }}
     needs: nix-matrix
     runs-on: ${{ matrix.os }}
     strategy:
@@ -29,6 +29,7 @@ jobs:
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
       - uses: DeterminateSystems/determinate-nix-action@main
       
       - name: Build and Stage
