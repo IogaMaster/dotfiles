@@ -3,6 +3,9 @@
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
+
+  ioga.hardware.networking = { enable = true; };
+
   boot.kernelParams = [ "console=ttyS0" ];
   isoImage.makeEfiBootable = true;
   isoImage.makeUsbBootable = true;

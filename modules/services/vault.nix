@@ -1,7 +1,7 @@
 { lib, pkgs, secrets, ... }@args:
 lib.mkModule args "ioga.services.vault" {
   config = { cfg }: {
-    environment.systemPackages = with pkgs; [ vault ];
+    environment.systemPackages = with pkgs; [ vault-bin ];
 
     environment.persist.directories = [ "/run/secrets/vault" ];
     systemd.services.vault.serviceConfig.EnvironmentFile =

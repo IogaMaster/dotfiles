@@ -23,7 +23,6 @@ lib.mkModule args "ioga.nix" {
         keep-outputs = true;
         keep-derivations = true;
       };
-      registry.nixpkgs.flake = inputs.nixpkgs;
 
       gc = {
         automatic = true;
@@ -33,6 +32,5 @@ lib.mkModule args "ioga.nix" {
     };
 
     nixpkgs.config.allowUnfree = true;
-    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }

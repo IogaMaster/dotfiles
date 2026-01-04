@@ -29,7 +29,7 @@
         specialArgs = { inherit lib inputs; };
         extraModules = lib.findModules ./modules;
       };
-      
+
       images = lib.mkImages ./images {
         specialArgs = { inherit lib inputs; };
         extraModules = lib.findModules ./modules;

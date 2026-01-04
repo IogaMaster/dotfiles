@@ -1,0 +1,55 @@
+name: Rolling Release
+on:
+  push:
+    branches: [ "main", "rewrite" ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.system }} (${{ github.ref_name }})
+    # Use native ARM and X86 runners to avoid slow emulation
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - system: x86_64-linux
+            os: ubuntu-latest
+          - system: aarch64-linux
+            os: ubuntu-24.04-arm
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Maximize Disk Space
+        uses: wimpysworld/nothing-but-nix@main
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@main
+
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build All Images
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          nix build .#images.${{ matrix.system }}.all
+          
+          # Stage with unique filenames to preserve history in the release
+          mkdir -p staging
+          cp result/nixos.qcow2 staging/${{ github.ref_name }}-$SHORT_SHA-${{ matrix.system }}.qcow2
+          # Follow link for ISO (nixos-generators puts it in a subfolder)
+          cp result/iso/*.iso staging/${{ github.ref_name }}-$SHORT_SHA-${{ matrix.system }}.iso
+
+      - name: Update Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # Separate rolling tags for main and rewrite
+          tag_name: latest-${{ github.ref_name }}
+          name: Rolling Release (${{ github.ref_name }})
+          files: staging/*
+          target_commitish: ${{ github.ref_name }}
+          prerelease: true
+          body: |
+            Bootstrap history for branch: ${{ github.ref_name }}
+            Last Commit: ${{ github.sha }}

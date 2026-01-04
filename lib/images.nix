@@ -4,15 +4,22 @@ with lib; {
     { extraModules ? [ ], specialArgs ? { }, }:
     forAllSystems (system:
       let
+        pkgs = pkgsForSystem system;
         imageFiles =
           filterAttrs (image: t: t == "regular" && hasSuffix ".nix" image)
           (builtins.readDir imagesDir);
-      in mapAttrs' (image: t: rec {
-        name = removeSuffix ".nix" image;
-        value = inputs.nixos-generators.nixosGenerate {
-          inherit system specialArgs;
-          modules = [ "${imagesDir}/${image}" ] ++ extraModules;
-          format = name;
+        images = mapAttrs' (image: t: {
+          name = removeSuffix ".nix" image;
+          value = inputs.nixos-generators.nixosGenerate {
+            inherit system specialArgs;
+            modules = [ "${imagesDir}/${image}" ] ++ extraModules;
+            format = removeSuffix ".nix" image;
+          };
+        }) imageFiles;
+      in images // {
+        all = pkgs.symlinkJoin {
+          name = "all-images-${system}";
+          paths = attrValues images;
         };
-      }) imageFiles);
+      });
 }

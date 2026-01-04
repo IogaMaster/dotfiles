@@ -19,7 +19,10 @@ lib.mkModule args "ioga.profiles.desktop" {
         firefox.enable = true;
         foot.enable = true;
       };
-      hardware.graphics.enable = true;
+      hardware = {
+        audio.enable = true;
+        graphics.enable = true;
+      };
     };
   };
 }
