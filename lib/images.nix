@@ -16,10 +16,5 @@ with lib; {
             format = removeSuffix ".nix" image;
           };
         }) imageFiles;
-      in images // {
-        all = pkgs.symlinkJoin {
-          name = "all-images-${system}";
-          paths = attrValues images;
-        };
-      });
+      in images);
 }

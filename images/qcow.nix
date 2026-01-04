@@ -12,7 +12,7 @@
     inherit lib config pkgs;
     diskSize = "auto";
     additionalSpace = "512M";
-    format = "qcow2";
+    format = "qcow2-compressed";
     partitionTableType = "hybrid";
   };
 

@@ -1,0 +1,77 @@
+name: Nix Flake actions
+
+on:
+  pull_request:
+  push:
+    branches: [ "main", "rewrite" ]
+
+jobs:
+  nix-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@main
+      - id: set-matrix
+        name: Generate Nix Matrix
+        run: |
+          set -Eeu
+          matrix="$(nix eval --json '.#githubActions.matrix')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  nix-build:
+    name: ${{ matrix.name }}
+    needs: nix-matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@main
+      
+      - name: Build and Stage
+        run: |
+          nix build -L '.#${{ matrix.attr }}' \
+            --option system-features "nixos-test benchmark big-parallel kvm" \
+            --option auto-optimise-store true
+
+          mkdir -p staging
+          # Recursively find any build product and follow symlinks
+          find -L result -type f | while read -r file; do
+            filename=$(basename "$file")
+            cp -L "$file" "staging/${{ github.ref_name }}-${{ matrix.system }}-$filename"
+          done
+
+          rm result
+          nix-store --gc
+
+      - name: Upload Temporary Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-${{ matrix.system }}-${{ matrix.name }}
+          path: staging/
+          retention-days: 1
+
+  release:
+    needs: nix-build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download and Merge All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-images
+          merge-multiple: true
+
+      - name: Global Rolling Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-${{ github.ref_name }}
+          name: "Latest ${{ github.ref_name }} Bootstrap"
+          files: all-images/*
+          overwrite: true
+          prerelease: true
+          make_latest: true

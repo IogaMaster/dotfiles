@@ -19,11 +19,14 @@
     mac-style-plymouth.url = "github:SergioRibera/s4rchiso-plymouth-theme";
     nix-colors.url = "github:misterio77/nix-colors";
     prism.url = "github:IogaMaster/prism";
+
+    # --- CI ---
+    nix-github-actions.url = "github:nix-community/nix-github-actions";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
     let lib = (import ./lib/default.nix { inherit nixpkgs inputs; }).mkLib;
-    in {
+    in rec {
       inherit lib;
       nixosConfigurations = lib.makeSystems ./hosts {
         specialArgs = { inherit lib inputs; };
@@ -36,5 +39,8 @@
       };
 
       devShells = import ./shell.nix { inherit lib; };
+
+      githubActions =
+        inputs.nix-github-actions.lib.mkGithubMatrix { checks = images; };
     };
 }
