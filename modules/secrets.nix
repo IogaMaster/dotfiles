@@ -12,7 +12,6 @@
 
     nixpkgs.overlays = with inputs; [ vault-secrets.overlays.default ];
     environment.systemPackages = with pkgs; [
-      vault
       (vault-push-approle-envs inputs.self)
       (vault-push-approles inputs.self)
     ];

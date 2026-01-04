@@ -3,7 +3,6 @@ lib.mkModule args "home" {
   imports = [ inputs.hjem.nixosModules.default ];
   options = with lib;
     with lib.types; {
-      enable = lib.mkBoolOpt' true; # enabled by default
       files = mkOpt' attrs { };
       configFiles = mkOpt' attrs { };
       persist = mkOpt attrs { } "Files and directories to persist in the home";

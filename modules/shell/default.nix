@@ -1,9 +1,5 @@
 { lib, pkgs, ... }@args:
 lib.mkModule args "shell" {
-  options = with lib;
-    with lib.types; {
-      enable = lib.mkBoolOpt' true; # enabled by default
-    };
   config = { cfg }:
     with lib;
     with lib.types; {

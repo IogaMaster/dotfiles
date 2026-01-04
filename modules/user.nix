@@ -2,7 +2,6 @@
 lib.mkModule args "user" {
   options = with lib;
     with lib.types; {
-      enable = lib.mkBoolOpt' true; # enabled by default
       name = mkOpt' str "iogamaster";
       extraGroups =
         mkOpt (listOf str) [ ] "Groups for the user to be assigned.";

@@ -1,6 +1,5 @@
 { lib, colors, pkgs, ... }@args:
 lib.mkModule args "ioga.services.ssh" {
-  options.enable = lib.mkBoolOpt' true; # enabled by default
   config = { cfg }: {
     services.openssh = {
       enable = true;
