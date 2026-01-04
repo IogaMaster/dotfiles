@@ -5,12 +5,21 @@
     autoResize = true;
     fsType = "ext4";
   };
-  boot.kernelParams = [ "console=ttyS0" ];
-  boot.loader.grub.device = lib.mkDefault "/dev/vda";
   system.build.qcow2 = import "${modulesPath}/../lib/make-disk-image.nix" {
     inherit lib config pkgs;
     diskSize = 10240;
     format = "qcow2";
     partitionTableType = "hybrid";
+  };
+  boot = {
+    kernelParams = [ "console=ttyS0" ];
+    loader = {
+      grub = {
+        device = "nodev";
+        efiInstallAsRemovable = true;
+        efiSupport = true;
+      };
+      efi.canTouchEfiVariables = lib.mkForce false;
+    };
   };
 }

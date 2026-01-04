@@ -1,5 +1,5 @@
 { lib }:
-lib.forAllSystems (pkgs: {
+lib.pkgsAllSystems (pkgs: {
   default = pkgs.mkShell {
     nativeBuildInputs = with pkgs; [
       (terraform.withPlugins (p:

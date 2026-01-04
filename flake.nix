@@ -13,6 +13,7 @@
     disko.url = "github:nix-community/disko";
     impermanence.url = "github:nix-community/impermanence";
     vault-secrets.url = "github:serokell/vault-secrets";
+    nixos-generators.url = "github:nix-community/nixos-generators";
 
     # --- Graphical ---
     mac-style-plymouth.url = "github:SergioRibera/s4rchiso-plymouth-theme";
@@ -21,14 +22,19 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
-    let lib = (import ./lib/default.nix { inherit nixpkgs; }).mkLib;
+    let lib = (import ./lib/default.nix { inherit nixpkgs inputs; }).mkLib;
     in {
       inherit lib;
       nixosConfigurations = lib.makeSystems ./hosts {
         specialArgs = { inherit lib inputs; };
         extraModules = lib.findModules ./modules;
       };
+      
+      images = lib.mkImages ./images {
+        specialArgs = { inherit lib inputs; };
+        extraModules = lib.findModules ./modules;
+      };
+
       devShells = import ./shell.nix { inherit lib; };
     };
-
 }

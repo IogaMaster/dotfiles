@@ -1,20 +1,21 @@
-{ nixpkgs, ... }:
-let
-  inherit (nixpkgs) lib;
-in
-rec {
+{ nixpkgs, inputs, ... }:
+let inherit (nixpkgs) lib;
+in rec {
   mkLib = lib.extend (self: super:
     lib.attrsets.mergeAttrsList [
+      { inherit forAllSystems pkgsForSystem pkgsAllSystems; }
       (import ./hosts.nix { inherit lib; })
       (import ./modules.nix { inherit lib; })
       (import ./hardware.nix { inherit lib; })
-      { inherit forAllSystems; }
+      (import ./images.nix { inherit lib inputs forAllSystems pkgsForSystem; })
     ]);
 
-  forAllSystems = function:
-    nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system:
-      function (import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      }));
+  forAllSystems = lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+  pkgsForSystem = system:
+    import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  pkgsAllSystems = function:
+    forAllSystems (system: function (pkgsForSystem system));
 }

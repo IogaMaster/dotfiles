@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }@args:
+{ lib, config, pkgs, inputs, ... }@args:
 lib.mkModule args "ioga.nix" {
   options = with lib;
     with lib.types; {
@@ -23,6 +23,7 @@ lib.mkModule args "ioga.nix" {
         keep-outputs = true;
         keep-derivations = true;
       };
+      registry.nixpkgs.flake = inputs.nixpkgs;
 
       gc = {
         automatic = true;
@@ -32,5 +33,6 @@ lib.mkModule args "ioga.nix" {
     };
 
     nixpkgs.config.allowUnfree = true;
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }

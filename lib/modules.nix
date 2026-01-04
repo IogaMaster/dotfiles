@@ -4,23 +4,16 @@ with lib; rec {
   findModules = modulesDir:
     let
       findPaths = dir:
-        lib.flatten (lib.mapAttrsToList
-          (name: type:
-            let
-              path = dir + "/${name}";
-            in
-            if type == "directory"
-            then findModules path
-            else if
-              type
-              == "regular"
-              && lib.hasSuffix ".nix" name
-              && !(lib.hasPrefix "_" name)
-            then path
-            else [ ])
-          (builtins.readDir dir));
-    in
-    findPaths modulesDir;
+        lib.flatten (lib.mapAttrsToList (name: type:
+          let path = dir + "/${name}";
+          in if type == "directory" then
+            findModules path
+          else if type == "regular" && lib.hasSuffix ".nix" name
+          && !(lib.hasPrefix "_" name) then
+            path
+          else
+            [ ]) (builtins.readDir dir));
+    in findPaths modulesDir;
 
   mkOpt = type: default: description:
     mkOption { inherit type default description; };
@@ -29,20 +22,14 @@ with lib; rec {
   mkBoolOpt' = mkOpt' types.bool;
   mkEnableOpt = mkBoolOpt' false;
 
-  mkModule = args: name: { imports ? [ ]
-                         , options ? { }
-                         , rawOptions ? { }
-                         , config
-                         ,
-                         }:
+  mkModule = args: name:
+    { imports ? [ ], options ? { }, rawOptions ? { }, config, }:
     let
       path = lib.splitString "." name;
       cfg = lib.attrByPath path { } args.config;
-    in
-    {
+    in {
       inherit imports;
-      options =
-        (lib.setAttrByPath path ({ enable = mkEnableOpt; } // options))
+      options = (lib.setAttrByPath path ({ enable = mkEnableOpt; } // options))
         // rawOptions;
       config = lib.mkIf (cfg.enable or false) (config { inherit cfg; });
     };
