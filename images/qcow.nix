@@ -5,17 +5,22 @@
     autoResize = true;
     fsType = "ext4";
   };
+  boot.growPartition = true;
+  environment.systemPackages = [ pkgs.cloud-utils ];
+
   system.build.qcow2 = import "${modulesPath}/../lib/make-disk-image.nix" {
     inherit lib config pkgs;
-    diskSize = 10240;
+    diskSize = "auto";
+    additionalSpace = "512M";
     format = "qcow2";
     partitionTableType = "hybrid";
   };
+
   boot = {
     kernelParams = [ "console=ttyS0" ];
     loader = {
       grub = {
-        device = "nodev";
+        device = lib.mkDefault "/dev/vda";
         efiInstallAsRemovable = true;
         efiSupport = true;
       };

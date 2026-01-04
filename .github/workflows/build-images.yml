@@ -33,17 +33,21 @@ jobs:
 
       - name: Build All Images
         run: |
-          SHORT_SHA=$(git rev-parse --short HEAD)
-          # We force KVM feature so Nix falls back to emulation on non-KVM CI
-          nix build .#images.${{ matrix.system }}.all --option system-features "nixos-test benchmark big-parallel kvm"
-          
-          mkdir -p versioned-dist/
-          cp -rL result/* versioned-dist/
-          mv versioned-dist/nixos.qcow2 versioned-dist/${{ github.ref_name }}-$SHORT_SHA-${{ matrix.system }}.qcow2
+          # 1. Build using software emulation
+          nix build .#images.${{ matrix.system }}.all \
+            --option system-features "nixos-test benchmark big-parallel kvm" \
+            --option auto-optimise-store true
 
-          # Prepare artifacts for rolling release (latest-branch)
-          mkdir -p rolling-dist/images/${{ matrix.system }}
-          cp -rL result/* rolling-dist/images/${{ matrix.system }}/
+          mkdir -p dist
+          
+          find -L result -type f | while read -r file; do
+            filename=$(basename "$file")
+            cp -L "$file" "dist/${{ github.ref_name }}-${{ matrix.system }}-$filename"
+          done
+
+          # 3. Reclaim space immediately
+          rm result
+          nix-store --gc
 
       - name: Create Versioned Release (Pinned)
         uses: softprops/action-gh-release@v2

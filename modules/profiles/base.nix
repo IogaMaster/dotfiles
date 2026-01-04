@@ -5,5 +5,6 @@ lib.mkModule args "ioga.profiles.base" {
     ioga.hardware = { networking.enable = true; };
 
     programs.dconf.enable = true;
+    documentation.enable = false; # pretty big, use the internet
   };
 }
