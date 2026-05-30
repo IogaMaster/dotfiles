@@ -1,5 +1,5 @@
 <h1 align="center"> <img src="./.github/assets/flake.webp" width="250px"/></h1>
-<h2 align="center">My NixOS flake built with <a href="https://github.com/snowfallorg/lib">snowfall</a>.</h2>
+<h2 align="center">My NixOS flake, built from scratch.</h2>
 
 <h1 align="center">
 <a href='#'><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px"/></a>
@@ -31,15 +31,6 @@
 
 ![image](https://github.com/IogaMaster/dotfiles/assets/67164465/83bc1ff5-74d6-4043-8def-9f5e971a801f)
 ![image](https://github.com/IogaMaster/dotfiles/assets/67164465/dac697f5-870f-42bd-9b5e-f35c019f96e1)
-
-</details>
-
-<details>
-<summary>🕸️ Topology Diagram</summary>
-
-Can take a few minutes to update.
-
-![image](https://raw.githubusercontent.com/IogaMaster/dotfiles-topology/main/topology.svg)
 
 </details>
 

@@ -1,0 +1,85 @@
+name: Nix Flake actions
+
+on:
+  push:
+    branches: [ "main", "rewrite" ]
+
+jobs:
+  nix-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@main
+      - id: set-matrix
+        name: Generate Nix Matrix
+        run: |
+          set -Eeu
+          matrix="$(nix eval --json '.#githubActions.matrix')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  nix-build:
+    name: ${{ matrix.name }}-${{ matrix.system }}
+    needs: nix-matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: 'rampage'
+          root-safe-haven: '10240'   # 2GB is plenty for the OS
+          mnt-safe-haven: '1024'    # 1GB is enough for small temp files
+      - uses: DeterminateSystems/determinate-nix-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build and Stage
+        run: |
+          nix build -L '.#${{ matrix.attr }}' \
+            --option system-features "nixos-test benchmark big-parallel kvm" \
+            --option auto-optimise-store true
+
+          sync
+
+          mkdir -p output
+          find -L result -type f -not -path '*/nix-support/*' | while read -r file; do
+            filename=$(basename "$file")
+            cp -L "$file" "output/${{ github.ref_name }}-${{ matrix.system }}-$filename"
+          done
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-${{ matrix.system }}-${{ matrix.name }}
+          path: output/
+          follow-symbolic-links: true
+          retention-days: 1
+
+  release:
+    needs: nix-build
+    if: ${{ always() && !cancelled() }} # Always run if an artifact can be used
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download and Merge All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-images
+          merge-multiple: true
+
+      - name: Global Rolling Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}-latest
+          name: "${{ github.ref_name }}-latest"
+          files: all-images/*
+          target_commitish: ${{ github.sha }}
+          overwrite: true
+          prerelease: false
+          make_latest: true
