@@ -1,187 +1,60 @@
 {
-  description = "You could not live with your own failure. Where did that bring you? Back to me. - Thanos";
+  description = ''
+    Knowing this, that our old man was crucified with Him,
+    that the body of sin might be done away with,
+    that we should no longer be slaves of sin.
+    - Romans 6:6 (NKJV)
+  '';
 
   inputs = {
-    # Core
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # --- Core ---
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    hjem.url = "github:feel-co/hjem";
+    disko.url = "github:nix-community/disko";
+    impermanence.url = "github:nix-community/impermanence";
+    vault-secrets.url = "github:serokell/vault-secrets";
     nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    auto-follow.url = "github:fzakaria/nix-auto-follow";
 
-    # For nixd
+    # --- Graphical ---
+    mac-style-plymouth.url = "github:SergioRibera/s4rchiso-plymouth-theme";
+    nix-colors.url = "github:misterio77/nix-colors";
+    prism.url = "github:IogaMaster/prism";
+
+    # --- CI ---
+    nix-github-actions.url = "github:nix-community/nix-github-actions";
+
+    # --- Applications ---
+    neovim.url = "github:IogaMaster/neovim";
+
+    # --- Misc ---
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
     };
-
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-    impermanence.url = "github:nix-community/impermanence";
-    persist-retro.url = "github:Geometer1729/persist-retro";
-
-    # Home
-    neovim = {
-      url = "github:IogaMaster/neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    yeetmouse = {
-      url = "github:AndyFilter/YeetMouse?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-colors.url = "github:IogaMaster/nix-colors";
-    prism.url = "github:IogaMaster/prism";
-
-    # Deployments
-    arion.url = "github:hercules-ci/arion";
-    arion.inputs.nixpkgs.follows = "nixpkgs";
-
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    nix-topology.url = "github:oddlama/nix-topology";
-    microvm.url = "github:astro/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Misc
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
-    dzgui.url = "github:jiriks74/dzgui.flake";
-
-    flux.url = "github:IogaMaster/flux";
-
-    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
   };
 
   outputs =
-    inputs:
+    { self, nixpkgs, ... }@inputs:
     let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
-
-        snowfall = {
-          meta = {
-            name = "dotfiles";
-            title = "dotfiles";
-          };
-
-          namespace = "custom";
-        };
-      };
+      lib = (import ./lib/default.nix { inherit self nixpkgs inputs; }).mkLib;
     in
-    (lib.mkFlake {
-      inherit inputs;
-      src = ./.;
-
-      channels-config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [
-          "electron-24.8.6"
-          "dotnet-sdk-6.0.428"
-          "dotnet-runtime-6.0.36"
-        ];
+    rec {
+      inherit lib;
+      nixosConfigurations = lib.makeSystems ./hosts {
+        specialArgs = { inherit lib inputs; };
+        extraModules = lib.findModules ./modules;
       };
 
-      overlays = with inputs; [
-        neovim.overlays.default
-        nix-topology.overlays.default
-        flux.overlays.default
-        proxmox-nixos.overlays.x86_64-linux
-      ];
-
-      systems.modules.nixos = with inputs; [
-        nix-topology.nixosModules.default
-        proxmox-nixos.nixosModules.proxmox-ve
-        disko.nixosModules.disko
-        {
-          # Required for impermanence
-          fileSystems."/persist".neededForBoot = true;
-        }
-        flux.nixosModules.flux
-        nix-flatpak.nixosModules.nix-flatpak
-      ];
-
-      systems.hosts.polaris.modules = with inputs; [
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/sda";
-        })
-      ];
-
-      systems.hosts.equinox.modules = with inputs; [
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/sda";
-        })
-      ];
-
-      systems.hosts.zodiac.modules = with inputs; [
-        # impermanence.nixosModules.impermanence
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/sda";
-        })
-      ];
-
-      systems.hosts.aurora.modules = with inputs; [
-        (import ./disks/default.nix {
-          inherit lib;
-          device = "/dev/nvme0n1";
-        })
-        {
-          # Required for impermanence
-          fileSystems."/persist".neededForBoot = true;
-        }
-      ];
-
-      systems.hosts.orion.modules = with inputs; [
-        (import ./disks/default.nix { inherit lib; })
-      ];
-
-      deploy = lib.mkDeploy { inherit (inputs) self; };
-
-      checks = builtins.mapAttrs (
-        _system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy
-      ) inputs.deploy-rs.lib;
-
-      templates = import ./templates { };
-
-      topology =
-        with inputs;
-        let
-          host = self.nixosConfigurations.${builtins.head (builtins.attrNames self.nixosConfigurations)};
-        in
-        import nix-topology {
-          inherit (host) pkgs; # Only this package set must include nix-topology.overlays.default
-          modules = [
-            (import ./topology {
-              inherit (host) config;
-            })
-            { inherit (self) nixosConfigurations; }
-          ];
-        };
-    })
-    # Outputs not managed by snowfall.
-    // {
-      hydraJobs = {
-        packages = {
-          inherit (inputs.self.packages) "x86_64-linux";
-        };
+      images = lib.mkImages ./images {
+        specialArgs = { inherit lib inputs; };
+        extraModules = lib.findModules ./modules;
       };
+
+      packages = lib.forAllSystems (system: lib.mkPackages (lib.pkgsForSystem system) ./pkgs);
+
+      devShells = import ./shell.nix { inherit lib; };
+
+      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix { checks = images; };
     };
 }
