@@ -1,0 +1,61 @@
+name: Update flake.lock
+
+on:
+  schedule:
+    # run every saturday
+    - cron: "0 0 * * 6"
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Run update
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    env:
+      PR_BRANCH: "update-lockfiles"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+
+      - name: Set Git user info
+        run: |
+          git config user.name 'IogaMaster'
+          git config user.email 'iogamastercode@gmail.com'
+
+      - name: Create new branch
+        id: branch
+        run: |
+          git switch -c "$PR_BRANCH"
+
+      - name: Update flake inputs
+        run: |
+          nix flake update \
+            --commit-lock-file \
+            --commit-lockfile-summary "$(printf "build(flake): update flake.lock\n\nCo-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>")"
+
+      - name: Make PR if needed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! git diff --color=always --exit-code origin/main; then
+            git fetch origin "$PR_BRANCH" || true
+            git push --force-with-lease -u origin "$PR_BRANCH"
+
+            open_prs="$(gh pr list --base main --head "$PR_BRANCH" | wc -l)"
+            if [ "$open_prs" -eq 0 ]; then
+              gh pr create \
+                --base main \
+                --head "$PR_BRANCH" \
+                --title "build(flake): update flake.lock" \
+                --fill
+            fi
+          fi
