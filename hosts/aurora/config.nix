@@ -2,6 +2,7 @@
   lib,
   inputs,
   config,
+  pkgs,
   ...
 }:
 let
@@ -26,6 +27,10 @@ in
     "nvidia_drm"
   ];
   networking.hostName = hostJson.hostname;
+
+  environment.systemPackages = with pkgs; [
+    ioga.tuxedo
+  ];
 
   impermanence.enable = true;
 
