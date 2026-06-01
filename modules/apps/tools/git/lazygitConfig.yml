@@ -20,7 +20,19 @@ customCommands:
     output: log
   - key: 'T'
     command: >-
-      for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do     git branch --track "${branch##*/}" "$branch"; done
+      git for-each-ref --format='%(refname:short) %(symref)' refs/remotes/ | \
+      while read -r remote_branch symref; do
+          # Skip symbolic refs like 'origin/HEAD'
+          [ -n "$symref" ] && continue
+
+          # Strip 'origin/' (or other remote name) up to the first slash
+          local_name="${remote_branch#*/}"
+
+          # Track the branch if it doesn't exist locally yet
+          if ! git show-ref --verify --quiet "refs/heads/$local_name"; then
+              git branch --track "$local_name" "$remote_branch"
+          fi
+      done
     description: "add ALL remote branches to the list"
     context: 'localBranches'
     output: log
