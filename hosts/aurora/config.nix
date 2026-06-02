@@ -31,6 +31,7 @@ in
   impermanence.enable = true;
 
   ioga = {
+    apps.recording.enable = true;
     hardware = {
       nvidia.enable = true;
       audio.enable = true;
