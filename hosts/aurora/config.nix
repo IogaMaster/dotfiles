@@ -28,10 +28,6 @@ in
   ];
   networking.hostName = hostJson.hostname;
 
-  environment.systemPackages = with pkgs; [
-    ioga.tuxedo
-  ];
-
   impermanence.enable = true;
 
   ioga = {
