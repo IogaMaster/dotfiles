@@ -185,11 +185,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1780358821,
-        "narHash": "sha256-FOGzZeKQcldG9xbLeGsLkIwscjWsJ+hK3Dyc+eXjzFs=",
+        "lastModified": 1780544648,
+        "narHash": "sha256-D/rgbfnU0z6dJ+kfE9SMng3rnQyk532Fp+vXI1rffQY=",
         "owner": "IogaMaster",
         "repo": "neovim",
-        "rev": "f0e14a5041160f9c5a93799dacffc921201111a5",
+        "rev": "e04787afb44d3a589c6905e6dbae8ad6ce11cc5b",
         "type": "github"
       },
       "original": {
