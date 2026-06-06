@@ -23,6 +23,9 @@ lib.mkModule args "ioga.boot" {
         };
         loader.efi.canTouchEfiVariables = lib.mkIf cfg.efi true;
 
+        initrd.compressor = "zstd";
+        initrd.compressorArgs = [ "-19" ];
+
         plymouth = {
           enable = true;
           theme = "mac-style";
