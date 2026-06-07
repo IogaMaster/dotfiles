@@ -11,6 +11,9 @@ lib.mkModule args "ioga.apps.recording" {
       environment.systemPackages = with pkgs; [
         obs-studio
         obs-studio-plugins.wlrobs
+
+        inkscape
+        audacity
       ];
     };
 }
