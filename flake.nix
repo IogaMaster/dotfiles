@@ -32,6 +32,7 @@
       url = "github:inclyc/flake-compat";
       flake = false;
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs =
