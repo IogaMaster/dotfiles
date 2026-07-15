@@ -16,6 +16,10 @@ lib.mkModule args "ioga.boot" {
     { cfg }:
     {
       nixpkgs.overlays = [ inputs.mac-style-plymouth.overlays.default ];
+
+      environment.systemPackages = with pkgs; [
+        efibootmgr
+      ];
       boot = {
         loader.grub = {
           enable = true;

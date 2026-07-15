@@ -20,7 +20,6 @@ lib.mkModule args "ioga.profiles.gaming" {
       services.irqbalance.enable = true;
 
       boot.kernelParams = [ "nowatchdog" ];
-      hardware.nvidia.powerManagement.enable = false;
       boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
 
       boot.loader.grub = {
