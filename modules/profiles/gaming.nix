@@ -5,6 +5,9 @@
   ...
 }@args:
 lib.mkModule args "ioga.profiles.gaming" {
+  imports = with inputs; [
+    lsfg-vk-flake.nixosModules.default
+  ];
   config =
     { cfg }:
     {
@@ -17,14 +20,15 @@ lib.mkModule args "ioga.profiles.gaming" {
         DefaultMemoryAccounting = false;
       };
 
+      services.lsfg-vk = {
+        enable = true;
+        ui.enable = true; # installs gui for configuring lsfg-vk
+      };
+
       services.irqbalance.enable = true;
 
       boot.kernelParams = [ "nowatchdog" ];
       boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
-
-      boot.loader.grub = {
-        useOSProber = false;
-      };
 
       programs.gamemode = {
         enable = true;
@@ -34,7 +38,10 @@ lib.mkModule args "ioga.profiles.gaming" {
       services.scx = {
         enable = true;
         scheduler = "scx_lavd";
-        extraArgs = [ "--performance" ];
+        extraArgs = [
+          "--performance"
+          "--no-core-compaction"
+        ];
       };
 
       security.pam.loginLimits = [

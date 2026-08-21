@@ -33,6 +33,8 @@
       flake = false;
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    lsfg-vk-flake.url = "github:pabloaul/lsfg-vk-flake/main";
+    lsfg-vk-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

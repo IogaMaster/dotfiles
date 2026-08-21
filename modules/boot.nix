@@ -24,6 +24,7 @@ lib.mkModule args "ioga.boot" {
         loader.grub = {
           enable = true;
           efiSupport = cfg.efi;
+          useOSProber = true;
         };
         loader.efi.canTouchEfiVariables = lib.mkIf cfg.efi true;
 

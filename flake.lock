@@ -227,6 +227,27 @@
         "type": "github"
       }
     },
+    "lsfg-vk-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756367273,
+        "narHash": "sha256-u7/qG5xQxW+o51R2lBPj0NxU3oFrUwj78UlCKKNHGAc=",
+        "owner": "pabloaul",
+        "repo": "lsfg-vk-flake",
+        "rev": "62aadfc844b2002abe47cbbc9dfd028033376248",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pabloaul",
+        "ref": "main",
+        "repo": "lsfg-vk-flake",
+        "type": "github"
+      }
+    },
     "mac-style-plymouth": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -626,6 +647,7 @@
         "flake-compat": "flake-compat",
         "hjem": "hjem",
         "impermanence": "impermanence",
+        "lsfg-vk-flake": "lsfg-vk-flake",
         "mac-style-plymouth": "mac-style-plymouth",
         "neovim": "neovim",
         "nix-cachyos-kernel": "nix-cachyos-kernel",

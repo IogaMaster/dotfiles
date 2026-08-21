@@ -11,7 +11,6 @@ lib.mkModule args "ioga.hardware.amd" {
     {
       boot = {
         initrd.kernelModules = [ "amdgpu" ];
-        # Fixed: Removed obsolete si/cik flags, added hardware recovery overrides
         kernelParams = [
           "amdgpu.gpu_recovery=1"
           "amdgpu.lockup_timeout=10000"
@@ -19,24 +18,34 @@ lib.mkModule args "ioga.hardware.amd" {
           "amdgpu.aspm=0"
           "pcie_aspm=off"
           "mce=off"
+          # Fix for CachyOS / RX 5700 XT stability:
+          "amdgpu.runpm=0"
+          "processor.max_cstate=1"
         ];
       };
 
       environment.systemPackages = with pkgs; [
         ## Tools ##
         mesa-demos
-        vulkan-tools # Khronos official Vulkan Tools and Utilities
-        clinfo # Print information about available OpenCL platforms and devices
-        libva-utils # Collection of utilities and examples for VA-API
+        vulkan-tools
+        clinfo
+        libva-utils
         ## Monitor ##
-        lact # Linux GPU Configuration Tool for AMD and NVIDIA
-        amdgpu_top # Tool to display AMDGPU usage
-        nvtopPackages.amd # (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs
+        lact
+        amdgpu_top
+        nvtopPackages.amd
       ];
-      systemd.packages = with pkgs; [ lact ];
-      systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
-      # Fixed: Added to ensure XWayland hooks map correctly
+      # Fixed LACT systemd activation for NixOS
+      systemd.services.lactd = {
+        description = "AMDGPU Control Daemon";
+        after = [ "multi-user.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.lact}/bin/lact daemon";
+        };
+      };
+
       services.xserver.videoDrivers = [ "amdgpu" ];
 
       hardware = {
@@ -44,13 +53,14 @@ lib.mkModule args "ioga.hardware.amd" {
           enable = true;
           enable32Bit = true;
           extraPackages = with pkgs; [
+            # Stripped duplicate mesa.drivers
+            mesa
             rocmPackages.clr.icd
-            mesa.drivers
             libva-vdpau-driver
             libvdpau-va-gl
           ];
           extraPackages32 = with pkgs.pkgsi686Linux; [
-            mesa.drivers
+            mesa
             libva-vdpau-driver
             libvdpau-va-gl
           ];
@@ -59,10 +69,7 @@ lib.mkModule args "ioga.hardware.amd" {
 
       environment = {
         sessionVariables = {
-          # 1. FORCE RADV: Force Mesa's open-source driver over AMDVLK for Proton gaming
           AMD_VULKAN_ICD = "RADV";
-
-          # Fixed: Removed RADV_PERF_TEST = "gpl" to stop UE5 memory management loops
         };
       };
     };
