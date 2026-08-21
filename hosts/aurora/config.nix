@@ -35,6 +35,7 @@ in
 
   ioga = {
     apps.recording.enable = true;
+    apps.obsidian.enable = true;
     hardware = {
       amd.enable = true;
       audio.enable = true;
