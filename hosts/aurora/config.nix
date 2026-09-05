@@ -15,6 +15,7 @@ in
       inherit lib;
       device = "/dev/nvme0n1";
     })
+    ./sandbox.nix
   ];
   hardware.facter.reportPath = ./facter.json;
   # # FIX: Currently broken, see: https://github.com/NixOS/nixpkgs/issues/485579
@@ -32,6 +33,9 @@ in
   };
 
   impermanence.enable = true;
+
+  services.tailscale.enable = true;
+  environment.systemPackages = [ pkgs.tailscale ];
 
   ioga = {
     apps.recording.enable = true;
