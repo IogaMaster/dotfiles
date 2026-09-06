@@ -12,7 +12,7 @@ lib.mkModule args "ioga.apps.tools.tuxedo" {
     { cfg }:
     {
       environment.systemPackages = with pkgs; [
-        ioga.tuxedo
+        tuxedo
       ];
       environment.shellAliases = {
         t = "tuxedo";

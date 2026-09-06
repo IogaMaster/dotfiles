@@ -38,6 +38,7 @@ in
   environment.systemPackages = [ pkgs.tailscale ];
 
   ioga = {
+    services.llms.enable = true;
     apps.recording.enable = true;
     apps.obsidian.enable = true;
     hardware = {

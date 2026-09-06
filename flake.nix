@@ -26,6 +26,7 @@
 
     # --- Applications ---
     neovim.url = "github:IogaMaster/neovim";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     # --- Misc ---
     flake-compat = {
