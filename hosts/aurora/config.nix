@@ -35,7 +35,7 @@ in
   impermanence.enable = true;
 
   services.tailscale.enable = true;
-  environment.systemPackages = [ pkgs.tailscale ];
+  environment.systemPackages = [ pkgs.tailscale pkgs.vintagestory];
 
   ioga = {
     services.llms.enable = true;
