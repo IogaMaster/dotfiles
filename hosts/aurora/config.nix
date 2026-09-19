@@ -35,12 +35,18 @@ in
   impermanence.enable = true;
 
   services.tailscale.enable = true;
-  environment.systemPackages = [ pkgs.tailscale pkgs.vintagestory];
+  environment.systemPackages = [
+    pkgs.tailscale
+    pkgs.vintagestory
+  ];
+
+  home.files.".config/displays.el".source = ./displays.el;
 
   ioga = {
     services.llms.enable = true;
     apps.recording.enable = true;
     apps.obsidian.enable = true;
+    apps.emacs.enable = true;
     hardware = {
       amd.enable = true;
       audio.enable = true;

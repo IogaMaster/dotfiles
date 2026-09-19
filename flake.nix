@@ -26,6 +26,8 @@
 
     # --- Applications ---
     neovim.url = "github:IogaMaster/neovim";
+    emacs.url = "github:IogaMaster/.emacs.d";
+    ewm.url = "git+https://codeberg.org/ezemtsov/ewm";
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     # --- Misc ---
