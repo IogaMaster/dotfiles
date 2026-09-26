@@ -40,8 +40,6 @@ in
     pkgs.vintagestory
   ];
 
-  home.files.".config/displays.el".source = ./displays.el;
-
   ioga = {
     services.llms.enable = true;
     apps.recording.enable = true;
