@@ -15,7 +15,7 @@ in
       inherit lib;
       device = "/dev/nvme0n1";
     })
-    ./sandbox.nix
+    ./remote-desktop.nix
   ];
   hardware.facter.reportPath = ./facter.json;
   # # FIX: Currently broken, see: https://github.com/NixOS/nixpkgs/issues/485579
