@@ -12,8 +12,17 @@ lib.mkModule args "ioga.desktop.hyprland" {
     { cfg }:
     {
       programs.hyprland.enable = true;
+      programs.hyprland.withUWSM = true;
       programs.hyprland.xwayland.enable = true;
-      xdg.portal.enable = true;
+
+      xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-hyprland ]; # fallback
+        config.hyprland.default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
 
       environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
 

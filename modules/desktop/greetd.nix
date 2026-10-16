@@ -12,12 +12,11 @@ lib.mkModule args "ioga.desktop.greetd" {
         enable = true;
         settings = rec {
           initial_session = {
-            command = "start-hyprland";
+            command = "uwsm start hyprland-uwsm.desktop";
             user = "iogamaster";
           };
           default_session = initial_session;
         };
       };
-
     };
 }

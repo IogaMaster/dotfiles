@@ -47,6 +47,8 @@ lib.mkModule args "ioga.nix" {
             trusted-public-keys = [ ];
             keep-outputs = true;
             keep-derivations = true;
+            connect-timeout = 3;
+            fallback = true;
           };
 
           gc = {
