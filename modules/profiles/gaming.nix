@@ -12,9 +12,6 @@ lib.mkModule args "ioga.profiles.gaming" {
     { cfg }:
     {
 
-      nixpkgs.overlays = with inputs; [ nix-cachyos-kernel.overlays.pinned ];
-      nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
-      nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
       systemd.settings.Manager = {
         DefaultCPUAccounting = false;
         DefaultMemoryAccounting = false;
@@ -28,7 +25,6 @@ lib.mkModule args "ioga.profiles.gaming" {
       services.irqbalance.enable = true;
 
       boot.kernelParams = [ "nowatchdog" ];
-      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
 
       programs.gamemode = {
         enable = true;

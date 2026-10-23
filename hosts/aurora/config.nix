@@ -35,9 +35,13 @@ in
   impermanence.enable = true;
 
   services.tailscale.enable = true;
-  environment.systemPackages = [
-    pkgs.tailscale
-    pkgs.vintagestory
+  environment.systemPackages = with pkgs; [
+    tailscale
+    vintagestory
+    anki
+
+    ocl-icd
+    rocmPackages.clr.icd
   ];
 
   ioga = {
