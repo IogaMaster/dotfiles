@@ -29,6 +29,10 @@ lib.mkModule args "shell" {
           "ls" = "eza --no-user --no-time --git -s type";
         };
         sessionVariables.DIRENV_LOG_FORMAT = "";
+        interactiveShellInit = ''
+            bind -x '"\e[27;5;13~": "$TERM &> /dev/null & disown"'
+            bind -x '"\e[13;5~": "$TERM &> /dev/null & disown"'
+        '';
       };
 
       programs = {
